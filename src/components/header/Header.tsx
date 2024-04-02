@@ -1,13 +1,8 @@
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 
-const Header = ({ delay = 0 }) => {
+const Header = () => {
 	return (
-		<motion.header
-			initial={{ opacity: 0, y: 20 }}
-			animate={{ opacity: 1, y: 0 }}
-			transition={{ delay, duration: 0.5 }}
-		>
+		<header>
 			<div className='flex justify-evenly md:justify-between items-center py-4 fade-in'>
 				<Link href='/'>LOGO</Link>
 				<nav>
@@ -103,7 +98,7 @@ const Header = ({ delay = 0 }) => {
 					</div>
 				</nav>
 			</div>
-		</motion.header>
+		</header>
 	)
 }
 
