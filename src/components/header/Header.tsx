@@ -4,7 +4,7 @@ const Header = () => {
 	return (
 		<header>
 			<div className='flex justify-evenly md:justify-between items-center py-4 fade-in'>
-				<Link href='/'>LOGO</Link>
+				<Link href='/'>LOGO 1</Link>
 				<nav>
 					<ul
 						tabIndex={0}
