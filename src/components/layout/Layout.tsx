@@ -12,7 +12,7 @@ const Layout = ({ children }: LayoutProps) => {
 		<>
 			<div className='cont'>
 				<FadeIn>
-					<Header delay={0.1} />
+					<Header />
 				</FadeIn>
 			</div>
 
