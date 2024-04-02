@@ -4,7 +4,7 @@ const Header = () => {
 	return (
 		<header>
 			<div className='flex justify-evenly md:justify-between items-center py-4 fade-in'>
-				<Link href='/'>LOGO 2</Link>
+				<Link href='/'>ui-pack-next</Link>
 				<nav>
 					<ul
 						tabIndex={0}
@@ -13,7 +13,12 @@ const Header = () => {
 					>
 						<li className=''>
 							<Link className='px-[10px]' href='/about'>
-								Обо мне
+								О проекте
+							</Link>
+						</li>
+						<li className=''>
+							<Link className='px-[10px]' href='/documentation'>
+								Документация
 							</Link>
 						</li>
 						<li className=''>

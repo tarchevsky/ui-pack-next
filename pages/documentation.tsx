@@ -1,14 +1,14 @@
 import { NextPage } from 'next'
 import FadeIn from '@/components/fadeIn/FadeIn'
 
-const ContactsPage: NextPage = () => {
+const Documentation: NextPage = () => {
 	return (
 		<FadeIn>
 			<main>
-				<h1 className={`text-4xl font-bold`}>Контакты</h1>
+				<h1 className={`text-4xl font-bold`}>Документация</h1>
 			</main>
 		</FadeIn>
 	)
 }
 
-export default ContactsPage
+export default Documentation

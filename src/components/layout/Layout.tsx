@@ -10,21 +10,15 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => {
 	return (
 		<>
-			<div className='cont'>
-				<FadeIn>
-					<Header />
-				</FadeIn>
-			</div>
+			<FadeIn>
+				<Header />
+			</FadeIn>
 
-			<main>
-				<FadeIn>{children}</FadeIn>
-			</main>
+			<div>{children}</div>
 
-			<div className='cont'>
-				<FadeIn>
-					<Footer />
-				</FadeIn>
-			</div>
+			<FadeIn>
+				<Footer />
+			</FadeIn>
 		</>
 	)
 }
