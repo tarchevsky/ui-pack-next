@@ -1,4 +1,4 @@
-import styles from './burger.module.scss'
+import styles from './Burger.module.scss'
 import { useState } from 'react'
 import cn from 'clsx'
 
