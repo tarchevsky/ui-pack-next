@@ -1,108 +1,77 @@
 import Link from 'next/link'
+import cn from 'clsx'
+import styles from './Header.module.scss'
+import Burger from '@/components/burger/Burger'
+import { useEffect, useState } from 'react'
+import ThemeToggle from '@/components/themeToggle/ThemeToggle'
 
 const Header = () => {
+	const [isMenuActive, setIsMenuActive] = useState(false)
+	const toggleMenu = () => {
+		setIsMenuActive(!isMenuActive)
+	}
+
+	useEffect(() => {
+		if (isMenuActive) {
+			document.body.style.overflow = 'hidden'
+		} else {
+			document.body.style.overflow = 'unset'
+		}
+	}, [isMenuActive])
+
 	return (
-		<header>
-			<div className='flex justify-evenly md:justify-between items-center py-4 fade-in'>
-				<Link href='/'>ui-pack-next</Link>
-				<nav>
-					<ul
-						tabIndex={0}
-						id='header-menu'
-						className='menu flex-nowrap menu-horizontal header-menu__list'
+		<header className='relative flex justify-between md:justify-between items-center py-4'>
+			<Link href='/'>ui-pack-next</Link>
+			<nav
+				className={cn(
+					{ [styles.active]: isMenuActive },
+					'fixed md:static z-10 w-full h-full md:w-auto md:h-auto end-0 bottom-0 -translate-y-full md:translate-y-0 opacity-0 md:opacity-100 transition-all duration-300 ease-out'
+				)}
+			>
+				<ul
+					tabIndex={0}
+					className='absolute md:static menu flex-nowrap md:menu-horizontal start-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:translate-y-0 md:translate-x-0'
+				>
+					<li
+						className={cn(
+							styles.item,
+							'block text-center opacity-0 md:opacity-100'
+						)}
 					>
-						<li className=''>
-							<Link className='px-[10px]' href='/about'>
-								О проекте
-							</Link>
-						</li>
-						<li className=''>
-							<Link className='px-[10px]' href='/documentation'>
-								Документация
-							</Link>
-						</li>
-						<li className=''>
-							<Link className='px-[10px]' href='/contacts'>
-								Контакты
-							</Link>
-						</li>
-					</ul>
-					<div className='dropdown hidden xl:inline-block'>
-						<a
-							tabIndex={0}
-							role='button'
-							className='btn flex-nowrap text-start btn-ghost font-normal px-[10px]'
+						<Link className='px-[10px] btn btn-ghost font-normal' href='/about'>
+							О проекте
+						</Link>
+					</li>
+					<li
+						className={cn(
+							styles.item,
+							'block text-center opacity-0 md:opacity-100'
+						)}
+					>
+						<Link
+							className='px-[10px] btn btn-ghost font-normal'
+							href='/documentation'
 						>
-							Цветовая схема
-							<svg
-								width='12px'
-								height='12px'
-								className='h-2 w-2 fill-current opacity-60 inline-block'
-								xmlns='http://www.w3.org/2000/svg'
-								viewBox='0 0 2048 2048'
-							>
-								<path d='M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z'></path>
-							</svg>
-						</a>
-						<ul className='dropdown-content z-[100] mt-2 p-2 shadow-2xl bg-base-300 rounded-box w-30 sm:w-52'>
-							<li>
-								<input
-									type='radio'
-									name='theme-dropdown'
-									className='theme-controller btn btn-sm btn-block btn-ghost justify-start'
-									aria-label='Default'
-									value='default'
-								/>
-							</li>
-							<li>
-								<input
-									type='radio'
-									name='theme-dropdown'
-									className='theme-controller btn btn-sm btn-block btn-ghost justify-start'
-									aria-label='Cupcake'
-									value='cupcake'
-								/>
-							</li>
-							<li>
-								<input
-									type='radio'
-									name='theme-dropdown'
-									className='theme-controller btn btn-sm btn-block btn-ghost justify-start'
-									aria-label='Nord'
-									value='nord'
-								/>
-							</li>
-							<li>
-								<input
-									type='radio'
-									name='theme-dropdown'
-									className='theme-controller btn btn-sm btn-block btn-ghost justify-start'
-									aria-label='Business'
-									value='business'
-								/>
-							</li>
-							<li>
-								<input
-									type='radio'
-									name='theme-dropdown'
-									className='theme-controller btn btn-sm btn-block btn-ghost justify-start'
-									aria-label='Black'
-									value='black'
-								/>
-							</li>
-							<li>
-								<input
-									type='radio'
-									name='theme-dropdown'
-									className='theme-controller btn btn-sm btn-block btn-ghost justify-start'
-									aria-label='Dim'
-									value='dim'
-								/>
-							</li>
-						</ul>
-					</div>
-				</nav>
-			</div>
+							Документация
+						</Link>
+					</li>
+					<li
+						className={cn(
+							styles.item,
+							'block text-center opacity-0 md:opacity-100'
+						)}
+					>
+						<Link
+							className='px-[10px] btn btn-ghost font-normal'
+							href='/contacts'
+						>
+							Контакты
+						</Link>
+					</li>
+					<ThemeToggle />
+				</ul>
+			</nav>
+			<Burger toggleMenu={toggleMenu} />
 		</header>
 	)
 }
