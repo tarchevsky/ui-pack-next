@@ -1,13 +1,9 @@
 import { motion, useAnimation } from 'framer-motion'
-import { ReactNode, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import cn from 'clsx'
+import { LayoutProps } from '@/types'
 
-interface LayoutProps {
-	children: ReactNode
-	className?: string
-}
-
-const FadeIn = ({ children, className = 'cont' }: LayoutProps) => {
+const FadeIn = ({ children, className }: LayoutProps) => {
 	const controls = useAnimation()
 	const ref = useRef<HTMLDivElement | null>(null)
 
@@ -39,7 +35,7 @@ const FadeIn = ({ children, className = 'cont' }: LayoutProps) => {
 			ref={ref}
 			animate={controls}
 			initial='hidden'
-			transition={{ duration: 3 }} // Настройка продолжительности анимации
+			transition={{ duration: 2 }} // Настройка продолжительности анимации
 			variants={{
 				visible: { opacity: 1, y: 0 },
 				hidden: { opacity: 0, y: 20 } // Начальное положение элемента перед анимацией

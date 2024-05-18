@@ -3,7 +3,7 @@ import Link from 'next/link'
 const Footer = () => {
 	return (
 		<footer className='footer p-10 text-neutral-content'>
-			<nav>
+			<nav className='cont'>
 				<h6 className='footer-title'>Services</h6>
 				<Link href='/' className='link link-hover'>
 					Branding
