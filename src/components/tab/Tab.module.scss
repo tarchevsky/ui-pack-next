@@ -1,0 +1,26 @@
+/* Tab.module.scss */
+.tabContent {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-out; /* Плавный переход высоты */
+}
+
+.tabContent.open {
+  max-height: 300px; /* Примерная максимальная высота контента. Установите достаточно большое значение */
+}
+
+// Добавляем базовые стили для стрелки
+.arrow {
+  display: inline-block;
+  margin-left: 5px;
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  padding: 3px;
+  transform: rotate(45deg);
+  transition: transform 0.3s ease-out; // Плавный переход для анимации поворота
+}
+
+// Стили для поворота стрелки вниз при открытии таба
+.rotate {
+  transform: rotate(226deg); // Можно настроить угол поворота по желанию
+}
