@@ -1,15 +1,38 @@
-const Hero = () => {
+import { HeroProps } from '@/types'
+import { useEffect, useState } from 'react'
+
+const Hero = ({ title, buttonText, alt }: HeroProps) => {
+	const [imageUrl, setImageUrl] = useState('')
+
+	const getRandomImage = async () => {
+		const response = await fetch(
+			`https://api.unsplash.com/photos/random?client_id=kQSsd8zaqbngiAsBH-G0sheRVSU9LjadcBNB6vEoz8Q`
+		)
+		const data = await response.json()
+		setImageUrl(data.urls.regular)
+	}
+
+	useEffect(() => {
+		getRandomImage()
+	}, [])
+
 	return (
-		<main className='hero min-h-screen bg-base-200'>
-			<div className='hero-content text-center'>
-				<div className='max-w-md'>
-					<h1 className='text-5xl font-bold'>Hello there</h1>
-					<p className='py-6'>
-						Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-						excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-						a id nisi.
-					</p>
-					<button className='btn btn-primary'>Get Started</button>
+		<main className='hero cont md:min-h-[80vh]'>
+			<div className='relative hero-content flex-col lg:flex-row'>
+				<img
+					className='lg:w-1/2 h-[600px] min-w-[600px] object-cover rounded-3xl shadow-2xl'
+					src={imageUrl}
+					alt={alt}
+					loading='lazy'
+				/>
+				<div className='absolute lg:relative lg:ml-[-100px] z-10'>
+					<h1
+						className='md:text-6xl font-bold base-content'
+						dangerouslySetInnerHTML={{
+							__html: title
+						}}
+					/>
+					<button className='btn btn-primary btn-lg mt-3'>{buttonText}</button>
 				</div>
 			</div>
 		</main>

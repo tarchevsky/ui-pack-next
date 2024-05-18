@@ -19,7 +19,6 @@ export interface LayoutProps {
 export interface HeroProps {
 	title: {}
 	buttonText: string
-	src: string
 	alt: string
 }
 
