@@ -1,50 +1,35 @@
 import Link from 'next/link'
+import { FaTelegramPlane } from 'react-icons/fa'
+import { FaSquarePhone } from 'react-icons/fa6'
+import { IoLogoWhatsapp } from 'react-icons/io'
 
 const Footer = () => {
 	return (
-		<footer className='footer p-10 text-neutral-content'>
-			<nav className='cont'>
-				<h6 className='footer-title'>Services</h6>
-				<Link href='/' className='link link-hover'>
-					Branding
+		<footer className='footer footer-center p-10 bg-base-200 text-base-content rounded'>
+			<nav className='grid grid-flow-col gap-4'>
+				<Link href='/about' className='link link-hover'>
+					О нас
 				</Link>
 				<Link href='/' className='link link-hover'>
-					Design
-				</Link>
-				<Link href='/' className='link link-hover'>
-					Marketing
-				</Link>
-				<Link href='/' className='link link-hover'>
-					Advertisement
+					Контакты
 				</Link>
 			</nav>
 			<nav>
-				<h6 className='footer-title'>Company</h6>
-				<Link href='/' className='link link-hover'>
-					About us
-				</Link>
-				<Link href='/' className='link link-hover'>
-					Contact
-				</Link>
-				<Link href='/' className='link link-hover'>
-					Jobs
-				</Link>
-				<Link href='/' className='link link-hover'>
-					Press kit
-				</Link>
+				<div className='grid grid-flow-col gap-4'>
+					<Link href='/'>
+						<FaTelegramPlane />
+					</Link>
+					<Link href='/'>
+						<IoLogoWhatsapp />
+					</Link>
+					<Link href='/'>
+						<FaSquarePhone />
+					</Link>
+				</div>
 			</nav>
-			<nav>
-				<h6 className='footer-title'>Legal</h6>
-				<Link href='/' className='link link-hover'>
-					Terms of use
-				</Link>
-				<Link href='/' className='link link-hover'>
-					Privacy policy
-				</Link>
-				<Link href='/' className='link link-hover'>
-					Cookie policy
-				</Link>
-			</nav>
+			<aside>
+				<p>Copyright © 2024 - Тарчевский И.А.</p>
+			</aside>
 		</footer>
 	)
 }
