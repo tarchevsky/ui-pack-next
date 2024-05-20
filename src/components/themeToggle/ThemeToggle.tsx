@@ -1,6 +1,6 @@
 const ThemeToggle = () => {
 	return (
-		<label className='flex items-center cursor-pointer gap-2'>
+		<label className='flex items-center cursor-pointer gap-2 h-12 md:h-auto'>
 			<svg
 				xmlns='http://www.w3.org/2000/svg'
 				width='20'
