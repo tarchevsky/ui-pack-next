@@ -18,8 +18,9 @@ export interface LayoutProps {
 
 export interface HeroProps {
 	title: {}
-	buttonText: string
+	buttonText?: string
 	alt: string
+	subtitle?: string
 }
 
 // Accordion.tsx

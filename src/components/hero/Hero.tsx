@@ -1,7 +1,7 @@
 import { HeroProps } from '@/types'
 import { useEffect, useState } from 'react'
 
-const Hero = ({ title, buttonText, alt }: HeroProps) => {
+const Hero = ({ title, buttonText, alt, subtitle }: HeroProps) => {
 	const [imageUrl, setImageUrl] = useState('')
 
 	const getRandomImage = async () => {
@@ -32,7 +32,12 @@ const Hero = ({ title, buttonText, alt }: HeroProps) => {
 							__html: title
 						}}
 					/>
-					<button className='btn btn-primary btn-lg mt-3'>{buttonText}</button>
+					{subtitle ? <p>{subtitle}</p> : null}
+					{buttonText ? (
+						<button className='btn btn-primary btn-lg mt-3'>
+							{buttonText}
+						</button>
+					) : null}
 				</div>
 			</div>
 		</main>
