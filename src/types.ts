@@ -18,6 +18,7 @@ export interface LayoutProps {
 
 export interface HeroProps {
 	title: {}
+	src: string
 	buttonText?: string
 	alt: string
 	subtitle?: string

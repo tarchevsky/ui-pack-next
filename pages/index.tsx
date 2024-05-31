@@ -10,6 +10,7 @@ const HomePage: NextPage = () => {
 			<Meta title='Главная' metaDesc='Описание страницы' />
 			<FadeIn className='cont'>
 				<Hero
+					src='/fog-sea.jpg'
 					alt='Альт картинки'
 					title='Заголовок'
 					buttonText='Обратная связь'
