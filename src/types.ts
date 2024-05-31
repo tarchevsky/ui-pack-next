@@ -17,7 +17,7 @@ export interface LayoutProps {
 // Hero.tsx
 
 export interface HeroProps {
-	title: {}
+	title: string
 	src: string
 	buttonText?: string
 	alt: string

@@ -11,12 +11,7 @@ const Hero = ({ title, buttonText, alt, subtitle, src }: HeroProps) => {
 					loading='lazy'
 				/>
 				<div className='absolute lg:relative lg:ml-[-100px] z-10'>
-					<h1
-						className='md:text-6xl font-bold base-content'
-						dangerouslySetInnerHTML={{
-							__html: title
-						}}
-					/>
+					<h1 className='text-5xl font-extrabold'>{title}</h1>
 					{subtitle ? <p>{subtitle}</p> : null}
 					{buttonText ? (
 						<button className='btn btn-primary btn-lg mt-3'>
