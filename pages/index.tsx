@@ -3,6 +3,7 @@ import Hero from '@/components/hero/Hero'
 import Accordion from '@/components/accordion/Accordion'
 import FadeIn from '@/components/fadeIn/FadeIn'
 import Meta from '@/components/meta/Meta'
+import CarouselBeyond from '@/components/carouselBeyond/CarouselBeyond'
 
 const HomePage: NextPage = () => {
 	return (
@@ -29,6 +30,9 @@ const HomePage: NextPage = () => {
 				<h4>Заголовок</h4>
 				<h5>Заголовок</h5>
 				<h6>Заголовок</h6>
+			</FadeIn>
+			<FadeIn className='cont'>
+				<CarouselBeyond />
 			</FadeIn>
 		</>
 	)
