@@ -4,6 +4,7 @@ import Accordion from '@/components/accordion/Accordion'
 import FadeIn from '@/components/fadeIn/FadeIn'
 import Meta from '@/components/meta/Meta'
 import CarouselBeyond from '@/components/carouselBeyond/CarouselBeyond'
+import Carousel from '@/components/carousel/Carousel'
 
 const HomePage: NextPage = () => {
 	return (
