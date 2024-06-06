@@ -1,0 +1,36 @@
+.carousel {
+    .swiper, .swiper-wrapper {
+        height: 600px;
+        padding-bottom: 80px;
+    }
+
+    .swiper-button-next, .swiper-button-prev {
+        @apply z-20;
+        top: revert;
+        bottom: 5px;
+
+        width: 50px;
+        height: 50px;
+
+        @apply border;
+        @apply rounded-3xl;
+        @apply hover:bg-primary-content;
+    }
+
+    .swiper-button-next:after, .swiper-button-prev:after {
+        font-size: 14px;
+        @apply text-primary-content;
+    }
+
+    .swiper-button-next:hover:after, .swiper-button-prev:hover:after {
+        @apply text-base-100;
+    }
+
+    .swiper-pagination-bullet {
+        @apply bg-primary-content/80;
+    }
+
+    .swiper-pagination-bullet-active {
+        @apply bg-primary;
+    }
+}

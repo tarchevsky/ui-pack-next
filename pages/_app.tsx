@@ -1,4 +1,5 @@
 import '@/assets/styles/globals.css'
+import '@/assets/styles/swiper.css'
 import type { AppProps } from 'next/app'
 import Layout from '@/layout/Layout'
 

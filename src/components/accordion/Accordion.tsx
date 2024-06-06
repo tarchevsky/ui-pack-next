@@ -10,7 +10,7 @@ const Accordion = ({
 	content3
 }: AccordionProps) => {
 	return (
-		<FadeIn className='mb-14'>
+		<FadeIn className='mb-60'>
 			<div className='collapse collapse-arrow bg-base-200 mb-4'>
 				<input type='radio' name='my-accordion-2' defaultChecked />
 				<div className='collapse-title text-xl font-medium'>{tab1}</div>

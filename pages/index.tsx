@@ -24,15 +24,16 @@ const HomePage: NextPage = () => {
 					tab3='Какой-то заголовок'
 					content3='Какой-то текст'
 				/>
-				<h1>Заголовок</h1>
-				<h2>Заголовок</h2>
-				<h3>Заголовок</h3>
-				<h4>Заголовок</h4>
-				<h5>Заголовок</h5>
-				<h6>Заголовок</h6>
+			</FadeIn>
+			<FadeIn className='cont flex gap-20 mb-14'>
+				<h1 className='text-3xl font-extrabold'>Какой-то заголовок</h1>
+				<p>Какой-то текст</p>
 			</FadeIn>
 			<FadeIn className='cont'>
 				<CarouselBeyond />
+			</FadeIn>
+			<FadeIn className='cont'>
+				<Carousel />
 			</FadeIn>
 		</>
 	)
