@@ -5,6 +5,7 @@ import FadeIn from '@/components/fadeIn/FadeIn'
 import Meta from '@/components/meta/Meta'
 import CarouselBeyond from '@/components/carouselBeyond/CarouselBeyond'
 import Carousel from '@/components/carousel/Carousel'
+import { MaterialSlider } from '@/components/materialSlider/MaterialSlider'
 
 const HomePage: NextPage = () => {
 	return (
@@ -35,6 +36,9 @@ const HomePage: NextPage = () => {
 			</FadeIn>
 			<FadeIn className='cont'>
 				<Carousel />
+			</FadeIn>
+			<FadeIn>
+				<MaterialSlider />
 			</FadeIn>
 		</>
 	)
