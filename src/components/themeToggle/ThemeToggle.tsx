@@ -1,4 +1,23 @@
-const ThemeToggle = () => {
+import { ThemeToggleProps } from '@/types'
+import { useEffect, useState } from 'react'
+
+const ThemeToggle = ({ className }: ThemeToggleProps) => {
+	const [isDarkMode, setIsDarkMode] = useState(false)
+
+	useEffect(() => {
+		const savedTheme = localStorage.getItem('theme')
+		if (savedTheme) {
+			document.documentElement.setAttribute('data-theme', savedTheme)
+			setIsDarkMode(savedTheme === 'dark')
+		}
+	}, [])
+
+	const toggleTheme = () => {
+		const newTheme = isDarkMode ? 'light' : 'dark'
+		localStorage.setItem('theme', newTheme)
+		document.documentElement.setAttribute('data-theme', newTheme)
+		setIsDarkMode(!isDarkMode)
+	}
 	return (
 		<label className='flex items-center cursor-pointer gap-2 h-12 md:h-auto'>
 			<svg
@@ -15,7 +34,15 @@ const ThemeToggle = () => {
 				<circle cx='12' cy='12' r='5' />
 				<path d='M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4' />
 			</svg>
-			<input type='checkbox' value='dim' className='toggle theme-controller' />
+			<input
+				type='checkbox'
+				value='dim'
+				name='themeToggle'
+				aria-label='Переключатель темы'
+				className='toggle theme-controller'
+				checked={isDarkMode}
+				onChange={toggleTheme}
+			/>
 			<svg
 				xmlns='http://www.w3.org/2000/svg'
 				width='20'
