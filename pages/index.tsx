@@ -31,9 +31,7 @@ const HomePage: NextPage = () => {
 				<h1 className='text-3xl font-extrabold'>Какой-то заголовок</h1>
 				<p>Какой-то текст</p>
 			</FadeIn>
-			<FadeIn className='cont'>
-				<CarouselBeyond />
-			</FadeIn>
+			<CarouselBeyond />
 			<FadeIn className='cont'>
 				<Carousel />
 			</FadeIn>
