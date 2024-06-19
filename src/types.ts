@@ -12,6 +12,7 @@ export interface MetaProps {
 export interface LayoutProps {
 	children: ReactNode
 	className?: string
+	delay?: number
 }
 
 // Hero.tsx

@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react'
 import cn from 'clsx'
 import { LayoutProps } from '@/types'
 
-const FadeIn = ({ children, className }: LayoutProps) => {
+const FadeIn = ({ children, className, delay = 0.2 }: LayoutProps) => {
 	const controls = useAnimation()
 	const ref = useRef<HTMLDivElement | null>(null)
 
@@ -35,7 +35,7 @@ const FadeIn = ({ children, className }: LayoutProps) => {
 			ref={ref}
 			animate={controls}
 			initial='hidden'
-			transition={{ duration: 2 }} // Настройка продолжительности анимации
+			transition={{ duration: 1, delay }} // Настройка продолжительности анимации
 			variants={{
 				visible: { opacity: 1, y: 0 },
 				hidden: { opacity: 0, y: 20 } // Начальное положение элемента перед анимацией
