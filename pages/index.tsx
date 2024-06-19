@@ -32,9 +32,7 @@ const HomePage: NextPage = () => {
 				<p>Какой-то текст</p>
 			</FadeIn>
 			<CarouselBeyond />
-			<FadeIn className='cont'>
-				<Carousel />
-			</FadeIn>
+			<Carousel />
 			<FadeIn>
 				<MaterialSlider />
 			</FadeIn>
