@@ -44,7 +44,6 @@ const Carousel = () => {
 				</SwiperSlide>
 				<SwiperSlide>
 					<div className='relative h-full flex flex-col items-center justify-center rounded-box'>
-						<img
 						<Image
 							className='absolute top-0 left-0 h-full w-full rounded-box -z-10 brightness-50'
 							src='/forest-river.jpg'
