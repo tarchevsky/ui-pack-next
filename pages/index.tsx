@@ -7,6 +7,8 @@ import CarouselBeyond from '@/components/carouselBeyond/CarouselBeyond'
 import Carousel from '@/components/carousel/Carousel'
 import { MaterialSlider } from '@/components/materialSlider/MaterialSlider'
 import Masonry from '@/components/masonry/Masonry'
+import InfiniteMasonry from '@/components/infiniteMasonry/InfiniteMasonry'
+import { images } from '@/components/infiniteMasonry/images.js'
 
 const HomePage: NextPage = () => {
 	return (

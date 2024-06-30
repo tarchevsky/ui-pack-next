@@ -96,3 +96,15 @@ export interface BurgerProps {
 export interface ThemeToggleProps {
 	className?: string
 }
+
+// Images & Masonry
+
+export interface ImageItem {
+	id: string
+	src: string
+	alt: string
+}
+
+export interface MasonryProps {
+	images: ImageItem[]
+}

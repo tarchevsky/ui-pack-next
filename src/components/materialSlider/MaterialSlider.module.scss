@@ -8,7 +8,6 @@
 }
 
 .wrapper {
-  border-radius: var(--swiper-material-slide-border-radius);
   overflow: hidden;
   position: absolute;
   width: 100%;
@@ -17,6 +16,7 @@
   top: 0;
   box-sizing: border-box;
   pointer-events: auto;
+  @apply rounded-box
 }
 
 .content {
@@ -30,14 +30,9 @@
 }
 
 .image {
-  position: absolute;
   left: 0%;
   top: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
   display: block;
-  border-radius: var(--swiper-material-slide-border-radius);
   @apply brightness-50;
 }
 

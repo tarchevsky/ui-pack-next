@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import FadeIn from '@/components/fadeIn/FadeIn'
 import styles from './MaterialSlider.module.scss'
 import cn from 'clsx'
+import Image from 'next/image'
 
 export const MaterialSlider = () => {
 	return (
@@ -20,10 +21,15 @@ export const MaterialSlider = () => {
 				<SwiperSlide>
 					<div className={cn(styles.wrapper, 'swiper-material-wrapper')}>
 						<div className={cn(styles.content, 'swiper-material-content')}>
-							<img
+							<Image
 								className={cn(styles.image, 'material-image')}
 								data-swiper-material-scale='1.25'
 								src='/fog-sea.jpg'
+								alt='Туман'
+								fill
+								style={{
+									objectFit: 'cover'
+								}}
 							/>
 
 							<span
@@ -40,10 +46,15 @@ export const MaterialSlider = () => {
 				<SwiperSlide>
 					<div className={cn(styles.wrapper, 'swiper-material-wrapper')}>
 						<div className={cn(styles.content, 'swiper-material-content')}>
-							<img
+							<Image
 								className={cn(styles.image, 'material-image')}
 								data-swiper-material-scale='1.25'
 								src='/forest-river.jpg'
+								alt='Туманная река'
+								fill
+								style={{
+									objectFit: 'cover'
+								}}
 							/>
 
 							<span
@@ -60,10 +71,15 @@ export const MaterialSlider = () => {
 				<SwiperSlide>
 					<div className={cn(styles.wrapper, 'swiper-material-wrapper')}>
 						<div className={cn(styles.content, 'swiper-material-content')}>
-							<img
+							<Image
 								className={cn(styles.image, 'material-image')}
 								data-swiper-material-scale='1.25'
 								src='/more-dark.jpg'
+								alt='Тёмный пейзаж с видом на озеро и лес'
+								fill
+								style={{
+									objectFit: 'cover'
+								}}
 							/>
 
 							<span
@@ -80,10 +96,15 @@ export const MaterialSlider = () => {
 				<SwiperSlide>
 					<div className={cn(styles.wrapper, 'swiper-material-wrapper')}>
 						<div className={cn(styles.content, 'swiper-material-content')}>
-							<img
+							<Image
 								className={cn(styles.image, 'material-image')}
 								data-swiper-material-scale='1.25'
 								src='/note.jpg'
+								alt='Записи'
+								fill
+								style={{
+									objectFit: 'cover'
+								}}
 							/>
 
 							<span
@@ -100,10 +121,15 @@ export const MaterialSlider = () => {
 				<SwiperSlide>
 					<div className={cn(styles.wrapper, 'swiper-material-wrapper')}>
 						<div className={cn(styles.content, 'swiper-material-content')}>
-							<img
+							<Image
 								className={cn(styles.image, 'material-image')}
 								data-swiper-material-scale='1.25'
 								src='/05.jpg'
+								alt='Девушка 5'
+								fill
+								style={{
+									objectFit: 'cover'
+								}}
 							/>
 
 							<span
@@ -120,10 +146,15 @@ export const MaterialSlider = () => {
 				<SwiperSlide>
 					<div className={cn(styles.wrapper, 'swiper-material-wrapper')}>
 						<div className={cn(styles.content, 'swiper-material-content')}>
-							<img
+							<Image
 								className={cn(styles.image, 'material-image')}
 								data-swiper-material-scale='1.25'
 								src='/06.jpg'
+								alt='Девушка 6'
+								fill
+								style={{
+									objectFit: 'cover'
+								}}
 							/>
 
 							<span
