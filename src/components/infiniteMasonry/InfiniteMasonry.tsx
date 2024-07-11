@@ -4,6 +4,7 @@ import styles from './InfiniteMasonry.module.scss'
 import { MasonryProps } from '@/types'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
+import { images } from '@/components/InfiniteMasonry/images'
 
 const InfiniteMasonry: React.FC<MasonryProps> = ({ images }) => {
 	const [visibleImages, setVisibleImages] = useState<typeof images>([])
