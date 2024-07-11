@@ -6,7 +6,7 @@ import Meta from '@/components/meta/Meta'
 import CarouselBeyond from '@/components/carouselBeyond/CarouselBeyond'
 import Carousel from '@/components/carousel/Carousel'
 import { MaterialSlider } from '@/components/materialSlider/MaterialSlider'
-import { images } from '@/components/InfiniteMasonry/images'
+import { images } from '@/components/infiniteMasonry/images'
 import InfiniteMasonry from '@/components/infiniteMasonry/InfiniteMasonry'
 
 const HomePage: NextPage = () => {
