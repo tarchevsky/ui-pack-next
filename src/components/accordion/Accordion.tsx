@@ -12,21 +12,34 @@ const Accordion = ({
 	return (
 		<FadeIn className='mb-60'>
 			<div className='collapse collapse-arrow bg-base-200 mb-4'>
-				<input type='radio' name='my-accordion-2' defaultChecked />
+				<input
+					type='radio'
+					name='my-accordion-2'
+					defaultChecked
+					area-label='Accordion tab 1'
+				/>
 				<div className='collapse-title text-xl font-medium'>{tab1}</div>
 				<div className='collapse-content'>
 					<p>{content1}</p>
 				</div>
 			</div>
 			<div className='collapse collapse-arrow bg-base-200 mb-4'>
-				<input type='radio' name='my-accordion-2' />
+				<input
+					type='radio'
+					name='my-accordion-2'
+					area-label='Accordion tab 2'
+				/>
 				<div className='collapse-title text-xl font-medium'>{tab2}</div>
 				<div className='collapse-content'>
 					<p>{content2}</p>
 				</div>
 			</div>
 			<div className='collapse collapse-arrow bg-base-200 mb-4'>
-				<input type='radio' name='my-accordion-2' />
+				<input
+					type='radio'
+					name='my-accordion-2'
+					area-label='Accordion tab 3'
+				/>
 				<div className='collapse-title text-xl font-medium'>{tab3}</div>
 				<div className='collapse-content'>
 					<p>{content3}</p>
