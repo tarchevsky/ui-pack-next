@@ -11,7 +11,7 @@ const Burger = ({ toggleMenu }: any) => {
 	}
 
 	return (
-		<div
+		<button
 			className={cn(
 				styles.burger,
 				'block md:hidden absolute w-[30px] h-[20px] inset-y-1/2 right-0 -translate-y-1/2 cursor-pointer z-20'
@@ -26,7 +26,7 @@ const Burger = ({ toggleMenu }: any) => {
 				<div></div>
 				<div></div>
 			</div>
-		</div>
+		</button>
 	)
 }
 
