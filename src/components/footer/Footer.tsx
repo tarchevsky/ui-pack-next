@@ -16,13 +16,13 @@ const Footer = () => {
 			</nav>
 			<nav>
 				<div className='grid grid-flow-col gap-4'>
-					<Link href='/'>
+					<Link href='/' area-label='Telegram link'>
 						<FaTelegramPlane className='fill-primary' size={25} />
 					</Link>
-					<Link href='/'>
+					<Link href='/' area-label='Whatsapp link'>
 						<IoLogoWhatsapp className='fill-primary' size={25} />
 					</Link>
-					<Link href='/'>
+					<Link href='/' area-label='Phone link'>
 						<FaSquarePhone className='fill-primary' size={25} />
 					</Link>
 				</div>
