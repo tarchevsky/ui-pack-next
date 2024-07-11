@@ -78,7 +78,9 @@ const Header = () => {
 							Контакты
 						</Link>
 					</li>
-					<ThemeToggle />
+					<li>
+						<ThemeToggle />
+					</li>
 				</ul>
 			</nav>
 			<Burger toggleMenu={toggleMenu} />

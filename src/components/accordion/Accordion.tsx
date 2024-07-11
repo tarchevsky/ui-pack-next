@@ -16,7 +16,7 @@ const Accordion = ({
 					type='radio'
 					name='my-accordion-2'
 					defaultChecked
-					area-label='Accordion tab 1'
+					aria-label='Accordion tab 1'
 				/>
 				<div className='collapse-title text-xl font-medium'>{tab1}</div>
 				<div className='collapse-content'>
@@ -27,7 +27,7 @@ const Accordion = ({
 				<input
 					type='radio'
 					name='my-accordion-2'
-					area-label='Accordion tab 2'
+					aria-label='Accordion tab 2'
 				/>
 				<div className='collapse-title text-xl font-medium'>{tab2}</div>
 				<div className='collapse-content'>
@@ -38,7 +38,7 @@ const Accordion = ({
 				<input
 					type='radio'
 					name='my-accordion-2'
-					area-label='Accordion tab 3'
+					aria-label='Accordion tab 3'
 				/>
 				<div className='collapse-title text-xl font-medium'>{tab3}</div>
 				<div className='collapse-content'>
