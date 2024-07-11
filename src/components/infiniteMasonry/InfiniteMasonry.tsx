@@ -3,14 +3,16 @@ import cn from 'clsx'
 import styles from './InfiniteMasonry.module.scss'
 import { MasonryProps } from '@/types'
 import Image from 'next/image'
-import { motion } from 'framer-motion'
 
 const InfiniteMasonry: React.FC<MasonryProps> = ({ images }) => {
 	const [visibleImages, setVisibleImages] = useState<typeof images>([])
 	const [page, setPage] = useState(1)
+	const [imagesLoaded, setImagesLoaded] = useState<{ [key: string]: boolean }>(
+		{}
+	)
 	const loaderRef = useRef(null)
 
-	const imagesPerPage = 6 // 3 изображения на страницу (по одному на колонку)
+	const imagesPerPage = 6
 
 	useEffect(() => {
 		setVisibleImages(images.slice(0, imagesPerPage))
@@ -50,7 +52,6 @@ const InfiniteMasonry: React.FC<MasonryProps> = ({ images }) => {
 		}
 	}
 
-	// Функция для определения, должно ли изображение быть вертикальным
 	const shouldBeVertical = (columnIndex: number, imageIndex: number) => {
 		if (columnIndex === 1) {
 			return imageIndex % 2 === 0
@@ -58,7 +59,10 @@ const InfiniteMasonry: React.FC<MasonryProps> = ({ images }) => {
 		return imageIndex % 2 !== 0
 	}
 
-	// Разделяем изображения на три колонки
+	const handleImageLoad = (imageId: string) => {
+		setImagesLoaded(prev => ({ ...prev, [imageId]: true }))
+	}
+
 	const columns = [
 		visibleImages.filter((_, index) => index % 3 === 0),
 		visibleImages.filter((_, index) => index % 3 === 1),
@@ -70,7 +74,7 @@ const InfiniteMasonry: React.FC<MasonryProps> = ({ images }) => {
 			{columns.map((column, columnIndex) => (
 				<div key={columnIndex} className='flex flex-col gap-6'>
 					{column.map((image, imageIndex) => (
-						<motion.div
+						<div
 							key={image.id}
 							className={cn(styles.img, 'relative')}
 							style={{
@@ -78,28 +82,33 @@ const InfiniteMasonry: React.FC<MasonryProps> = ({ images }) => {
 									? '600px'
 									: '300px'
 							}}
-							initial={{ opacity: 0, y: 0 }}
-							animate={{ opacity: 1, y: 0 }}
-							transition={{ duration: 1 }}
 						>
+							{!imagesLoaded[image.id] && (
+								<div className='skeleton h-full w-full rounded-box'></div>
+							)}
 							<Image
-								className='object-cover object-center rounded-box'
+								className={cn('object-cover object-center rounded-box', {
+									'opacity-0': !imagesLoaded[image.id]
+								})}
 								src={image.src}
 								alt={image.alt}
 								width={1000}
 								height={1000}
 								style={{ width: '100%', height: '100%' }}
 								quality={10}
+								onLoad={() => handleImageLoad(image.id)}
 							/>
-							<div
-								className={cn(
-									styles.imgTitle,
-									'absolute bottom-4 right-4 text-white'
-								)}
-							>
-								{image.alt}
-							</div>
-						</motion.div>
+							{imagesLoaded[image.id] && (
+								<div
+									className={cn(
+										styles.imgTitle,
+										'absolute bottom-4 right-4 text-white'
+									)}
+								>
+									{image.alt}
+								</div>
+							)}
+						</div>
 					))}
 				</div>
 			))}
