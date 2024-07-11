@@ -37,6 +37,7 @@ const Carousel = () => {
 							style={{
 								objectFit: 'cover'
 							}}
+							quality={10}
 						/>
 						<div className='font-thin text-5xl text-white'>Title 1</div>
 						<div className='text-white'>Текст на слайде</div>
@@ -53,6 +54,7 @@ const Carousel = () => {
 							style={{
 								objectFit: 'cover'
 							}}
+							quality={10}
 						/>
 						<div className='font-thin text-5xl text-white'>Title 2</div>
 						<div className='text-white'>Текст на слайде</div>
@@ -69,6 +71,7 @@ const Carousel = () => {
 							style={{
 								objectFit: 'cover'
 							}}
+							quality={10}
 						/>
 						<div className='font-thin text-5xl text-white'>Title 3</div>
 						<div className='text-white'>Текст на слайде</div>
