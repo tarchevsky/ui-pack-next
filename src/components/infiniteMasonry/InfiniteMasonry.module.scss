@@ -1,0 +1,11 @@
+.img {
+  .imgTitle {
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  &:hover {
+    .imgTitle {
+      opacity: 1;
+    }
+  }
+}
