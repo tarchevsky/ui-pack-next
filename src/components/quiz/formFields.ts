@@ -49,5 +49,12 @@ export const formFields = [
 			{ label: 'Нет', value: 'Нет' },
 			{ label: 'Не знаю', value: 'Не знаю' }
 		]
+	},
+	{
+		step: 4,
+		name: 'backendRequiredOther',
+		type: 'text',
+		label: 'Другое',
+		title: 'Нужно ли учить бэкенд?'
 	}
 ]
