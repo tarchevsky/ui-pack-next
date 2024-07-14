@@ -18,7 +18,7 @@ export default async function handler(req, res) {
 			await transporter.sendMail({
 				from: process.env.FORM_USER,
 				to: process.env.FORM_TO,
-				subject: `Заявка с сайта`,
+				subject: `Заявка с сайта ${process.env.SITE_NAME}`,
 				text: `Имя: ${name}\nПочта: ${email}\nТелефон: ${phone}\nСообщение: ${message}`
 			})
 			res.status(200).json({ success: true })
