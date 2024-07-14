@@ -26,6 +26,10 @@
         @apply text-neutral-content;
     }
 
+    .swiper-pagination-bullets.swiper-pagination-horizontal {
+        bottom: 13px;
+    }
+
     .swiper-pagination-bullet {
         @apply bg-primary-content/80;
     }
