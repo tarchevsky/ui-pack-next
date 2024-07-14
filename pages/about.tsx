@@ -1,6 +1,7 @@
 import { NextPage } from 'next'
 import FadeIn from '@/components/fadeIn/FadeIn'
 import Meta from '@/components/meta/Meta'
+import Quiz from '@/components/quiz/Quiz'
 
 const AboutPage: NextPage = () => {
 	return (
@@ -10,6 +11,7 @@ const AboutPage: NextPage = () => {
 				<main>
 					<h1 className={`text-4xl font-bold`}>О нас</h1>
 				</main>
+				<Quiz />
 			</FadeIn>
 		</>
 	)
