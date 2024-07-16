@@ -3,29 +3,31 @@ export const formFields = [
 		step: 1,
 		name: 'name',
 		type: 'text',
-		label: 'Имя',
-		required: true
+		placeholder: 'Имя',
+		required: true,
+		error: 'Пожалуйста, введите имя'
 	},
 	{
 		step: 1,
 		name: 'email',
 		type: 'email',
-		label: 'Почта',
-		required: true
+		placeholder: 'Почта',
+		required: true,
+		error: 'Пожалуйста, введите почту'
 	},
 	{
 		step: 2,
 		name: 'phone',
 		type: 'tel',
-		label: 'Телефон',
-		required: true
+		placeholder: 'Телефон',
+		required: true,
+		error: 'Пожалуйста, введите телефон'
 	},
 	{
 		step: 2,
 		name: 'message',
 		type: 'textarea',
-		label: 'Сообщение',
-		required: false
+		placeholder: 'Сообщение'
 	},
 	{
 		step: 3,
@@ -36,8 +38,7 @@ export const formFields = [
 			{ label: 'Полезно', value: 'полезно' },
 			{ label: 'Не полезно', value: 'не полезно' },
 			{ label: 'Зависит от ингредиентов', value: 'зависит от ингридиентов' }
-		],
-		required: true
+		]
 	},
 	{
 		step: 4,
@@ -54,7 +55,6 @@ export const formFields = [
 		step: 4,
 		name: 'backendRequiredOther',
 		type: 'text',
-		label: 'Другое',
-		title: 'Нужно ли учить бэкенд?'
+		placeholder: 'Другое'
 	}
 ]

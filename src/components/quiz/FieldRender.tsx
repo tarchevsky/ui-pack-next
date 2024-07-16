@@ -36,14 +36,14 @@ const FieldRender: FC<FieldRenderProps> = ({
 									const formattedValue = formatPhoneNumber(e.target.value)
 									onChange(formattedValue)
 								}}
-								placeholder={field.label}
+								placeholder={field.placeholder}
 								className='input input-bordered w-full'
 							/>
 						)}
 					/>
 					{errors[field.name] && (
 						<span className='error-message'>
-							Телефон либо не указан, либо указан неправильно
+							{field.error || 'Это поле обязательно'}
 						</span>
 					)}
 				</>
@@ -57,11 +57,13 @@ const FieldRender: FC<FieldRenderProps> = ({
 						id={field.name}
 						{...register(field.name, { required: field.required })}
 						required={field.required}
-						placeholder={field.label}
+						placeholder={field.placeholder}
 						className='input input-bordered w-full'
 					/>
 					{errors[field.name] && (
-						<span className='error-message'>Это поле обязательно</span>
+						<span className='error-message'>
+							{field.error || 'Это поле обязательно'}
+						</span>
 					)}
 				</>
 			)
@@ -85,7 +87,9 @@ const FieldRender: FC<FieldRenderProps> = ({
 						</label>
 					))}
 					{errors[field.name] && (
-						<span className='error-message'>Это поле обязательно</span>
+						<span className='error-message'>
+							{field.error || 'Это поле обязательно'}
+						</span>
 					)}
 				</div>
 			)
@@ -97,12 +101,14 @@ const FieldRender: FC<FieldRenderProps> = ({
 						id={field.name}
 						value={field.value}
 						{...register(field.name, { required: field.required })}
-						placeholder={field.label}
+						placeholder={field.placeholder}
 						required={field.required}
 						className='textarea textarea-bordered w-full'
 					></textarea>
 					{errors[field.name] && (
-						<span className='error-message'>Это поле обязательно</span>
+						<span className='error-message'>
+							{field.error || 'Это поле обязательно'}
+						</span>
 					)}
 				</div>
 			)

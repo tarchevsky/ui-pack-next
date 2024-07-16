@@ -1,7 +1,7 @@
 import { FieldErrors, UseFormRegister } from 'react-hook-form'
 
 export type OptionType = {
-	label: string
+	label?: string
 	value: string
 }
 
@@ -9,10 +9,12 @@ export interface FormField {
 	step: number
 	name: string
 	type: 'text' | 'email' | 'tel' | 'radio' | 'textarea'
-	label: string
+	label?: string
+	placeholder?: string
 	required?: boolean
 	value: string
 	title?: string
+	error?: string
 	options?: OptionType[]
 }
 

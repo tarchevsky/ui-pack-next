@@ -24,7 +24,7 @@ export default async function handler(req, res) {
 						)
 						return `${field.title}: ${selectedOption ? selectedOption.label : 'Не выбрано'}`
 					} else {
-						return `${field.label}: ${formData[field.name]}`
+						return `${field.placeholder}: ${formData[field.name]}`
 					}
 				})
 				.join('\n')
