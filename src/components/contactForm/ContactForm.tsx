@@ -1,5 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
+import Modal from '@/components/modal/Modal'
+import { ModalHandle } from '@/components/modal/modal.types'
 
 interface IFormInput {
 	name: string
@@ -24,8 +26,6 @@ export default function ContactForm() {
 			message: ''
 		}
 	})
-
-	const modalRef = useRef<HTMLDialogElement>(null)
 
 	useEffect(() => {
 		const savedFormData = localStorage.getItem('contactFormData')
@@ -66,6 +66,8 @@ export default function ContactForm() {
 		}
 	}
 
+	const modalRef = useRef<ModalHandle>(null)
+
 	const showModal = () => {
 		if (modalRef.current) {
 			modalRef.current.showModal()
@@ -79,31 +81,39 @@ export default function ContactForm() {
 				className='w-full flex flex-col gap-6'
 			>
 				<div className='flex gap-4'>
-					<input
-						type='text'
-						id='name'
-						{...register('name', { required: true })}
-						placeholder='Имя'
-						className='input input-bordered w-full'
-					/>
-					{errors.name && <span>This field is required</span>}
-					<input
-						type='email'
-						id='email'
-						{...register('email', { required: true })}
-						placeholder='Почта'
-						className='input input-bordered w-full'
-					/>
-					{errors.email && <span>This field is required</span>}
+					<div className='w-full'>
+						<input
+							type='text'
+							id='name'
+							{...register('name', { required: true })}
+							placeholder='Имя'
+							className='input input-bordered w-full'
+						/>
+						{errors.name && <span>Введите своё имя</span>}
+					</div>
+
+					<div className='w-full'>
+						<input
+							type='email'
+							id='email'
+							{...register('email', { required: true })}
+							placeholder='Почта'
+							className='input input-bordered w-full'
+						/>
+						{errors.email && <span>Упс, вы забыли ввести почту</span>}
+					</div>
 				</div>
-				<input
-					type='tel'
-					id='phone'
-					{...register('phone', { required: true })}
-					placeholder='Телефон'
-					className='input input-bordered w-full'
-				/>
-				{errors.phone && <span>This field is required</span>}
+
+				<div className='w-full'>
+					<input
+						type='tel'
+						id='phone'
+						{...register('phone', { required: true })}
+						placeholder='Телефон'
+						className='input input-bordered w-full'
+					/>
+					{errors.phone && <span>Введите номер телефона</span>}
+				</div>
 				<textarea
 					id='message'
 					{...register('message')}
@@ -115,18 +125,10 @@ export default function ContactForm() {
 				</button>
 			</form>
 
-			<dialog id='my_modal_1' ref={modalRef} className='modal'>
-				<div className='modal-box'>
-					<p className='py-4'>
-						Ваше обращение отправлено! Спасибо за проявленный интерес!
-					</p>
-					<div className='modal-action'>
-						<form method='dialog'>
-							<button className='btn'>Закрыть</button>
-						</form>
-					</div>
-				</div>
-			</dialog>
+			<Modal
+				ref={modalRef}
+				message='Ваше обращение отправлено! Спасибо за проявленный интерес!'
+			/>
 		</>
 	)
 }
