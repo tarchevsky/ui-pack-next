@@ -31,6 +31,7 @@ const FieldRender: FC<FieldRenderProps> = ({
 								type='tel'
 								id={field.name}
 								value={value || ''}
+								required={field.required}
 								onChange={e => {
 									const formattedValue = formatPhoneNumber(e.target.value)
 									onChange(formattedValue)
@@ -77,6 +78,7 @@ const FieldRender: FC<FieldRenderProps> = ({
 							<input
 								type='radio'
 								value={option.value}
+								required={field.required}
 								{...register(field.name, { required: field.required })}
 								className='radio'
 							/>
