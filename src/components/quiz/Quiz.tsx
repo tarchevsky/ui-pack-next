@@ -5,6 +5,8 @@ import { SubmitHandler, useForm, FieldValues, Path } from 'react-hook-form'
 import { useEffect, useRef, useState } from 'react'
 import { formFields } from './formFields'
 import { FormField, IQuizInput } from '@/components/quiz/quiz.types'
+import Modal from '@/components/modal/Modal'
+import { ModalHandle } from '@/components/modal/modal.types'
 
 export default function Quiz() {
 	const [currentStep, setCurrentStep] = useState(1)
@@ -27,8 +29,6 @@ export default function Quiz() {
 		defaultValues,
 		mode: 'onChange'
 	})
-
-	const modalRef = useRef<HTMLDialogElement>(null)
 
 	useEffect(() => {
 		const savedFormData = localStorage.getItem('quizFormData')
@@ -58,6 +58,14 @@ export default function Quiz() {
 		return () => clearTimeout(timeoutId)
 	}, [watchedFields])
 
+	const modalRef = useRef<ModalHandle>(null)
+
+	const showModal = () => {
+		if (modalRef.current) {
+			modalRef.current.showModal()
+		}
+	}
+
 	const onSubmit: SubmitHandler<IQuizInput> = async data => {
 		const res = await fetch('/api/quiz', {
 			method: 'POST',
@@ -74,12 +82,6 @@ export default function Quiz() {
 			reset() // Очистить форму после успешной отправки
 		} else {
 			alert('Failed to send message.')
-		}
-	}
-
-	const showModal = () => {
-		if (modalRef.current) {
-			modalRef.current.showModal()
 		}
 	}
 
@@ -137,18 +139,10 @@ export default function Quiz() {
 					/>
 				</FadeIn>
 			</form>
-			<dialog id='my_modal_1' ref={modalRef} className='modal'>
-				<div className='modal-box'>
-					<p className='py-4'>
-						Ваше обращение отправлено! Спасибо за проявленный интерес!
-					</p>
-					<div className='modal-action'>
-						<form method='dialog'>
-							<button className='btn'>Закрыть</button>
-						</form>
-					</div>
-				</div>
-			</dialog>
+			<Modal
+				ref={modalRef}
+				message='Ваше обращение отправлено! Спасибо за проявленный интерес!'
+			/>
 		</>
 	)
 }
