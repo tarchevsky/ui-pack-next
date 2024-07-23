@@ -101,6 +101,10 @@ export default function Quiz() {
 	const validateCurrentStep = () => {
 		const currentFields = formFields.filter(field => field.step === currentStep)
 		const isValid = currentFields.every(field => {
+			if (field.name === 'phone') {
+				const phoneValue = watchedFields[field.name] as string
+				return phoneValue && phoneValue.replace(/\D/g, '').length === 11 // 11 цифр, включая код страны
+			}
 			if (field.required) {
 				return (
 					watchedFields[field.name] && watchedFields[field.name].trim() !== ''
@@ -117,27 +121,25 @@ export default function Quiz() {
 				onSubmit={handleSubmit(onSubmit)}
 				className='w-full flex flex-col justify-center gap-6 min-h-64'
 			>
-				<FadeIn>
-					{formFields
-						.filter(field => field.step === currentStep)
-						.map(field => (
-							<div key={field.name} className='flex flex-col gap-4 mb-6'>
-								<FieldRender
-									field={field as FormField}
-									register={register}
-									errors={errors}
-									control={control}
-								/>
-							</div>
-						))}
-					<StepNavigation
-						currentStep={currentStep}
-						totalSteps={totalSteps}
-						prevStep={prevStep}
-						nextStep={nextStep}
-						onSubmit={handleSubmit(onSubmit)}
-					/>
-				</FadeIn>
+				{formFields
+					.filter(field => field.step === currentStep)
+					.map(field => (
+						<FadeIn key={field.name} className='flex flex-col gap-4 mb-6'>
+							<FieldRender
+								field={field as FormField}
+								register={register}
+								errors={errors}
+								control={control}
+							/>
+						</FadeIn>
+					))}
+				<StepNavigation
+					currentStep={currentStep}
+					totalSteps={totalSteps}
+					prevStep={prevStep}
+					nextStep={nextStep}
+					onSubmit={handleSubmit(onSubmit)}
+				/>
 			</form>
 			<Modal
 				ref={modalRef}
