@@ -11,7 +11,9 @@ const AboutPage: NextPage = () => {
 				<main>
 					<h1 className={`text-4xl font-bold`}>О нас</h1>
 				</main>
-				<Quiz />
+				<div className='rounded p-16'>
+					<Quiz />
+				</div>
 			</FadeIn>
 		</>
 	)
