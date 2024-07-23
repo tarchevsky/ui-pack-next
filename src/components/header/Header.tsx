@@ -78,7 +78,7 @@ const Header = () => {
 							Контакты
 						</Link>
 					</li>
-					<li>
+					<li className='justify-center'>
 						<ThemeToggle />
 					</li>
 				</ul>
