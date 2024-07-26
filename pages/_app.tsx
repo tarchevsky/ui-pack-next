@@ -5,8 +5,13 @@ import Layout from '@/layout/Layout'
 import { useEffect, useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import PageTransition from '@/components/pageTransition/PageTransition'
+import { MetrikaProps } from '@/types'
+import Metrika from '@/components/metrika/Metrika'
 
-export default function App({ Component, pageProps, router }: AppProps) {
+export default function App(
+	{ Component, pageProps, router }: AppProps,
+	{ yId }: MetrikaProps
+) {
 	const [isClient, setIsClient] = useState(false)
 
 	useEffect(() => {
@@ -17,12 +22,15 @@ export default function App({ Component, pageProps, router }: AppProps) {
 		return null // Или можно вернуть загрузочный экран, пока клиент не инициализирован
 	}
 	return (
-		<AnimatePresence>
-			<PageTransition key={router.route}>
-				<Layout>
-					<Component {...pageProps} />
-				</Layout>
-			</PageTransition>
-		</AnimatePresence>
+		<>
+			<AnimatePresence>
+				<PageTransition key={router.route}>
+					<Layout>
+						<Component {...pageProps} />
+					</Layout>
+				</PageTransition>
+			</AnimatePresence>
+			{yId ? <Metrika yId={yId} /> : null}
+		</>
 	)
 }
