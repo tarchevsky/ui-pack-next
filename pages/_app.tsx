@@ -5,13 +5,11 @@ import Layout from '@/layout/Layout'
 import { useEffect, useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import PageTransition from '@/components/pageTransition/PageTransition'
-import { MetrikaProps } from '@/types'
 import Metrika from '@/components/metrika/Metrika'
 
-export default function App(
-	{ Component, pageProps, router }: AppProps,
-	{ yId }: MetrikaProps
-) {
+const yId = '97929199'
+
+export default function App({ Component, pageProps, router }: AppProps) {
 	const [isClient, setIsClient] = useState(false)
 
 	useEffect(() => {
