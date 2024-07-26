@@ -7,6 +7,8 @@ import { AnimatePresence } from 'framer-motion'
 import PageTransition from '@/components/pageTransition/PageTransition'
 import Metrika from '@/components/metrika/Metrika'
 
+const yId = process.env.NEXT_PUBLIC_YID
+
 export default function App({ Component, pageProps, router }: AppProps) {
 	const [isClient, setIsClient] = useState(false)
 
