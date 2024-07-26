@@ -9,8 +9,6 @@ import Metrika from '@/components/metrika/Metrika'
 
 const yId = process.env.NEXT_PUBLIC_YID // id яндекс метрики
 
-console.log(yId, 'yId')
-
 export default function App({ Component, pageProps, router }: AppProps) {
 	const [isClient, setIsClient] = useState(false)
 
