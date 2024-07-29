@@ -45,6 +45,7 @@ const Button = ({
 							dangerouslySetInnerHTML={{
 								__html: text
 							}}
+							onClick={handleButtonClick}
 						/>
 					))}
 			{modalContent && (
