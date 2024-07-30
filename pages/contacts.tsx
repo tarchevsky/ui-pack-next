@@ -3,17 +3,19 @@ import FadeIn from '@/components/fadeIn/FadeIn'
 import Meta from '@/components/meta/Meta'
 import ContactForm from '@/components/contactForm/ContactForm'
 
+const title = 'Контакты'
+
 const ContactsPage: NextPage = () => {
 	return (
 		<>
-			<Meta title='Контакты' metaDesc='Описание страницы контактов' />
+			<Meta title={title} metaDesc='Описание страницы контактов' />
 			<FadeIn className='cont'>
 				<main>
-					<h1 className={`text-4xl font-bold`}>Контакты</h1>
+					<h1 className={`text-4xl font-bold`}>{title}</h1>
 				</main>
 			</FadeIn>
 			<FadeIn className='cont mb-40'>
-				<ContactForm />
+				<ContactForm title={title} />
 			</FadeIn>
 		</>
 	)
