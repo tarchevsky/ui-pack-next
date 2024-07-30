@@ -32,6 +32,7 @@ export interface LayoutProps {
 	children: ReactNode
 	className?: string
 	delay?: number
+	style?: string
 }
 
 // Hero.tsx

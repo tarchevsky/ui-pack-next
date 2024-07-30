@@ -1,46 +1,20 @@
-import { motion, useAnimation } from 'framer-motion'
-import { useEffect, useRef } from 'react'
-import cn from 'clsx'
+import { motion, MotionStyle, useInView } from 'framer-motion'
+import { useRef } from 'react'
 import { LayoutProps } from '@/types'
+import cn from 'clsx'
 
-const FadeIn = ({ children, className, delay = 0.2 }: LayoutProps) => {
-	const controls = useAnimation()
-	const ref = useRef<HTMLDivElement | null>(null)
-
-	useEffect(() => {
-		const observer = new IntersectionObserver(
-			([entry]) => {
-				if (entry.isIntersecting) {
-					controls.start('visible')
-				}
-			},
-			{
-				// Настройки observer'a. Можно изменить, чтобы анимация начиналась, например, когда элемент только начинает появляться.
-				threshold: 0.5 // 50% элемента должно быть видно, чтобы анимация сработала.
-			}
-		)
-		if (ref.current) {
-			observer.observe(ref.current)
-		}
-
-		return () => {
-			if (ref.current) {
-				observer.unobserve(ref.current)
-			}
-		}
-	}, [controls])
+const FadeIn = ({ children, className, delay = 0.2, style }: LayoutProps) => {
+	const ref = useRef(null)
+	const isInView = useInView(ref, { once: true, amount: 0.1 })
 
 	return (
 		<motion.div
 			ref={ref}
-			animate={controls}
-			initial='hidden'
-			transition={{ duration: 1, delay }} // Настройка продолжительности анимации
-			variants={{
-				visible: { opacity: 1, y: 0 },
-				hidden: { opacity: 0, y: 20 } // Начальное положение элемента перед анимацией
-			}}
+			initial={{ opacity: 0, y: 20 }}
+			animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+			transition={{ duration: 1, delay }}
 			className={cn(className)}
+			style={style as MotionStyle}
 		>
 			{children}
 		</motion.div>
