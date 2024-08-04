@@ -35,6 +35,14 @@ export interface LayoutProps {
 	style?: string
 }
 
+// FigureProps
+
+export interface FigureProps {
+	link?: string
+	src: string
+	caption: string
+}
+
 // Hero.tsx
 
 export interface HeroProps {
