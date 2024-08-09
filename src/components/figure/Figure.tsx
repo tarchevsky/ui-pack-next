@@ -2,32 +2,51 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { FigureProps } from '@/types'
 
-const Figure = ({ link, src, caption }: FigureProps) => {
+const Figure = ({
+	link,
+	src,
+	caption,
+	width = 800,
+	height = 1200,
+	linkClass,
+	figureClass,
+	imageClass,
+	figcaptionClass
+}: FigureProps) => {
 	return (
 		<>
 			{link ? (
-				<Link href={link} target='_blank' rel='noopener noreferrer'>
-					<figure>
+				<Link
+					href={link}
+					target='_blank'
+					rel='noopener noreferrer'
+					className={linkClass}
+				>
+					<figure className={figureClass}>
 						<Image
 							src={src}
 							alt={caption}
-							width={800}
-							height={1200}
-							className='object-contain hover:brightness-90 transition-all ease-in-out'
+							width={width}
+							height={height}
+							className={`object-contain hover:brightness-90 transition-all ease-in-out ${imageClass}`}
 						/>
-						<figcaption className='text-center'>{caption}</figcaption>
+						<figcaption className={`text-center ${figcaptionClass}`}>
+							{caption}
+						</figcaption>
 					</figure>
 				</Link>
 			) : (
-				<figure>
+				<figure className={figureClass}>
 					<Image
 						src={src}
 						alt={caption}
-						width={800}
-						height={1200}
-						className='object-contain hover:brightness-90 transition-all ease-in-out'
+						width={width}
+						height={height}
+						className={`object-contain hover:brightness-90 transition-all ease-in-out ${imageClass}`}
 					/>
-					<figcaption className='text-center'>{caption}</figcaption>
+					<figcaption className={`text-center ${figcaptionClass}`}>
+						{caption}
+					</figcaption>
 				</figure>
 			)}
 		</>

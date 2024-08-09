@@ -41,6 +41,12 @@ export interface FigureProps {
 	link?: string
 	src: string
 	caption: string
+	width?: number
+	height?: number
+	linkClass?: string
+	figureClass?: string
+	imageClass?: string
+	figcaptionClass?: string
 }
 
 // Hero.tsx
