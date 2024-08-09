@@ -42,7 +42,7 @@ const Figure = ({
 						alt={caption}
 						width={width}
 						height={height}
-						className={`object-contain hover:brightness-90 transition-all ease-in-out ${imageClass}`}
+						className={`object-contain ${imageClass}`}
 					/>
 					<figcaption className={`text-center ${figcaptionClass}`}>
 						{caption}
