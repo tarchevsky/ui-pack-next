@@ -47,6 +47,7 @@ export interface FigureProps {
 	figureClass?: string
 	imageClass?: string
 	figcaptionClass?: string
+	unoptimized?: boolean
 }
 
 // Hero.tsx
