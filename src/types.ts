@@ -58,6 +58,7 @@ export interface HeroProps {
 	buttonText?: string
 	alt: string
 	subtitle?: string
+	unoptimized?: boolean
 }
 
 // Accordion.tsx

@@ -21,6 +21,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
 	if (!isClient) {
 		return null // Или можно вернуть загрузочный экран, пока клиент не инициализирован
 	}
+
 	return (
 		<>
 			<CustomCursor />
