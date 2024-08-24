@@ -1,7 +1,14 @@
 import { HeroProps } from '@/types'
 import Image from 'next/image'
 
-const Hero = ({ title, buttonText, alt, subtitle, src }: HeroProps) => {
+const Hero = ({
+	title,
+	buttonText,
+	alt,
+	subtitle,
+	src,
+	unoptimized
+}: HeroProps) => {
 	return (
 		<main className='hero cont md:min-h-[80vh]'>
 			<div className='relative hero-content flex-col-reverse items-start lg:items-center lg:flex-row'>
@@ -12,6 +19,7 @@ const Hero = ({ title, buttonText, alt, subtitle, src }: HeroProps) => {
 					width={400}
 					height={300}
 					priority
+					unoptimized={unoptimized}
 				/>
 				<div className='md:relative lg:ml-[-100px] z-10'>
 					<h1 className='text-5xl font-extrabold'>{title}</h1>

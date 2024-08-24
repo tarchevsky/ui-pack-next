@@ -1,0 +1,7 @@
+.customCursor {
+  :global(*),
+  :global(*::before),
+  :global(*::after) {
+    cursor: none;
+  }
+}

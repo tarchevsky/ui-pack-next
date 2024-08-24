@@ -7,6 +7,7 @@ import { AnimatePresence } from 'framer-motion'
 import PageTransition from '@/components/pageTransition/PageTransition'
 import Metrika from '@/components/metrika/Metrika'
 import ScrollToTop from '@/components/scrollToTop/ScrollToTop'
+import CustomCursor from '@/components/customCursor/CustomCursor'
 
 const yId = process.env.NEXT_PUBLIC_YID // id яндекс метрики
 
@@ -22,6 +23,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
 	}
 	return (
 		<>
+			<CustomCursor />
 			<AnimatePresence>
 				<PageTransition key={router.route}>
 					<Layout>
