@@ -14,6 +14,14 @@ export interface MetaProps {
 	metaDesc?: string
 }
 
+// Htag.tsx
+
+export interface HtagProps {
+	tag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+	children: string | ReactNode
+	className?: string
+}
+
 // Button.tsx
 
 export interface ButtonProps {
