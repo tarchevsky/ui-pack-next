@@ -16,7 +16,11 @@ const Htag = memo(({ tag, children, className }: HtagProps) => {
 		return children
 	}
 
-	return <Tag className={className}>{renderContent()}</Tag>
+	return (
+		<Tag className={`${className ? className + ' ' : ''}mb-8`}>
+			{renderContent()}
+		</Tag>
+	)
 })
 
 Htag.displayName = 'Htag'
