@@ -1,7 +1,7 @@
-import cn from 'clsx'
-import styles from './Masonry.module.scss'
 import { MasonryProps } from '@/types'
+import cn from 'clsx'
 import Image from 'next/image'
+import styles from './Masonry.module.scss'
 
 const Masonry: React.FC<MasonryProps> = ({ images }) => {
 	// Разделяем изображения на три колонки
@@ -24,7 +24,7 @@ const Masonry: React.FC<MasonryProps> = ({ images }) => {
 								width={1000}
 								height={1000}
 								style={{ width: '100%', height: '100%' }}
-								quality={10}
+								quality={image.quality ?? 100}
 							/>
 
 							<div

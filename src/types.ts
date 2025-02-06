@@ -1,5 +1,5 @@
-import { ReactNode } from 'react'
 import { Url } from 'next/dist/shared/lib/router/router'
+import { ReactNode } from 'react'
 
 // Metrika.tsx
 
@@ -147,6 +147,7 @@ export interface ImageItem {
 	id: string
 	src: string
 	alt: string
+	quality?: number
 }
 
 export interface MasonryProps {

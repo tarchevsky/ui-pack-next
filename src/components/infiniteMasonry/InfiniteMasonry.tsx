@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react'
-import cn from 'clsx'
-import styles from './InfiniteMasonry.module.scss'
 import { MasonryProps } from '@/types'
+import cn from 'clsx'
 import Image from 'next/image'
+import React, { useEffect, useRef, useState } from 'react'
+import styles from './InfiniteMasonry.module.scss'
 
 const InfiniteMasonry: React.FC<MasonryProps> = ({ images }) => {
 	const [visibleImages, setVisibleImages] = useState<typeof images>([])
@@ -95,7 +95,7 @@ const InfiniteMasonry: React.FC<MasonryProps> = ({ images }) => {
 								width={1000}
 								height={1000}
 								style={{ width: '100%', height: '100%' }}
-								quality={10}
+								quality={image.quality ?? 100}
 								onLoad={() => handleImageLoad(image.id)}
 							/>
 							{imagesLoaded[image.id] && (
