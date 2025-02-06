@@ -1,13 +1,12 @@
 import '@/assets/styles/globals.css'
 import '@/assets/styles/swiper.css'
-import type { AppProps } from 'next/app'
-import Layout from '@/layout/Layout'
-import { useEffect, useState } from 'react'
-import { AnimatePresence } from 'framer-motion'
-import PageTransition from '@/components/pageTransition/PageTransition'
 import Metrika from '@/components/metrika/Metrika'
+import PageTransition from '@/components/pageTransition/PageTransition'
 import ScrollToTop from '@/components/scrollToTop/ScrollToTop'
-import CustomCursor from '@/components/customCursor/CustomCursor'
+import Layout from '@/layout/Layout'
+import { AnimatePresence } from 'framer-motion'
+import type { AppProps } from 'next/app'
+import { useEffect, useState } from 'react'
 
 const yId = process.env.NEXT_PUBLIC_YID // id яндекс метрики
 
@@ -24,7 +23,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
 
 	return (
 		<>
-			<CustomCursor />
+			{/* <CustomCursor /> */}
 			<AnimatePresence>
 				<PageTransition key={router.route}>
 					<Layout>
