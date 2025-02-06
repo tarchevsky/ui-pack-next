@@ -1,8 +1,9 @@
 import styles from './Burger.module.scss'
 import { useState } from 'react'
 import cn from 'clsx'
+import { BurgerProps } from '@/types'
 
-const Burger = ({ toggleMenu }: any) => {
+const Burger = ({ toggleMenu }: BurgerProps) => {
 	const [isActive, setIsActive] = useState(false)
 	const toggleIsActive = () => {
 		setIsActive(!isActive)
