@@ -1,7 +1,7 @@
 'use client'
 
 import { AnimatePresence, motion } from 'framer-motion'
-import { FC, useEffect, useState } from 'react'
+import { type FC, useEffect, useState } from 'react'
 import { IoTriangleOutline } from 'react-icons/io5'
 
 const ScrollToTop: FC = () => {
