@@ -1,3 +1,4 @@
+import { DARK_THEME, THEME } from '@/constants/theme.constants'
 import { ThemeToggleProps } from '@/types'
 import { useEffect, useState } from 'react'
 
@@ -8,12 +9,12 @@ const ThemeToggle = ({ className }: ThemeToggleProps) => {
 		const savedTheme = localStorage.getItem('theme')
 		if (savedTheme) {
 			document.documentElement.setAttribute('data-theme', savedTheme)
-			setIsDarkMode(savedTheme === 'dark')
+			setIsDarkMode(savedTheme === DARK_THEME)
 		}
 	}, [])
 
 	const toggleTheme = () => {
-		const newTheme = isDarkMode ? 'light' : 'dark'
+		const newTheme = isDarkMode ? THEME : DARK_THEME
 		localStorage.setItem('theme', newTheme)
 		document.documentElement.setAttribute('data-theme', newTheme)
 		setIsDarkMode(!isDarkMode)
@@ -36,7 +37,7 @@ const ThemeToggle = ({ className }: ThemeToggleProps) => {
 			</svg>
 			<input
 				type='checkbox'
-				value='dim'
+				value={DARK_THEME}
 				name='themeToggle'
 				aria-label='Переключатель темы'
 				className='toggle theme-controller'

@@ -1,6 +1,11 @@
-const {
-	default: flattenColorPalette
-} = require('tailwindcss/lib/util/flattenColorPalette')
+import {
+	DARK_THEME,
+	MD,
+	SM,
+	THEME,
+	XS,
+	XXL
+} from './src/constants/theme.constants'
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -12,24 +17,48 @@ module.exports = {
 		extend: {}
 	},
 	plugins: [
-		addVariablesForColors,
 		require('daisyui'),
+		require('@tailwindcss/typography'),
 		function ({ addUtilities }: any) {
 			const containerUtility = {
 				'.cont': {
-					'padding-left': '16px',
-					'padding-right': '16px',
+					'padding-left': [XS],
+					'padding-right': [XS],
 					'@screen sm': {
-						'padding-left': '40px',
-						'padding-right': '40px'
+						'padding-left': [SM],
+						'padding-right': [SM]
 					},
 					'@screen md': {
-						'padding-left': '100px',
-						'padding-right': '100px'
+						'padding-left': [MD],
+						'padding-right': [MD]
 					},
 					'@screen 2xl': {
-						'padding-left': '200px',
-						'padding-right': '200px'
+						'padding-left': [XXL],
+						'padding-right': [XXL]
+					}
+				},
+				'.cont-left': {
+					'padding-left': [XS],
+					'@screen sm': {
+						'padding-left': [SM]
+					},
+					'@screen md': {
+						'padding-left': [MD]
+					},
+					'@screen 2xl': {
+						'padding-left': [XXL]
+					}
+				},
+				'.cont-right': {
+					'padding-right': [XS],
+					'@screen sm': {
+						'padding-right': [SM]
+					},
+					'@screen md': {
+						'padding-right': [MD]
+					},
+					'@screen 2xl': {
+						'padding-right': [XXL]
 					}
 				}
 			}
@@ -37,7 +66,24 @@ module.exports = {
 		}
 	],
 	daisyui: {
-		themes: ['cupcake', 'dim'], // false: only light + dark | true: all themes | array: specific themes like this ["light", "dark", "cupcake"]
+		themes: [
+			{
+				[THEME]: {
+					...require('daisyui/src/theming/themes')[THEME],
+					'--glass-blur': '3px',
+					'.glass': {
+						'background-image':
+							'linear-gradient(\n' +
+							'        rgb(255 255 255 / var(--glass-opacity, 20%)) 50%,\n' +
+							'        rgb(0 0 0 / 0%) 100%\n' +
+							'      )'
+					}
+				},
+				[DARK_THEME]: {
+					...require('daisyui/src/theming/themes')[DARK_THEME]
+				}
+			}
+		],
 		base: true, // applies background color and foreground color for root element by default
 		styled: true, // include daisyUI colors and design decisions for all components
 		utils: true, // adds responsive and modifier utility classes
@@ -45,17 +91,5 @@ module.exports = {
 		logs: true, // Shows info about daisyUI version and used config in the console when building your CSS
 		themeRoot: ':root' // The element that receives theme color CSS variables
 	},
-	darkMode: ['class', '[data-theme="dark"]']
-}
-
-// This plugin adds each Tailwind color as a global CSS variable, e.g. var(--gray-200).
-function addVariablesForColors({ addBase, theme }: any) {
-	let allColors = flattenColorPalette(theme('colors'))
-	let newVars = Object.fromEntries(
-		Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
-	)
-
-	addBase({
-		':root': newVars
-	})
+	darkMode: ['class', `[data-theme=${DARK_THEME}]`]
 }
