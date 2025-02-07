@@ -1,11 +1,10 @@
-import { NextPage } from 'next'
+import ContactForm from '@/components/contactForm/ContactForm'
 import FadeIn from '@/components/fadeIn/FadeIn'
 import Meta from '@/components/meta/Meta'
-import ContactForm from '@/components/contactForm/ContactForm'
 
 const title = 'Контакты'
 
-const ContactsPage: NextPage = () => {
+export default function ContactsPage() {
 	return (
 		<>
 			<Meta title={title} metaDesc='Описание страницы контактов' />
@@ -16,7 +15,7 @@ const ContactsPage: NextPage = () => {
 			</FadeIn>
 			<FadeIn className='cont mb-40 grid grid-cols-2 gap-16'>
 				<ContactForm title={title} />
-				<div className={'flex flex-col gap-6 mt-10'}>
+				<div className='flex flex-col gap-6 mt-10'>
 					<h2 className={'text-3xl font-bold'}>
 						Оставьте заявку, либо свяжитесь с нами
 					</h2>
@@ -25,10 +24,7 @@ const ContactsPage: NextPage = () => {
 						<a href={'tel:+79000000000'}>+79000000000</a>
 					</div>
 				</div>
-
 			</FadeIn>
 		</>
 	)
 }
-
-export default ContactsPage

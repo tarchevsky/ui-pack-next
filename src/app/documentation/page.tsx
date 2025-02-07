@@ -1,8 +1,7 @@
-import { NextPage } from 'next'
 import FadeIn from '@/components/fadeIn/FadeIn'
 import Meta from '@/components/meta/Meta'
 
-const Documentation: NextPage = () => {
+export default function Documentation() {
 	return (
 		<>
 			<Meta
@@ -17,5 +16,3 @@ const Documentation: NextPage = () => {
 		</>
 	)
 }
-
-export default Documentation

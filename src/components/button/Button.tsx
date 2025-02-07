@@ -1,9 +1,10 @@
-import cn from 'clsx'
-import { ModalHandle } from '@/components/modal/modal.types'
-import { useRef } from 'react'
+'use client'
 import Modal from '@/components/modal/Modal'
-import Link from 'next/link'
+import { ModalHandle } from '@/components/modal/modal.types'
 import { ButtonProps } from '@/types'
+import cn from 'clsx'
+import Link from 'next/link'
+import { useRef } from 'react'
 
 const Button = ({
 	tag,

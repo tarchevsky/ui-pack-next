@@ -1,13 +1,15 @@
+'use client'
+
 import 'swiper/css'
 import 'swiper/css/effect-fade'
-import 'swiper/css/pagination'
 import 'swiper/css/navigation'
+import 'swiper/css/pagination'
 
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { Pagination, Navigation, EffectFade } from 'swiper/modules'
-import styles from './Carousel.module.scss'
-import cn from 'clsx'
 import FadeIn from '@/components/fadeIn/FadeIn'
+import cn from 'clsx'
+import { EffectFade, Navigation, Pagination } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import styles from './Carousel.module.scss'
 
 import Image from 'next/image'
 

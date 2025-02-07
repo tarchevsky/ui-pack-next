@@ -1,7 +1,8 @@
-import { useEffect, useRef } from 'react'
-import { useForm, SubmitHandler } from 'react-hook-form'
+'use client'
 import Modal from '@/components/modal/Modal'
 import { ModalHandle } from '@/components/modal/modal.types'
+import { useEffect, useRef } from 'react'
+import { SubmitHandler, useForm } from 'react-hook-form'
 
 interface IContactFormProps {
 	title?: string

@@ -1,10 +1,11 @@
-import { Autoplay, Mousewheel, Navigation, Pagination } from 'swiper/modules'
-import EffectMaterial from './effect-material.esm.js'
-import { Swiper, SwiperSlide } from 'swiper/react'
+'use client'
 import FadeIn from '@/components/fadeIn/FadeIn'
-import styles from './MaterialSlider.module.scss'
 import cn from 'clsx'
 import Image from 'next/image'
+import { Autoplay, Mousewheel, Navigation, Pagination } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import EffectMaterial from './effect-material.esm.js'
+import styles from './MaterialSlider.module.scss'
 
 export const MaterialSlider = () => {
 	return (

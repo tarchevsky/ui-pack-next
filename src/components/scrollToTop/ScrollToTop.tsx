@@ -1,6 +1,8 @@
-import { useState, useEffect, FC } from 'react'
+'use client'
+
+import { AnimatePresence, motion } from 'framer-motion'
+import { FC, useEffect, useState } from 'react'
 import { IoTriangleOutline } from 'react-icons/io5'
-import { motion, AnimatePresence } from 'framer-motion'
 
 const ScrollToTop: FC = () => {
 	const [isVisible, setIsVisible] = useState<boolean>(false)

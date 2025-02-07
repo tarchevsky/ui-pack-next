@@ -1,14 +1,16 @@
+'use client'
 import FadeIn from '@/components/fadeIn/FadeIn'
 import Modal from '@/components/modal/Modal'
 import { ModalHandle } from '@/components/modal/modal.types'
 import { useRef } from 'react'
 import ErrorMessage from './ErrorMessage'
 import FieldRender from './FieldRender'
+import StepNavigation from './StepNavigation'
 import { formFields } from './formFields'
+
 import { useQuizForm } from './hooks/useQuizForm'
 import { useQuizSteps } from './hooks/useQuizSteps'
 import { useQuizSubmit } from './hooks/useQuizSubmit'
-import StepNavigation from './StepNavigation'
 import { useFormValidation } from './useFormValidation'
 
 export default function Quiz() {

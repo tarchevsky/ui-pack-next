@@ -1,5 +1,6 @@
+'use client'
 import { useState } from 'react'
-import FadeIn from '@/components/fadeIn/FadeIn'
+import FadeIn from '../fadeIn/FadeIn'
 import styles from './Tab.module.scss'
 
 const Tab = () => {

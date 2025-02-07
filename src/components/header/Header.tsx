@@ -1,3 +1,5 @@
+'use client'
+
 import Burger from '@/components/burger/Burger'
 import ThemeToggle from '@/components/themeToggle/ThemeToggle'
 import cn from 'clsx'

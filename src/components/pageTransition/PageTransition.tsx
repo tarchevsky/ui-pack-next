@@ -1,6 +1,7 @@
 // components/PageTransition.js
-import { motion } from 'framer-motion'
+'use client'
 import { LayoutProps } from '@/types'
+import { motion } from 'framer-motion'
 
 const variants = {
 	hidden: { opacity: 0 },

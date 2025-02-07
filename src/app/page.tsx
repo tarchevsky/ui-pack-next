@@ -7,9 +7,8 @@ import { images } from '@/components/infiniteMasonry/images'
 import InfiniteMasonry from '@/components/infiniteMasonry/InfiniteMasonry'
 import { MaterialSlider } from '@/components/materialSlider/MaterialSlider'
 import Meta from '@/components/meta/Meta'
-import { NextPage } from 'next'
 
-const HomePage: NextPage = () => {
+export default function HomePage() {
 	return (
 		<>
 			<Meta title='Главная' metaDesc='Описание страницы' />
@@ -44,5 +43,3 @@ const HomePage: NextPage = () => {
 		</>
 	)
 }
-
-export default HomePage

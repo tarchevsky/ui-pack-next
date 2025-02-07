@@ -1,9 +1,8 @@
-import { NextPage } from 'next'
 import FadeIn from '@/components/fadeIn/FadeIn'
 import Meta from '@/components/meta/Meta'
 import Quiz from '@/components/quiz/Quiz'
 
-const AboutPage: NextPage = () => {
+export default function AboutPage() {
 	return (
 		<>
 			<Meta title='О нас' metaDesc='Дескрипшен страницы' />
@@ -18,5 +17,3 @@ const AboutPage: NextPage = () => {
 		</>
 	)
 }
-
-export default AboutPage

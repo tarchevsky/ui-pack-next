@@ -1,7 +1,9 @@
-import { motion, MotionStyle, useInView } from 'framer-motion'
-import { useRef } from 'react'
+'use client'
+
 import { LayoutProps } from '@/types'
 import cn from 'clsx'
+import { motion, MotionStyle, useInView } from 'framer-motion'
+import { useRef } from 'react'
 
 const FadeIn = ({ children, className, delay = 0.2, style }: LayoutProps) => {
 	const ref = useRef(null)
