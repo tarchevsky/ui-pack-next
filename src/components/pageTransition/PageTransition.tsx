@@ -1,6 +1,7 @@
 // components/PageTransition.js
 'use client'
-import { LayoutProps } from '@/types'
+
+import type { LayoutProps } from '@/types'
 import { motion } from 'framer-motion'
 
 const variants = {

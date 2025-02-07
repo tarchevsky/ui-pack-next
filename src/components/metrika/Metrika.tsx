@@ -1,5 +1,5 @@
+import type { MetrikaProps } from '@/types'
 import Script from 'next/script'
-import { MetrikaProps } from '@/types'
 
 const Metrika = ({ yId }: MetrikaProps) => {
 	const scriptContent = `

@@ -1,5 +1,5 @@
 import { DARK_THEME, THEME } from '@/constants/theme.constants'
-import { ThemeToggleProps } from '@/types'
+import type { ThemeToggleProps } from '@/types'
 import { useEffect, useState } from 'react'
 
 const ThemeToggle = ({ className }: ThemeToggleProps) => {

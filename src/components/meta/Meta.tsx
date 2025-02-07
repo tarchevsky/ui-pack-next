@@ -1,5 +1,5 @@
+import type { MetaProps } from '@/types'
 import Head from 'next/head'
-import { MetaProps } from '@/types'
 
 const Meta = ({ title, metaDesc }: MetaProps) => {
 	return (

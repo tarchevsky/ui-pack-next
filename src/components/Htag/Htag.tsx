@@ -1,4 +1,4 @@
-import { HtagProps } from '@/types'
+import type { HtagProps } from '@/types'
 import { Fragment, memo } from 'react'
 
 const Htag = memo(({ tag, children, className }: HtagProps) => {

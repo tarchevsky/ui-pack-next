@@ -1,4 +1,4 @@
-import { HeroProps } from '@/types'
+import type { HeroProps } from '@/types'
 import Image from 'next/image'
 
 const Hero = ({

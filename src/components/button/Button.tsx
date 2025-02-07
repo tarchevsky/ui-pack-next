@@ -1,10 +1,10 @@
 'use client'
 import Modal from '@/components/modal/Modal'
-import { ModalHandle } from '@/components/modal/modal.types'
-import { ButtonProps } from '@/types'
+import type { ButtonProps } from '@/types'
 import cn from 'clsx'
 import Link from 'next/link'
 import { useRef } from 'react'
+import type { ModalHandle } from '../modal/modal.types'
 
 const Button = ({
 	tag,

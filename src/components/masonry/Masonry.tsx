@@ -1,4 +1,4 @@
-import { MasonryProps } from '@/types'
+import type { MasonryProps } from '@/types'
 import cn from 'clsx'
 import Image from 'next/image'
 import styles from './Masonry.module.scss'

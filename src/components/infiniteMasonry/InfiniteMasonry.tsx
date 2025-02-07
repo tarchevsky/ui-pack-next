@@ -1,6 +1,6 @@
 'use client'
 
-import { MasonryProps } from '@/types'
+import type { MasonryProps } from '@/types'
 import cn from 'clsx'
 import Image from 'next/image'
 import React, { useEffect, useRef, useState } from 'react'

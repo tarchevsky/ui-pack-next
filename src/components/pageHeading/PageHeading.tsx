@@ -1,6 +1,6 @@
-import Meta from '@/components/meta/Meta'
 import FadeIn from '@/components/fadeIn/FadeIn'
-import { MetaProps } from '@/types'
+import Meta from '@/components/meta/Meta'
+import type { MetaProps } from '@/types'
 
 const PageHeading = ({ title, metaDesc }: MetaProps) => {
 	return (

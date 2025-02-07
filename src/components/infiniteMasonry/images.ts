@@ -1,4 +1,4 @@
-import { ImageItem } from '@/types'
+import type { ImageItem } from '@/types'
 
 export const images: ImageItem[] = [
 	{

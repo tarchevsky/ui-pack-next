@@ -1,6 +1,6 @@
-import Link from 'next/link'
+import type { FigureProps } from '@/types'
 import Image from 'next/image'
-import { FigureProps } from '@/types'
+import Link from 'next/link'
 
 const Figure = ({
 	link,
