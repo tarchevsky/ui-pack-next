@@ -1,25 +1,29 @@
-import { StepNavigationProps } from '@/components/quiz/quiz.types'
-import { IoIosArrowForward, IoIosArrowBack } from 'react-icons/io'
-import { FC } from 'react'
 import FadeIn from '@/components/fadeIn/FadeIn'
+import { StepNavigationProps } from '@/components/quiz/quiz.types'
+import { FC } from 'react'
+import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
 
 const StepNavigation: FC<StepNavigationProps> = ({
 	currentStep,
 	totalSteps,
 	prevStep,
 	nextStep,
-	onSubmit
+	onSubmit,
+	isSubmitting
 }) => (
 	<>
 		{currentStep === totalSteps ? (
 			<FadeIn delay={0.5}>
-				<button type='submit' onClick={onSubmit} className='btn btn-primary'>
-					Отправить
+				<button
+					type='submit'
+					onClick={onSubmit}
+					className='btn btn-primary'
+					disabled={isSubmitting}
+				>
+					{isSubmitting ? 'Отправка...' : 'Отправить'}
 				</button>
 			</FadeIn>
-		) : (
-			''
-		)}
+		) : null}
 		<div className='flex justify-end'>
 			<button
 				type='button'
@@ -30,16 +34,14 @@ const StepNavigation: FC<StepNavigationProps> = ({
 				<IoIosArrowBack />
 			</button>
 			{currentStep === totalSteps ? (
-				<>
-					<button
-						type='button'
-						onClick={nextStep}
-						className='btn btn-primary btn-disabled'
-						aria-disabled='true'
-					>
-						<IoIosArrowForward />
-					</button>
-				</>
+				<button
+					type='button'
+					onClick={nextStep}
+					className='btn btn-primary btn-disabled'
+					aria-disabled='true'
+				>
+					<IoIosArrowForward />
+				</button>
 			) : (
 				<button type='button' onClick={nextStep} className='btn btn-primary'>
 					<IoIosArrowForward />

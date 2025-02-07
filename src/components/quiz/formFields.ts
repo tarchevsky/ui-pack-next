@@ -1,4 +1,6 @@
-export const formFields = [
+import { FormField } from './quiz.types'
+
+export const formFields: FormField[] = [
 	{
 		step: 1,
 		name: 'name',
@@ -56,5 +58,42 @@ export const formFields = [
 		name: 'backendRequiredOther',
 		type: 'text',
 		placeholder: 'Другое'
+	},
+	{
+		step: 5,
+		name: 'interests',
+		type: 'checkbox',
+		title: 'Какие технологии вас интересуют?',
+		options: [
+			{ label: 'React', value: 'react' },
+			{ label: 'Vue', value: 'vue' },
+			{ label: 'Angular', value: 'angular' },
+			{ label: 'Node.js', value: 'nodejs' }
+		],
+		required: true,
+		error: 'Выберите хотя бы один вариант'
+	},
+	{
+		step: 5,
+		name: 'experience',
+		type: 'select',
+		title: 'Ваш опыт в разработке',
+		options: [
+			{ label: 'Менее 1 года', value: 'junior' },
+			{ label: '1-3 года', value: 'middle' },
+			{ label: 'Более 3 лет', value: 'senior' }
+		],
+		required: true,
+		error: 'Пожалуйста, выберите ваш опыт'
+	},
+	{
+		step: 6,
+		name: 'resume',
+		type: 'file',
+		required: true,
+		title: 'Загрузите ваше резюме',
+		accept: '.pdf,.doc,.docx,.png,.jpg,.jpeg',
+		maxSize: 5 * 1024 * 1024, // 5MB
+		error: 'Пожалуйста, загрузите файл размером до 5MB'
 	}
 ]

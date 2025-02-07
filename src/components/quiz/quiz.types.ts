@@ -8,20 +8,30 @@ export type OptionType = {
 export interface FormField {
 	step: number
 	name: string
-	type: 'text' | 'email' | 'tel' | 'radio' | 'textarea'
+	type:
+		| 'text'
+		| 'email'
+		| 'tel'
+		| 'radio'
+		| 'textarea'
+		| 'checkbox'
+		| 'select'
+		| 'file'
 	label?: string
 	placeholder?: string
 	required?: boolean
-	value: string
 	title?: string
 	error?: string
 	options?: OptionType[]
+	multiple?: boolean
+	accept?: string
+	maxSize?: number
 }
 
-export type FormFieldName = FormField['name']
+export type FormFieldName = string
 
 export interface IQuizInput {
-	[key: FormFieldName]: string
+	[key: string]: string | string[] | File[]
 }
 
 export interface FieldRenderProps {
@@ -36,5 +46,6 @@ export interface StepNavigationProps {
 	totalSteps: number
 	prevStep: () => void
 	nextStep: () => void
-	onSubmit: () => void
+	onSubmit: (e?: React.BaseSyntheticEvent) => void
+	isSubmitting: boolean
 }
