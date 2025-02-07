@@ -1,7 +1,7 @@
 import { formatPhoneNumber } from '@/utils/formatPhoneNumber'
 import { Controller } from 'react-hook-form'
 import ErrorMessage from '../ErrorMessage'
-import { FormField } from '../quiz.types'
+import type { FormField } from '../quiz.types'
 
 interface TelFieldProps {
 	field: FormField

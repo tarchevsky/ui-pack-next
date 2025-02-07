@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { formFields } from '../formFields'
-import { IQuizInput } from '../quiz.types'
+import type { IQuizInput } from '../quiz.types'
 import { STORAGE_KEYS, getStorageItem, setStorageItem } from '../utils/storage'
 
 export const useQuizForm = () => {

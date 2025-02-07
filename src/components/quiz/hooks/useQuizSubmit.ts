@@ -1,7 +1,7 @@
 import { STORAGE_KEYS, removeStorageItem } from '@/utils/storage'
 import { useState } from 'react'
 import { formFields } from '../formFields'
-import { IQuizInput } from '../quiz.types'
+import type { IQuizInput } from '../quiz.types'
 
 export const useQuizSubmit = (
 	reset: () => void,

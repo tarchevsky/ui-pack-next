@@ -1,7 +1,7 @@
 'use client'
 import FadeIn from '@/components/fadeIn/FadeIn'
 import Modal from '@/components/modal/Modal'
-import { ModalHandle } from '@/components/modal/modal.types'
+import type { ModalHandle } from '@/components/modal/modal.types'
 import { useRef } from 'react'
 import ErrorMessage from './ErrorMessage'
 import FieldRender from './FieldRender'

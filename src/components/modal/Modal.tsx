@@ -1,5 +1,5 @@
 import { forwardRef, useImperativeHandle, useRef } from 'react'
-import { ModalHandle, ModalProps } from '@/components/modal/modal.types'
+import type { ModalHandle, ModalProps } from './modal.types'
 
 const Modal = forwardRef<ModalHandle, ModalProps>(
 	({ message, children }, ref) => {

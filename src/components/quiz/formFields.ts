@@ -1,4 +1,4 @@
-import { FormField } from './quiz.types'
+import type { FormField } from './quiz.types'
 
 export const formFields: FormField[] = [
 	{

@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import type { FC } from 'react'
 import CheckboxField from './fields/CheckboxField'
 import FileField from './fields/FileField'
 import RadioField from './fields/RadioField'
@@ -6,7 +6,7 @@ import SelectField from './fields/SelectField'
 import TelField from './fields/TelField'
 import TextareaField from './fields/TextareaField'
 import TextField from './fields/TextField'
-import { FieldRenderProps } from './quiz.types'
+import type { FieldRenderProps } from './quiz.types'
 
 const FieldRender: FC<FieldRenderProps> = ({
 	field,

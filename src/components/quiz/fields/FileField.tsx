@@ -1,5 +1,5 @@
 import ErrorMessage from '../ErrorMessage'
-import { FormField } from '../quiz.types'
+import type { FormField } from '../quiz.types'
 
 interface FileFieldProps {
 	field: FormField

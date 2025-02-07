@@ -1,7 +1,8 @@
 import FadeIn from '@/components/fadeIn/FadeIn'
-import { StepNavigationProps } from '@/components/quiz/quiz.types'
-import { FC } from 'react'
+
+import type { FC } from 'react'
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
+import type { StepNavigationProps } from './quiz.types'
 
 const StepNavigation: FC<StepNavigationProps> = ({
 	currentStep,
