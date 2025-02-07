@@ -1,5 +1,5 @@
 import FadeIn from '@/components/fadeIn/FadeIn'
-import { AccordionProps } from '@/types'
+import type { AccordionProps } from '@/types'
 
 const Accordion = ({
 	tab1,
