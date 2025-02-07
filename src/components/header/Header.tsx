@@ -1,9 +1,9 @@
-import Link from 'next/link'
-import cn from 'clsx'
-import styles from './Header.module.scss'
 import Burger from '@/components/burger/Burger'
-import { useEffect, useState } from 'react'
 import ThemeToggle from '@/components/themeToggle/ThemeToggle'
+import cn from 'clsx'
+import Link from 'next/link'
+import { useEffect, useState } from 'react'
+import styles from './Header.module.scss'
 
 const Header = () => {
 	const [isMenuActive, setIsMenuActive] = useState(false)
