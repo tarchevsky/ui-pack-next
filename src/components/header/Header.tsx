@@ -4,14 +4,29 @@ import Burger from '@/components/burger/Burger'
 import ThemeToggle from '@/components/themeToggle/ThemeToggle'
 import cn from 'clsx'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import styles from './Header.module.scss'
 
 const Header = () => {
 	const [isMenuActive, setIsMenuActive] = useState(false)
+
+	const menuItems = [
+		{ path: '/', label: 'Главная' },
+		{ path: '/about', label: 'О проекте' },
+		{ path: '/documentation', label: 'Документация' },
+		{ path: '/contacts', label: 'Контакты' }
+	]
+
+	const pathname = usePathname()
+
 	const toggleMenu = () => {
 		setIsMenuActive(!isMenuActive)
 	}
+
+	useEffect(() => {
+		setIsMenuActive(false)
+	}, [pathname])
 
 	useEffect(() => {
 		if (isMenuActive) {
@@ -34,58 +49,28 @@ const Header = () => {
 					tabIndex={0}
 					className='absolute md:static menu flex-nowrap gap-5 md:menu-horizontal start-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:translate-y-0 md:translate-x-0'
 				>
-					<li
-						className={cn(
-							styles.item,
-							'block text-center opacity-0 md:opacity-100'
-						)}
-					>
-						<Link className='px-[10px] btn btn-ghost font-normal' href='/'>
-							Главная
-						</Link>
-					</li>
-					<li
-						className={cn(
-							styles.item,
-							'block text-center opacity-0 md:opacity-100'
-						)}
-					>
-						<Link className='px-[10px] btn btn-ghost font-normal' href='/about'>
-							О проекте
-						</Link>
-					</li>
-					<li
-						className={cn(
-							styles.item,
-							'block text-center opacity-0 md:opacity-100'
-						)}
-					>
-						<Link
-							className='px-[10px] btn btn-ghost font-normal'
-							href='/documentation'
+					{menuItems.map((item, index) => (
+						<li
+							key={index}
+							className={cn(
+								styles.item,
+								'block text-center opacity-0 md:opacity-100'
+							)}
 						>
-							Документация
-						</Link>
-					</li>
-					<li
-						className={cn(
-							styles.item,
-							'block text-center opacity-0 md:opacity-100'
-						)}
-					>
-						<Link
-							className='px-[10px] btn btn-ghost font-normal'
-							href='/contacts'
-						>
-							Контакты
-						</Link>
-					</li>
+							<Link
+								className='px-[10px] btn btn-ghost font-normal'
+								href={item.path}
+							>
+								{item.label}
+							</Link>
+						</li>
+					))}
 					<li className='justify-center'>
 						<ThemeToggle />
 					</li>
 				</ul>
 			</nav>
-			<Burger toggleMenu={toggleMenu} />
+			<Burger toggleMenu={toggleMenu} isActive={isMenuActive} />
 		</header>
 	)
 }
