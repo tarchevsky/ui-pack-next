@@ -13,20 +13,22 @@ const TextareaField: React.FC<TextareaFieldProps> = ({
 	errors
 }) => {
 	return (
-		<div>
-			<textarea
-				id={field.name}
-				{...register(field.name, { required: field.required })}
-				placeholder={field.placeholder}
-				required={field.required}
-				className='textarea textarea-bordered w-full'
-			/>
+		<>
+			<div>
+				<textarea
+					id={field.name}
+					{...register(field.name, { required: field.required })}
+					placeholder={field.placeholder}
+					required={field.required}
+					className='textarea textarea-bordered w-full'
+				/>
+			</div>
 			<ErrorMessage
 				message={
 					errors[field.name] ? field.error || 'Это поле обязательно' : undefined
 				}
 			/>
-		</div>
+		</>
 	)
 }
 
