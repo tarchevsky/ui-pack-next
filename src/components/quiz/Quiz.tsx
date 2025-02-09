@@ -1,8 +1,7 @@
 'use client'
 import FadeIn from '@/components/fadeIn/FadeIn'
-import Modal from '@/components/modal/Modal'
 import type { ModalHandle } from '@/components/modal/modal.types'
-import { useRef } from 'react'
+import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import ErrorMessage from './ErrorMessage'
 import FieldRender from './FieldRender'
 import StepNavigation from './StepNavigation'
@@ -13,12 +12,19 @@ import { useQuizSteps } from './hooks/useQuizSteps'
 import { useQuizSubmit } from './hooks/useQuizSubmit'
 import { useFormValidation } from './useFormValidation'
 
+const Modal = lazy(() => import('@/components/modal/Modal'))
+
 export default function Quiz() {
+	const [isMounted, setIsMounted] = useState(false)
 	const form = useQuizForm()
 	const { currentStep, totalSteps, nextStep, prevStep, setCurrentStep } =
 		useQuizSteps()
 	const { validateField } = useFormValidation()
 	const modalRef = useRef<ModalHandle>(null)
+
+	useEffect(() => {
+		setIsMounted(true)
+	}, [])
 
 	const { handleSubmit, submitError, isSubmitting } = useQuizSubmit(() => {
 		const emptyValues = formFields.reduce(
@@ -30,6 +36,11 @@ export default function Quiz() {
 		)
 		form.reset(emptyValues)
 	}, setCurrentStep)
+
+	// Не рендерим ничего до монтирования на клиенте
+	if (!isMounted) {
+		return null
+	}
 
 	const validateCurrentStep = () => {
 		const currentFields = formFields.filter(field => field.step === currentStep)
@@ -78,10 +89,12 @@ export default function Quiz() {
 				/>
 				<ErrorMessage message={submitError ?? undefined} className='mt-2' />
 			</form>
-			<Modal
-				ref={modalRef}
-				message='Ваше обращение отправлено! Спасибо за проявленный интерес!'
-			/>
+			<Suspense fallback={null}>
+				<Modal
+					ref={modalRef}
+					message='Ваше обращение отправлено! Спасибо за проявленный интерес!'
+				/>
+			</Suspense>
 		</>
 	)
 }
