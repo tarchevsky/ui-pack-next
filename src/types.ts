@@ -1,5 +1,5 @@
-import { Url } from 'next/dist/shared/lib/router/router'
-import { ReactNode } from 'react'
+import type { Url } from 'next/dist/shared/lib/router/router'
+import type { ReactNode } from 'react'
 
 // Metrika.tsx
 
