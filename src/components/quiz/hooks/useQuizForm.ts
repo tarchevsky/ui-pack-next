@@ -5,8 +5,11 @@ import type { IQuizInput } from '../quiz.types'
 import { STORAGE_KEYS, getStorageItem, setStorageItem } from '../utils/storage'
 
 export const useQuizForm = () => {
-	// Получаем сохраненные данные при инициализации
-	const savedFormData = getStorageItem(STORAGE_KEYS.FORM_DATA)
+	// Проверяем, что мы на клиенте
+	const isClient = typeof window !== 'undefined'
+
+	// Получаем сохраненные данные только на клиенте
+	const savedFormData = isClient ? getStorageItem(STORAGE_KEYS.FORM_DATA) : null
 	const initialValues = savedFormData ? JSON.parse(savedFormData) : {}
 
 	const defaultValues: IQuizInput = formFields.reduce((acc, field) => {
@@ -19,10 +22,11 @@ export const useQuizForm = () => {
 		mode: 'onChange'
 	})
 
-	// Сохраняем данные формы при их изменении
+	// Сохраняем данные формы при их изменении только на клиенте
 	useEffect(() => {
+		if (!isClient) return
+
 		const subscription = form.watch(data => {
-			// Проверяем, что форма не пустая перед сохранением
 			const hasValues = Object.values(data).some(value =>
 				Array.isArray(value) ? value.length > 0 : Boolean(value)
 			)
@@ -33,7 +37,7 @@ export const useQuizForm = () => {
 		})
 
 		return () => subscription.unsubscribe()
-	}, [form.watch])
+	}, [form.watch, isClient])
 
 	return form
 }
