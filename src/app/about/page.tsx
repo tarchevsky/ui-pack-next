@@ -10,9 +10,7 @@ export default function AboutPage() {
 				<main>
 					<h1 className={`text-4xl font-bold`}>О нас</h1>
 				</main>
-				<div className='rounded p-16'>
-					<Quiz />
-				</div>
+				<Quiz />
 			</FadeIn>
 		</>
 	)

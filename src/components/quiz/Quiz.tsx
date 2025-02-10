@@ -63,32 +63,34 @@ export default function Quiz() {
 
 	return (
 		<>
-			<form
-				onSubmit={form.handleSubmit(data => handleSubmit(data, showModal))}
-				className='w-full flex flex-col justify-center gap-6 min-h-64'
-			>
-				{formFields
-					.filter(field => field.step === currentStep)
-					.map(field => (
-						<FadeIn key={field.name} className='flex flex-col gap-4'>
-							<FieldRender
-								field={field}
-								register={form.register}
-								errors={form.formState.errors}
-								control={form.control}
-							/>
-						</FadeIn>
-					))}
-				<StepNavigation
-					currentStep={currentStep}
-					totalSteps={totalSteps}
-					prevStep={prevStep}
-					nextStep={handleNextStep}
+			<div className='rounded md:p-16 pb-10'>
+				<form
 					onSubmit={form.handleSubmit(data => handleSubmit(data, showModal))}
-					isSubmitting={isSubmitting}
-				/>
-				<ErrorMessage message={submitError ?? undefined} className='mt-2' />
-			</form>
+					className='w-full flex flex-col justify-center gap-6 min-h-64'
+				>
+					{formFields
+						.filter(field => field.step === currentStep)
+						.map(field => (
+							<FadeIn key={field.name} className='flex flex-col gap-4'>
+								<FieldRender
+									field={field}
+									register={form.register}
+									errors={form.formState.errors}
+									control={form.control}
+								/>
+							</FadeIn>
+						))}
+					<StepNavigation
+						currentStep={currentStep}
+						totalSteps={totalSteps}
+						prevStep={prevStep}
+						nextStep={handleNextStep}
+						onSubmit={form.handleSubmit(data => handleSubmit(data, showModal))}
+						isSubmitting={isSubmitting}
+					/>
+					<ErrorMessage message={submitError ?? undefined} className='mt-2' />
+				</form>
+			</div>
 			<Suspense fallback={null}>
 				<Modal
 					ref={modalRef}
