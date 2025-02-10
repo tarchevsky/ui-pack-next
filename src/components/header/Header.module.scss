@@ -1,6 +1,6 @@
 .active {
 	opacity: 1;
-	background-color: var(--base-100);
+	background-color: oklch(var(--b1));
 	transform: translateY(0);
 
 	.item {
