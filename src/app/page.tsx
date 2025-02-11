@@ -32,7 +32,7 @@ export default function HomePage() {
 					content3='Какой-то текст'
 				/>
 			</FadeIn>
-			<FadeIn className='cont flex gap-20 mb-14'>
+			<FadeIn className='cont flex gap-20 ind'>
 				<h1 className='text-3xl font-extrabold'>Какой-то заголовок</h1>
 				<p>Какой-то текст</p>
 			</FadeIn>
