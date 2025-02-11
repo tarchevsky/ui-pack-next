@@ -1,4 +1,4 @@
-import type { FieldErrors, UseFormRegister } from 'react-hook-form'
+import type { Control, FieldErrors, UseFormRegister } from 'react-hook-form'
 
 export type OptionType = {
 	label?: string
@@ -26,6 +26,8 @@ export interface FormField {
 	multiple?: boolean
 	accept?: string
 	maxSize?: number
+	hasOtherOption?: boolean
+	otherOptionPlaceholder?: string
 }
 
 export type FormFieldName = string
@@ -38,7 +40,7 @@ export interface FieldRenderProps {
 	field: FormField
 	register: UseFormRegister<IQuizInput>
 	errors: FieldErrors<IQuizInput>
-	control: any
+	control: Control<IQuizInput>
 }
 
 export interface StepNavigationProps {

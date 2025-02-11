@@ -17,7 +17,7 @@ const SelectField: React.FC<SelectFieldProps> = ({
 	return (
 		<>
 			<div className='form-control'>
-				<div className='font-medium mb-2'>{field.title}</div>
+				{field.title && <div className='font-medium mb-2'>{field.title}</div>}
 				<select
 					{...register(field.name, { required: field.required })}
 					className='select select-bordered w-full'

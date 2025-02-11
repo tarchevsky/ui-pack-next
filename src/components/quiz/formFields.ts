@@ -6,7 +6,7 @@ export const formFields: FormField[] = [
 		name: 'name',
 		type: 'text',
 		placeholder: 'Имя',
-		required: true,
+		required: false,
 		error: 'Пожалуйста, введите имя'
 	},
 	{
@@ -14,7 +14,7 @@ export const formFields: FormField[] = [
 		name: 'email',
 		type: 'email',
 		placeholder: 'Почта',
-		required: true,
+		required: false,
 		error: 'Пожалуйста, введите почту'
 	},
 	{
@@ -22,7 +22,7 @@ export const formFields: FormField[] = [
 		name: 'phone',
 		type: 'tel',
 		placeholder: 'Телефон',
-		required: true,
+		required: false,
 		error: 'Пожалуйста, введите телефон'
 	},
 	{
@@ -40,7 +40,10 @@ export const formFields: FormField[] = [
 			{ label: 'Полезно', value: 'полезно' },
 			{ label: 'Не полезно', value: 'не полезно' },
 			{ label: 'Зависит от ингредиентов', value: 'зависит от ингридиентов' }
-		]
+		],
+		hasOtherOption: true,
+		otherOptionPlaceholder: 'Опишите Ваше мнение',
+		placeholder: 'Опишите Ваше мнение?'
 	},
 	{
 		step: 4,
@@ -70,8 +73,11 @@ export const formFields: FormField[] = [
 			{ label: 'Angular', value: 'angular' },
 			{ label: 'Node.js', value: 'nodejs' }
 		],
-		required: true,
-		error: 'Выберите хотя бы один вариант'
+		required: false,
+		error: 'Выберите хотя бы один вариант',
+		hasOtherOption: true,
+		otherOptionPlaceholder: 'Укажите другую технологию',
+		placeholder: 'Укажите другую технологию?'
 	},
 	{
 		step: 5,
@@ -83,17 +89,25 @@ export const formFields: FormField[] = [
 			{ label: '1-3 года', value: 'middle' },
 			{ label: 'Более 3 лет', value: 'senior' }
 		],
-		required: true,
+		required: false,
 		error: 'Пожалуйста, выберите ваш опыт'
 	},
 	{
 		step: 6,
 		name: 'resume',
 		type: 'file',
-		required: true,
+		required: false,
 		title: 'Загрузите ваше резюме',
 		accept: '.pdf,.doc,.docx,.png,.jpg,.jpeg',
 		maxSize: 5 * 1024 * 1024, // 5MB
 		error: 'Пожалуйста, загрузите файл размером до 5MB'
+	},
+	{
+		step: 6,
+		name: 'review',
+		type: 'text',
+		required: true,
+		title: 'Напишите отзыв',
+		error: 'Пожалуйста, напишите отзыв'
 	}
 ]

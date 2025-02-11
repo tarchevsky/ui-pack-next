@@ -1,16 +1,40 @@
+import { STORAGE_KEYS, getStorageItem, setStorageItem } from '@/utils/storage'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { formFields } from '../formFields'
 import type { IQuizInput } from '../quiz.types'
-import { STORAGE_KEYS, getStorageItem, setStorageItem } from '../utils/storage'
+
+const FORM_DATA_EXPIRY_TIME = 24 * 60 * 60 * 1000 // 24 часа
+
+const clearExpiredFormData = () => {
+	const savedFormData = getStorageItem(STORAGE_KEYS.FORM_DATA)
+	if (!savedFormData) return
+
+	try {
+		const { timestamp } = JSON.parse(savedFormData)
+		if (timestamp && Date.now() - timestamp > FORM_DATA_EXPIRY_TIME) {
+			localStorage.removeItem(STORAGE_KEYS.FORM_DATA)
+			localStorage.removeItem(STORAGE_KEYS.CURRENT_STEP)
+		}
+	} catch (error) {
+		console.error('Error parsing form data:', error)
+	}
+}
 
 export const useQuizForm = () => {
-	// Проверяем, что мы на клиенте
 	const isClient = typeof window !== 'undefined'
 
-	// Получаем сохраненные данные только на клиенте
+	// Очищаем устаревшие данные при инициализации
+	useEffect(() => {
+		if (isClient) {
+			clearExpiredFormData()
+		}
+	}, [isClient])
+
 	const savedFormData = isClient ? getStorageItem(STORAGE_KEYS.FORM_DATA) : null
-	const initialValues = savedFormData ? JSON.parse(savedFormData) : {}
+	const initialValues = savedFormData
+		? JSON.parse(savedFormData).data || {}
+		: {}
 
 	const defaultValues: IQuizInput = formFields.reduce((acc, field) => {
 		acc[field.name as keyof IQuizInput] = initialValues[field.name] || ''
@@ -22,7 +46,6 @@ export const useQuizForm = () => {
 		mode: 'onChange'
 	})
 
-	// Сохраняем данные формы при их изменении только на клиенте
 	useEffect(() => {
 		if (!isClient) return
 
@@ -32,7 +55,13 @@ export const useQuizForm = () => {
 			)
 
 			if (hasValues) {
-				setStorageItem(STORAGE_KEYS.FORM_DATA, JSON.stringify(data))
+				setStorageItem(
+					STORAGE_KEYS.FORM_DATA,
+					JSON.stringify({
+						data,
+						timestamp: Date.now()
+					})
+				)
 			}
 		})
 

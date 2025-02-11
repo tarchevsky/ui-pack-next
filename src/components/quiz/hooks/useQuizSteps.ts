@@ -1,6 +1,6 @@
+import { STORAGE_KEYS, getStorageItem, setStorageItem } from '@/utils/storage'
 import { useCallback, useState } from 'react'
 import { formFields } from '../formFields'
-import { STORAGE_KEYS, getStorageItem, setStorageItem } from '../utils/storage'
 
 export const useQuizSteps = () => {
 	const [currentStep, setCurrentStep] = useState(() => {

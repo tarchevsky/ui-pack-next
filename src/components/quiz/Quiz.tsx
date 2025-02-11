@@ -26,16 +26,11 @@ export default function Quiz() {
 		setIsMounted(true)
 	}, [])
 
-	const { handleSubmit, submitError, isSubmitting } = useQuizSubmit(() => {
-		const emptyValues = formFields.reduce(
-			(acc, field) => {
-				acc[field.name] = field.type === 'file' ? [] : ''
-				return acc
-			},
-			{} as Record<string, any>
-		)
-		form.reset(emptyValues)
-	}, setCurrentStep)
+	const { handleSubmit, submitError, isSubmitting } = useQuizSubmit(
+		form.reset,
+		setCurrentStep,
+		form
+	)
 
 	// Не рендерим ничего до монтирования на клиенте
 	if (!isMounted) {
@@ -57,9 +52,7 @@ export default function Quiz() {
 		}
 	}
 
-	const showModal = () => {
-		modalRef.current?.showModal()
-	}
+	const showModal = () => modalRef.current?.showModal()
 
 	return (
 		<>
@@ -77,6 +70,7 @@ export default function Quiz() {
 									register={form.register}
 									errors={form.formState.errors}
 									control={form.control}
+									formState={form.formState}
 								/>
 							</FadeIn>
 						))}

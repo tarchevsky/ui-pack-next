@@ -1,11 +1,13 @@
 import { STORAGE_KEYS, removeStorageItem } from '@/utils/storage'
 import { useState } from 'react'
+import { useForm } from 'react-hook-form'
 import { formFields } from '../formFields'
 import type { IQuizInput } from '../quiz.types'
 
 export const useQuizSubmit = (
 	reset: () => void,
-	setCurrentStep: (step: number) => void
+	setCurrentStep: (step: number) => void,
+	form: ReturnType<typeof useForm<IQuizInput>>
 ) => {
 	const [submitError, setSubmitError] = useState<string | null>(null)
 	const [isSubmitting, setIsSubmitting] = useState(false)
@@ -15,28 +17,28 @@ export const useQuizSubmit = (
 			setIsSubmitting(true)
 			setSubmitError(null)
 
-			// Обрабатываем все поля формы
-			const formDataObj: Record<string, any> = {}
-
-			await Promise.all(
-				Object.keys(data).map(async key => {
-					if (key === 'resume' && data[key]?.[0]) {
-						const file = data[key][0] as File
+			const formDataObj = await Object.entries(data).reduce(
+				async (accPromise, [key, value]) => {
+					const acc = await accPromise
+					if (key === 'resume' && value?.[0]) {
+						const file = value[0] as File
 						const base64Data = await new Promise(resolve => {
 							const reader = new FileReader()
 							reader.onloadend = () => resolve(reader.result)
 							reader.readAsDataURL(file)
 						})
 
-						formDataObj.resume = {
+						acc[key] = {
 							name: file.name,
 							type: file.type,
 							data: base64Data
 						}
 					} else {
-						formDataObj[key] = data[key]
+						acc[key] = value
 					}
-				})
+					return acc
+				},
+				Promise.resolve({} as Record<string, any>)
 			)
 
 			const res = await fetch('/api/quiz', {
@@ -53,7 +55,12 @@ export const useQuizSubmit = (
 				removeStorageItem(STORAGE_KEYS.FORM_DATA)
 				removeStorageItem(STORAGE_KEYS.CURRENT_STEP)
 
-				// Создаем пустые значения для всех полей формы
+				formFields.forEach(field => {
+					if (field.type === 'checkbox') {
+						removeStorageItem(`${field.name}_custom_input`)
+					}
+				})
+
 				const emptyValues = formFields.reduce(
 					(acc, field) => {
 						acc[field.name] = field.type === 'file' ? [] : ''
@@ -62,8 +69,9 @@ export const useQuizSubmit = (
 					{} as Record<string, any>
 				)
 
-				reset() // Сначала сбрасываем форму
-				setCurrentStep(1) // Затем возвращаемся к первому шагу
+				reset()
+				form.reset(emptyValues)
+				setCurrentStep(1)
 			} else {
 				setSubmitError(result.message || 'Не удалось отправить сообщение')
 			}

@@ -1,9 +1,48 @@
+import { formFields } from '@/components/quiz/formFields'
 import { NextRequest, NextResponse } from 'next/server'
 import nodemailer from 'nodemailer'
 
 export async function POST(req: NextRequest) {
 	try {
 		const data = await req.json()
+
+		const formatQuizData = (data: Record<string, any>) => {
+			const fieldDefinitions = formFields.reduce(
+				(acc, field) => {
+					acc[field.name] = field
+					return acc
+				},
+				{} as Record<string, any>
+			)
+
+			return Object.entries(data)
+				.map(([key, value]) => {
+					const fieldDef = fieldDefinitions[key]
+					const label = fieldDef?.title || fieldDef?.placeholder || key
+
+					if (key === 'resume' && value?.name) {
+						return `${label}: Файл прикреплён (${value.name})`
+					}
+					if (!value || (typeof value === 'string' && !value.trim())) {
+						return null
+					}
+
+					if (Array.isArray(value)) {
+						const formattedValues = value.map(v => {
+							if (typeof v === 'string' && v.startsWith('other:')) {
+								const otherLabel = fieldDef?.otherOptionPlaceholder || 'Другое'
+								return `${otherLabel}: ${v.substring(6)}`
+							}
+							return v
+						})
+						return `${label}: ${formattedValues.join(', ')}`
+					}
+
+					return `${label}: ${value}`
+				})
+				.filter(Boolean)
+				.join('\n')
+		}
 
 		const transporter = nodemailer.createTransport({
 			host: process.env.FORM_HOST,
@@ -15,9 +54,7 @@ export async function POST(req: NextRequest) {
 			}
 		})
 
-		const emailText = Object.entries(data)
-			.map(([key, value]) => `${key}: ${value}`)
-			.join('\n')
+		const emailText = formatQuizData(data)
 
 		if (!emailText.trim()) {
 			throw new Error('Форма не содержит данных')
