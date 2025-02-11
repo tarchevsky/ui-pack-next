@@ -1,10 +1,14 @@
 import {
 	DARK_THEME,
-	MD,
-	SM,
 	THEME,
-	XS,
-	XXL
+	cont_md,
+	cont_sm,
+	cont_xs,
+	cont_xxl,
+	ind_md,
+	ind_sm,
+	ind_xs,
+	ind_xxl
 } from './src/constants/theme.constants'
 
 /** @type {import('tailwindcss').Config} */
@@ -18,44 +22,56 @@ module.exports = {
 		require('@tailwindcss/typography'),
 		function ({ addUtilities }: any) {
 			const containerUtility = {
-				'.cont': {
-					'padding-left': [XS],
-					'padding-right': [XS],
+				'.ind': {
+					margin: [ind_xs],
 					'@screen sm': {
-						'padding-left': [SM],
-						'padding-right': [SM]
+						margin: [ind_sm]
 					},
 					'@screen md': {
-						'padding-left': [MD],
-						'padding-right': [MD]
+						margin: [ind_md]
 					},
 					'@screen 2xl': {
-						'padding-left': [XXL],
-						'padding-right': [XXL]
+						margin: [ind_xxl]
+					}
+				},
+				'.cont': {
+					'padding-left': [cont_xs],
+					'padding-right': [cont_xs],
+					'@screen sm': {
+						'padding-left': [cont_sm],
+						'padding-right': [cont_sm]
+					},
+					'@screen md': {
+						'padding-left': [cont_md],
+						'padding-right': [cont_md]
+					},
+					'@screen 2xl': {
+						'padding-left': [cont_xxl],
+						'padding-right': [cont_xxl]
 					}
 				},
 				'.cont-left': {
-					'padding-left': [XS],
+					'padding-left': [cont_xs],
 					'@screen sm': {
-						'padding-left': [SM]
+						'padding-left': [cont_sm]
 					},
 					'@screen md': {
-						'padding-left': [MD]
+						'padding-left': [cont_md]
 					},
 					'@screen 2xl': {
-						'padding-left': [XXL]
+						'padding-left': [cont_xxl]
 					}
 				},
 				'.cont-right': {
-					'padding-right': [XS],
+					'padding-right': [cont_xs],
 					'@screen sm': {
-						'padding-right': [SM]
+						'padding-right': [cont_sm]
 					},
 					'@screen md': {
-						'padding-right': [MD]
+						'padding-right': [cont_md]
 					},
 					'@screen 2xl': {
-						'padding-right': [XXL]
+						'padding-right': [cont_xxl]
 					}
 				}
 			}
