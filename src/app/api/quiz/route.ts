@@ -63,7 +63,20 @@ export async function POST(req: NextRequest) {
 		const emailText = formatQuizData(data)
 
 		if (!emailText.trim()) {
-			throw new Error('Форма не содержит данных')
+			await transporter.sendMail({
+				from: process.env.FORM_USER,
+				to: process.env.FORM_TO,
+				subject: `Пустая заявка с сайта ${process.env.SITE_NAME}`,
+				text: `Форма пустая, пользователь не ответил ни на один вопрос. Сделайте какие-нибудь поля обязательными, чтобы пользователь их заполнил! =)`
+			})
+
+			return NextResponse.json(
+				{
+					success: true,
+					message: 'Отправлено информационное письмо о пустой форме'
+				},
+				{ status: 200 }
+			)
 		}
 
 		const attachments: {

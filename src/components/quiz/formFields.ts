@@ -85,30 +85,10 @@ export const formFields: FormField[] = [
 	},
 	{
 		step: 6,
-		name: 'resume',
-		type: 'file',
-		required: false,
-		title: 'Загрузите ваше резюме',
-		accept: '.pdf,.doc,.docx,.png,.jpg,.jpeg',
-		maxSize: 5 * 1024 * 1024, // 5MB
-		error: 'Пожалуйста, загрузите файл размером до 5MB'
-	},
-	{
-		step: 6,
 		name: 'game',
 		type: 'file',
 		required: false,
 		title: 'Загрузите вашу любимую игру',
-		accept: '.png,.jpg,.jpeg',
-		maxSize: 5 * 1024 * 1024, // 5MB
-		error: 'Пожалуйста, загрузите файл размером до 5MB'
-	},
-	{
-		step: 6,
-		name: 'image',
-		type: 'file',
-		required: false,
-		title: 'Загрузите вашу любимую картинку',
 		accept: '.png,.jpg,.jpeg',
 		maxSize: 5 * 1024 * 1024, // 5MB
 		error: 'Пожалуйста, загрузите файл размером до 5MB'
