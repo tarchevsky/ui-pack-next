@@ -6,7 +6,7 @@ export const formFields: FormField[] = [
 		name: 'name',
 		type: 'text',
 		placeholder: 'Имя',
-		required: true,
+		required: false,
 		error: 'Пожалуйста, введите имя'
 	},
 	{
@@ -42,7 +42,9 @@ export const formFields: FormField[] = [
 			{ label: 'Полезно', value: 'полезно' },
 			{ label: 'Не полезно', value: 'не полезно' },
 			{ label: 'Зависит от ингредиентов', value: 'зависит от ингридиентов' }
-		]
+		],
+		other: true,
+		otherPlaceholder: 'Опишите, если всё сложнее'
 	},
 	{
 		step: 4,
@@ -53,7 +55,9 @@ export const formFields: FormField[] = [
 			{ label: 'Да', value: 'Да' },
 			{ label: 'Нет', value: 'Нет' },
 			{ label: 'Не знаю', value: 'Не знаю' }
-		]
+		],
+		other: false,
+		otherPlaceholder: 'Ваш вариант'
 	},
 	{
 		step: 5,

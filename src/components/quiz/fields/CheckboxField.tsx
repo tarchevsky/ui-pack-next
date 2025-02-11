@@ -93,23 +93,25 @@ const CheckboxField: React.FC<CheckboxFieldProps> = ({
 						/>
 					</label>
 				))}
-				<label className='label cursor-pointer hover:bg-base-200 rounded-lg transition-colors mt-2'>
-					<span className='label-text'>Другое</span>
-					<input
-						type='checkbox'
-						checked={showCustomInput}
-						onChange={e => {
-							setShowCustomInput(e.target.checked)
-							if (!e.target.checked) {
-								setCustomValue('')
-								setStorageItem(customInputStorageKey, '')
-							}
-							handleCheckboxChange(e)
-						}}
-						className='checkbox'
-					/>
-				</label>
-				{showCustomInput && (
+				{field.other && (
+					<label className='label cursor-pointer hover:bg-base-200 rounded-lg transition-colors mt-2'>
+						<span className='label-text'>Другое</span>
+						<input
+							type='checkbox'
+							checked={showCustomInput}
+							onChange={e => {
+								setShowCustomInput(e.target.checked)
+								if (!e.target.checked) {
+									setCustomValue('')
+									setStorageItem(customInputStorageKey, '')
+								}
+								handleCheckboxChange(e)
+							}}
+							className='checkbox'
+						/>
+					</label>
+				)}
+				{showCustomInput && field.other && (
 					<input
 						type='text'
 						value={customValue}

@@ -22,4 +22,5 @@ const FadeIn = ({ children, className, delay = 0.2, style }: LayoutProps) => {
 		</motion.div>
 	)
 }
+
 export default FadeIn
