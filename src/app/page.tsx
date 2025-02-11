@@ -6,12 +6,16 @@ import Hero from '@/components/hero/Hero'
 import { images } from '@/components/infiniteMasonry/images'
 import InfiniteMasonry from '@/components/infiniteMasonry/InfiniteMasonry'
 import { MaterialSlider } from '@/components/materialSlider/MaterialSlider'
-import Meta from '@/components/meta/Meta'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+	title: 'Главная',
+	description: 'Дескрипшен главной страницы'
+}
 
 export default function HomePage() {
 	return (
 		<>
-			<Meta title='Главная' metaDesc='Описание страницы' />
 			<FadeIn className='cont'>
 				<Hero
 					src='/fog-sea.jpg'

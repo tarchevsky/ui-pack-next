@@ -1,11 +1,12 @@
 import FadeIn from '@/components/fadeIn/FadeIn'
-import Meta from '@/components/meta/Meta'
-import type { MetaProps } from '@/types'
 
-const PageHeading = ({ title, metaDesc }: MetaProps) => {
+interface PageHeadingProps {
+	title: string
+}
+
+const PageHeading = ({ title }: PageHeadingProps) => {
 	return (
 		<>
-			<Meta title={title} metaDesc={metaDesc} />
 			<FadeIn className='cont mb-16'>
 				<main>
 					<h1 className={`text-4xl font-bold`}>{title}</h1>

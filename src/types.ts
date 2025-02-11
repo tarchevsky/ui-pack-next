@@ -7,13 +7,6 @@ export interface MetrikaProps {
 	yId: string
 }
 
-// Meta.tsx
-
-export interface MetaProps {
-	title?: string
-	metaDesc?: string
-}
-
 // Htag.tsx
 
 export interface HtagProps {

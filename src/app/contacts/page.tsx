@@ -1,20 +1,22 @@
 import ContactForm from '@/components/contactForm/ContactForm'
 import FadeIn from '@/components/fadeIn/FadeIn'
-import Meta from '@/components/meta/Meta'
+import type { Metadata } from 'next'
 
-const title = 'Контакты'
+export const metadata: Metadata = {
+	title: 'Контакты',
+	description: 'Страница контактов'
+}
 
 export default function ContactsPage() {
 	return (
 		<>
-			<Meta title={title} metaDesc='Описание страницы контактов' />
 			<FadeIn className='cont'>
 				<main>
-					<h1 className={`text-4xl font-bold`}>{title}</h1>
+					<h1 className={`text-4xl font-bold`}>Контакты</h1>
 				</main>
 			</FadeIn>
 			<FadeIn className='cont mb-40 grid grid-cols-2 gap-16'>
-				<ContactForm title={title} />
+				<ContactForm title='Страница Контакты' />
 				<div className='flex flex-col gap-6 mt-10'>
 					<h2 className={'text-3xl font-bold'}>
 						Оставьте заявку, либо свяжитесь с нами
