@@ -16,6 +16,8 @@ const TextField: React.FC<TextFieldProps> = ({ field, register, errors }) => {
 				{...register(field.name, {
 					required: field.required,
 					validate: (value: string) => {
+						if (!field.required && !value) return true
+
 						if (field.type === 'email') {
 							const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 							return (

@@ -38,7 +38,9 @@ export default function Quiz() {
 	}
 
 	const validateCurrentStep = () => {
-		const currentFields = formFields.filter(field => field.step === currentStep)
+		const currentFields = formFields.filter(
+			field => field.step === currentStep && field.required
+		)
 		return currentFields.every(field =>
 			validateField(field, form.watch(field.name))
 		)

@@ -18,6 +18,8 @@ const TelField: React.FC<TelFieldProps> = ({ field, control, errors }) => {
 				rules={{
 					required: field.required,
 					validate: value => {
+						if (!field.required && !value) return true
+
 						const phoneRegex = /^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/
 						return phoneRegex.test(value) || 'Введите корректный номер телефона'
 					}

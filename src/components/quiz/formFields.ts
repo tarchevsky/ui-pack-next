@@ -30,7 +30,7 @@ export const formFields: FormField[] = [
 		name: 'message',
 		type: 'textarea',
 		placeholder: 'Напишите, как вы себя чувствуете',
-		required: true,
+		required: false,
 		error: 'Пожалуйста, напишите, как вы себя чувствуете'
 	},
 	{

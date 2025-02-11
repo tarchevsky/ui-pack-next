@@ -37,9 +37,11 @@ const CheckboxField: React.FC<CheckboxFieldProps> = ({
 	const { onChange, ...rest } = register(field.name, {
 		required: field.required,
 		validate: (value: string[] | undefined) => {
-			if (!value) return field.error || 'Это поле обязательно'
-			if (field.required && value.length === 0) {
-				return field.error || 'Выберите хотя бы один вариант'
+			if (field.required) {
+				if (!value) return field.error || 'Это поле обязательно'
+				if (value.length === 0) {
+					return field.error || 'Выберите хотя бы один вариант'
+				}
 			}
 			return true
 		}
