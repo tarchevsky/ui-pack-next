@@ -29,21 +29,18 @@ export const formFields: FormField[] = [
 		step: 2,
 		name: 'message',
 		type: 'textarea',
-		placeholder: 'Сообщение'
+		placeholder: 'Напишите, как вы себя чувствуете'
 	},
 	{
 		step: 3,
 		name: 'pizzaOpinion',
+		title: 'Полезна пицца или нет?',
 		type: 'radio',
-		title: 'Пицца это полезно или нет?',
 		options: [
 			{ label: 'Полезно', value: 'полезно' },
 			{ label: 'Не полезно', value: 'не полезно' },
 			{ label: 'Зависит от ингредиентов', value: 'зависит от ингридиентов' }
-		],
-		hasOtherOption: true,
-		otherOptionPlaceholder: 'Опишите Ваше мнение',
-		placeholder: 'Опишите Ваше мнение?'
+		]
 	},
 	{
 		step: 4,
@@ -55,12 +52,6 @@ export const formFields: FormField[] = [
 			{ label: 'Нет', value: 'Нет' },
 			{ label: 'Не знаю', value: 'Не знаю' }
 		]
-	},
-	{
-		step: 4,
-		name: 'backendRequiredOther',
-		type: 'text',
-		placeholder: 'Другое'
 	},
 	{
 		step: 5,
@@ -104,10 +95,22 @@ export const formFields: FormField[] = [
 	},
 	{
 		step: 6,
-		name: 'review',
-		type: 'text',
-		required: true,
-		title: 'Напишите отзыв',
-		error: 'Пожалуйста, напишите отзыв'
+		name: 'game',
+		type: 'file',
+		required: false,
+		title: 'Загрузите вашу любимую игру',
+		accept: '.png,.jpg,.jpeg',
+		maxSize: 5 * 1024 * 1024, // 5MB
+		error: 'Пожалуйста, загрузите файл размером до 5MB'
+	},
+	{
+		step: 6,
+		name: 'image',
+		type: 'file',
+		required: false,
+		title: 'Загрузите вашу любимую картинку',
+		accept: '.png,.jpg,.jpeg',
+		maxSize: 5 * 1024 * 1024, // 5MB
+		error: 'Пожалуйста, загрузите файл размером до 5MB'
 	}
 ]

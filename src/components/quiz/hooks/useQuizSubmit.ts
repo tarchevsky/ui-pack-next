@@ -17,10 +17,14 @@ export const useQuizSubmit = (
 			setIsSubmitting(true)
 			setSubmitError(null)
 
+			const fileFields = formFields
+				.filter(field => field.type === 'file')
+				.map(field => field.name)
+
 			const formDataObj = await Object.entries(data).reduce(
 				async (accPromise, [key, value]) => {
 					const acc = await accPromise
-					if (key === 'resume' && value?.[0]) {
+					if (fileFields.includes(key) && value?.[0]) {
 						const file = value[0] as File
 						const base64Data = await new Promise(resolve => {
 							const reader = new FileReader()
@@ -33,6 +37,8 @@ export const useQuizSubmit = (
 							type: file.type,
 							data: base64Data
 						}
+					} else if (fileFields.includes(key)) {
+						acc[key] = null
 					} else {
 						acc[key] = value
 					}

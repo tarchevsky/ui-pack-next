@@ -2,6 +2,12 @@ import { formFields } from '@/components/quiz/formFields'
 import { NextRequest, NextResponse } from 'next/server'
 import nodemailer from 'nodemailer'
 
+interface FileData {
+	name: string
+	data: string
+	type: string
+}
+
 export async function POST(req: NextRequest) {
 	try {
 		const data = await req.json()
@@ -20,7 +26,7 @@ export async function POST(req: NextRequest) {
 					const fieldDef = fieldDefinitions[key]
 					const label = fieldDef?.title || fieldDef?.placeholder || key
 
-					if (key === 'resume' && value?.name) {
+					if (fieldDef?.type === 'file' && value?.name) {
 						return `${label}: Файл прикреплён (${value.name})`
 					}
 					if (!value || (typeof value === 'string' && !value.trim())) {
@@ -60,15 +66,24 @@ export async function POST(req: NextRequest) {
 			throw new Error('Форма не содержит данных')
 		}
 
-		const attachments = data.resume
-			? [
-					{
-						filename: data.resume.name,
-						content: data.resume.data.split('base64,')[1],
-						encoding: 'base64'
-					}
-				]
-			: []
+		const attachments: {
+			filename: string
+			content: string
+			encoding: 'base64'
+		}[] = []
+
+		// Обрабатываем все файловые поля
+		Object.entries(data).forEach(([key, value]) => {
+			const fieldDef = formFields.find(field => field.name === key)
+			if (fieldDef?.type === 'file' && value && typeof value === 'object') {
+				const fileData = value as FileData
+				attachments.push({
+					filename: fileData.name,
+					content: fileData.data.split('base64,')[1],
+					encoding: 'base64'
+				})
+			}
+		})
 
 		await transporter.sendMail({
 			from: process.env.FORM_USER,
