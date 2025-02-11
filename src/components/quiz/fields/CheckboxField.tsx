@@ -128,7 +128,7 @@ const CheckboxField: React.FC<CheckboxFieldProps> = ({
 								}
 							})
 						}}
-						placeholder='Введите свой вариант'
+						placeholder={field.otherPlaceholder}
 						className='input input-bordered mt-2'
 					/>
 				)}

@@ -26,8 +26,8 @@ export interface FormField {
 	multiple?: boolean
 	accept?: string
 	maxSize?: number
-	hasOtherOption?: boolean
-	otherOptionPlaceholder?: string
+	other?: boolean
+	otherPlaceholder?: string
 }
 
 export type FormFieldName = string

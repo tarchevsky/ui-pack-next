@@ -6,7 +6,7 @@ export const formFields: FormField[] = [
 		name: 'name',
 		type: 'text',
 		placeholder: 'Имя',
-		required: false,
+		required: true,
 		error: 'Пожалуйста, введите имя'
 	},
 	{
@@ -29,7 +29,9 @@ export const formFields: FormField[] = [
 		step: 2,
 		name: 'message',
 		type: 'textarea',
-		placeholder: 'Напишите, как вы себя чувствуете'
+		placeholder: 'Напишите, как вы себя чувствуете',
+		required: true,
+		error: 'Пожалуйста, напишите, как вы себя чувствуете'
 	},
 	{
 		step: 3,
@@ -66,9 +68,8 @@ export const formFields: FormField[] = [
 		],
 		required: false,
 		error: 'Выберите хотя бы один вариант',
-		hasOtherOption: true,
-		otherOptionPlaceholder: 'Укажите другую технологию',
-		placeholder: 'Укажите другую технологию?'
+		other: true,
+		otherPlaceholder: 'Укажите другую технологию'
 	},
 	{
 		step: 5,
@@ -82,6 +83,23 @@ export const formFields: FormField[] = [
 		],
 		required: false,
 		error: 'Пожалуйста, выберите ваш опыт'
+	},
+	{
+		step: 6,
+		name: 'companies',
+		type: 'checkbox',
+		title: 'Какие технические компании вам интересны?',
+		options: [
+			{ label: 'Apple', value: 'apple' },
+			{ label: 'Яндекс', value: 'yandex' },
+			{ label: 'Tesla', value: 'tesla' },
+			{ label: 'SpaceX', value: 'spacex' },
+			{ label: 'OpenAI', value: 'openai' }
+		],
+		required: false,
+		error: 'Выберите хотя бы один вариант',
+		other: true,
+		otherPlaceholder: 'Укажите другую компанию'
 	},
 	{
 		step: 6,
