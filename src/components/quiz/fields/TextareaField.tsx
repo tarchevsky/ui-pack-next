@@ -20,9 +20,8 @@ const TextareaField: React.FC<TextareaFieldProps> = ({
 					{...register(field.name, { required: field.required })}
 					placeholder={field.placeholder}
 					required={field.required}
-					className='textarea textarea-bordered w-full'
+					className='textarea textarea-bordered w-full text-base'
 					style={{
-						fontSize: '16px',
 						WebkitTextSizeAdjust: '100%'
 					}}
 					enterKeyHint='done'
