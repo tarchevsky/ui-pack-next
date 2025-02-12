@@ -30,6 +30,7 @@ export interface ButtonProps {
 // Layout.tsx + FadeIn.tsx
 
 export interface LayoutProps {
+	tag?: 'section' | 'div' | 'article' | 'main' | 'header' | 'footer'
 	children: ReactNode
 	className?: string
 	delay?: number
