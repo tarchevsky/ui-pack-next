@@ -84,6 +84,7 @@ module.exports = {
 				[THEME]: {
 					...require('daisyui/src/theming/themes')[THEME],
 					'--glass-blur': '3px',
+					'--glass-opacity': '20%',
 					'.glass': {
 						'background-image':
 							'linear-gradient(\n' +
