@@ -1,5 +1,6 @@
 import type { HeroProps } from '@/types'
 import Image from 'next/image'
+import FadeIn from '../fadeIn/FadeIn'
 
 const Hero = ({
 	title,
@@ -10,7 +11,7 @@ const Hero = ({
 	unoptimized
 }: HeroProps) => {
 	return (
-		<main className='hero cont md:min-h-[80vh]'>
+		<FadeIn tag='main' className='hero cont md:min-h-[80vh] ind'>
 			<div className='relative hero-content flex-col-reverse items-start lg:items-center lg:flex-row'>
 				<Image
 					className='lg:w-1/2 h-[300px] md:h-[600px] md:min-w-[600px] object-cover rounded-box shadow-2xl'
@@ -31,7 +32,7 @@ const Hero = ({
 					) : null}
 				</div>
 			</div>
-		</main>
+		</FadeIn>
 	)
 }
 

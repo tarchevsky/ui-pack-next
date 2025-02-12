@@ -15,7 +15,7 @@ import Image from 'next/image'
 
 const Carousel = () => {
 	return (
-		<FadeIn className='cont mb-60'>
+		<FadeIn tag='section' className='ind cont'>
 			<Swiper
 				slidesPerView={1}
 				spaceBetween={30}

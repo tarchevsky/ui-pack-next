@@ -1,5 +1,5 @@
-import FadeIn from '@/components/fadeIn/FadeIn'
 import type { AccordionProps } from '@/types'
+import FadeIn from '../fadeIn/FadeIn'
 
 const Accordion = ({
 	tab1,
@@ -10,8 +10,8 @@ const Accordion = ({
 	content3
 }: AccordionProps) => {
 	return (
-		<FadeIn className='mb-60'>
-			<div className='collapse collapse-arrow bg-base-200 mb-4'>
+		<FadeIn tag='section' className='cont ind flex flex-col gap-2'>
+			<div className='collapse collapse-arrow bg-base-200'>
 				<input
 					type='radio'
 					name='my-accordion-2'
@@ -23,7 +23,7 @@ const Accordion = ({
 					<p>{content1}</p>
 				</div>
 			</div>
-			<div className='collapse collapse-arrow bg-base-200 mb-4'>
+			<div className='collapse collapse-arrow bg-base-200'>
 				<input
 					type='radio'
 					name='my-accordion-2'
@@ -34,7 +34,7 @@ const Accordion = ({
 					<p>{content2}</p>
 				</div>
 			</div>
-			<div className='collapse collapse-arrow bg-base-200 mb-4'>
+			<div className='collapse collapse-arrow bg-base-200'>
 				<input
 					type='radio'
 					name='my-accordion-2'

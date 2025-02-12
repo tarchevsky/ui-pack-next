@@ -9,7 +9,7 @@ import styles from './MaterialSlider.module.scss'
 
 export const MaterialSlider = () => {
 	return (
-		<FadeIn className='cont mb-60'>
+		<FadeIn className='ind cont'>
 			<Swiper
 				modules={[Autoplay, Navigation, Pagination, EffectMaterial, Mousewheel]}
 				effect={'material'}

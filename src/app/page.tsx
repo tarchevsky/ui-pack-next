@@ -16,34 +16,28 @@ export const metadata: Metadata = {
 export default function HomePage() {
 	return (
 		<>
-			<FadeIn className='cont'>
-				<Hero
-					src='/fog-sea.jpg'
-					alt='Альт картинки'
-					title='Заголовок'
-					buttonText='Обратная связь'
-				/>
-				<Accordion
-					tab1='Какой-то заголовок'
-					content1='Какой-то текст'
-					tab2='Какой-то заголовок'
-					content2='Какой-то текст'
-					tab3='Какой-то заголовок'
-					content3='Какой-то текст'
-				/>
-			</FadeIn>
-			<FadeIn className='cont flex gap-20 ind'>
+			<Hero
+				src='/fog-sea.jpg'
+				alt='Альт картинки'
+				title='Заголовок'
+				buttonText='Обратная связь'
+			/>
+			<Accordion
+				tab1='Какой-то заголовок'
+				content1='Какой-то текст'
+				tab2='Какой-то заголовок'
+				content2='Какой-то текст'
+				tab3='Какой-то заголовок'
+				content3='Какой-то текст'
+			/>
+			<FadeIn tag='section' className='cont flex gap-20 ind'>
 				<h1 className='text-3xl font-extrabold'>Какой-то заголовок</h1>
 				<p>Какой-то текст</p>
 			</FadeIn>
 			<CarouselBeyond />
 			<Carousel />
-			<FadeIn>
-				<MaterialSlider />
-			</FadeIn>
-			<div className='cont'>
-				<InfiniteMasonry images={images} />
-			</div>
+			<MaterialSlider />
+			<InfiniteMasonry images={images} />
 		</>
 	)
 }

@@ -4,6 +4,7 @@ import type { MasonryProps } from '@/types'
 import cn from 'clsx'
 import Image from 'next/image'
 import React, { useEffect, useRef, useState } from 'react'
+import FadeIn from '../fadeIn/FadeIn'
 import styles from './InfiniteMasonry.module.scss'
 
 const InfiniteMasonry: React.FC<MasonryProps> = ({ images }) => {
@@ -72,7 +73,10 @@ const InfiniteMasonry: React.FC<MasonryProps> = ({ images }) => {
 	]
 
 	return (
-		<div className='grid grid-cols-1 xs:grid-cols-2 gap-6 md:grid-cols-3 mb-16'>
+		<FadeIn
+			tag='section'
+			className='ind cont grid grid-cols-1 xs:grid-cols-2 gap-6 md:grid-cols-3 mb-16'
+		>
 			{columns.map((column, columnIndex) => (
 				<div key={columnIndex} className='flex flex-col gap-6'>
 					{column.map((image, imageIndex) => (
@@ -115,7 +119,7 @@ const InfiniteMasonry: React.FC<MasonryProps> = ({ images }) => {
 				</div>
 			))}
 			<div ref={loaderRef} style={{ height: '10px', width: '100%' }} />
-		</div>
+		</FadeIn>
 	)
 }
 
