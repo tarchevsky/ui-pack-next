@@ -20,6 +20,7 @@ const TextareaField: React.FC<TextareaFieldProps> = ({
 					{...register(field.name, { required: field.required })}
 					placeholder={field.placeholder}
 					required={field.required}
+					inputMode='text'
 					className='textarea textarea-bordered w-full'
 				/>
 			</div>
