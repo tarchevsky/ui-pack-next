@@ -1,66 +1,45 @@
-import FadeIn from '@/components/fadeIn/FadeIn'
+import FadeIn from '../fadeIn/FadeIn'
+
+const CarouselItems = [
+	{
+		id: 1,
+		title: 'Какой-то заголовок',
+		description: 'Какой-то текст'
+	},
+	{
+		id: 2,
+		title: 'Какой-то заголовок',
+		description: 'Какой-то текст'
+	},
+	{
+		id: 3,
+		title: 'Какой-то заголовок',
+		description: 'Какой-то текст'
+	},
+	{
+		id: 4,
+		title: 'Какой-то заголовок',
+		description: 'Какой-то текст'
+	},
+	{
+		id: 5,
+		title: 'Какой-то заголовок',
+		description: 'Какой-то текст'
+	}
+]
 
 const CarouselBeyond = () => {
 	return (
-		<FadeIn className='mb-60'>
-			<div className='carousel carousel-center flex p-4 gap-5 mb-60 pl-4 sm:pl-10 md:pl-[100px] 2xl:pl-[200px] pr-4 sm:pr-10 md:pr-[100px] 2xl:pr-[200px]'>
-				<div className='carousel-item w-3/5 shadow-lg rounded-box bg-base-200'>
-					<div className='p-4'>
-						<p>
-							Текст карусели, рамочный текст, новый удобный компонент,
-							листающийся за пределы экрана
-						</p>
-					</div>
+		<FadeIn tag='section' className='ind cont carousel carousel-center gap-5'>
+			{CarouselItems.map((item, id) => (
+				<div
+					key={id}
+					className='carousel-item w-3/5 md:w-2/5 shadow-lg rounded-box bg-base-200 p-4 flex-col'
+				>
+					<h3 className='text-2xl font-bold'>{item.title}</h3>
+					<p>{item.description}</p>
 				</div>
-				<div className='carousel-item w-3/5 shadow-lg rounded-box bg-base-200'>
-					<div className='p-4'>
-						<p>
-							Текст карусели, рамочный текст, новый удобный компонент,
-							листающийся за пределы экрана
-						</p>
-					</div>
-				</div>
-				<div className='carousel-item w-3/5 shadow-lg rounded-box bg-base-200'>
-					<div className='p-4'>
-						<p>
-							Текст карусели, рамочный текст, новый удобный компонент,
-							листающийся за пределы экрана
-						</p>
-					</div>
-				</div>
-				<div className='carousel-item w-3/5 shadow-lg rounded-box bg-base-200'>
-					<div className='p-4'>
-						<p>
-							Текст карусели, рамочный текст, новый удобный компонент,
-							листающийся за пределы экрана
-						</p>
-					</div>
-				</div>
-				<div className='carousel-item w-3/5 shadow-lg rounded-box bg-base-200'>
-					<div className='p-4'>
-						<p>
-							Текст карусели, рамочный текст, новый удобный компонент,
-							листающийся за пределы экрана
-						</p>
-					</div>
-				</div>
-				<div className='carousel-item w-3/5 shadow-lg rounded-box bg-base-200'>
-					<div className='p-4'>
-						<p>
-							Текст карусели, рамочный текст, новый удобный компонент,
-							листающийся за пределы экрана
-						</p>
-					</div>
-				</div>
-				<div className='carousel-item w-3/5 shadow-lg rounded-box bg-base-200'>
-					<div className='p-4'>
-						<p>
-							Текст карусели, рамочный текст, новый удобный компонент,
-							листающийся за пределы экрана
-						</p>
-					</div>
-				</div>
-			</div>
+			))}
 		</FadeIn>
 	)
 }
