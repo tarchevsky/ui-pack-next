@@ -4,6 +4,8 @@ import { FaSquarePhone } from 'react-icons/fa6'
 import { IoLogoWhatsapp } from 'react-icons/io'
 
 const Footer = () => {
+	const year = new Date().getFullYear()
+
 	return (
 		<footer className='footer footer-center p-10 bg-base-200 text-base-content rounded'>
 			<nav className='grid grid-flow-col gap-4'>
@@ -28,7 +30,7 @@ const Footer = () => {
 				</div>
 			</nav>
 			<aside>
-				<p>Copyright © 2024 - Тарчевский И.А.</p>
+				<p>Copyright © {year} - tezis.digital</p>
 			</aside>
 		</footer>
 	)
