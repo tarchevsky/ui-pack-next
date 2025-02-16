@@ -1,7 +1,6 @@
 import Accordion from '@/components/accordion/Accordion'
 import Carousel from '@/components/carousel/Carousel'
 import CarouselBeyond from '@/components/carouselBeyond/CarouselBeyond'
-import FadeIn from '@/components/fadeIn/FadeIn'
 import Hero from '@/components/hero/Hero'
 import { images } from '@/components/infiniteMasonry/images'
 import InfiniteMasonry from '@/components/infiniteMasonry/InfiniteMasonry'
