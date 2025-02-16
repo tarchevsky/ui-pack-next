@@ -30,7 +30,10 @@ const CarouselItems = [
 
 const CarouselBeyond = () => {
 	return (
-		<FadeIn tag='section' className='ind cont carousel carousel-center gap-5'>
+		<FadeIn
+			tag='section'
+			className='ind cont carousel carousel-center gap-4 pb-6'
+		>
 			{CarouselItems.map((item, id) => (
 				<div
 					key={id}
