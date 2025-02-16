@@ -15,7 +15,11 @@ import {
 module.exports = {
 	content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
 	theme: {
-		extend: {}
+		extend: {
+			fontFamily: {
+				sans: ['var(--font-ibm-plex-sans)']
+			}
+		}
 	},
 	plugins: [
 		require('daisyui'),
