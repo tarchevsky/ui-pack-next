@@ -7,7 +7,7 @@ interface PageHeadingProps {
 const PageHeading = ({ title }: PageHeadingProps) => {
 	return (
 		<>
-			<FadeIn className='cont mb-16'>
+			<FadeIn className='ind cont'>
 				<main>
 					<h1 className={`text-4xl font-bold`}>{title}</h1>
 				</main>

@@ -1,5 +1,6 @@
 import ContactForm from '@/components/contactForm/ContactForm'
 import FadeIn from '@/components/fadeIn/FadeIn'
+import PageHeading from '@/components/pageHeading/PageHeading'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -10,14 +11,10 @@ export const metadata: Metadata = {
 export default function ContactsPage() {
 	return (
 		<>
-			<FadeIn className='cont'>
-				<main>
-					<h1 className={`text-4xl font-bold`}>Контакты</h1>
-				</main>
-			</FadeIn>
-			<FadeIn className='cont mb-40 grid grid-cols-2 gap-16'>
+			<PageHeading title='Контакты' />
+			<FadeIn className='ind cont flex flex-col-reverse md:grid md:grid-cols-2 gap-4 md:gap-16'>
 				<ContactForm title='Страница Контакты' />
-				<div className='flex flex-col gap-6 mt-10'>
+				<div className='flex flex-col gap-4'>
 					<h2 className={'text-3xl font-bold'}>
 						Оставьте заявку, либо свяжитесь с нами
 					</h2>
