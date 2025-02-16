@@ -48,6 +48,7 @@ export interface StepNavigationProps {
 	totalSteps: number
 	prevStep: () => void
 	nextStep: () => void
-	onSubmit: (e?: React.BaseSyntheticEvent) => void
+	onSubmit: (e?: React.BaseSyntheticEvent) => Promise<void>
 	isSubmitting: boolean
+	showSteps?: boolean
 }

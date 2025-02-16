@@ -14,7 +14,11 @@ import { useFormValidation } from './useFormValidation'
 
 const Modal = lazy(() => import('@/components/modal/Modal'))
 
-export default function Quiz() {
+export default function Quiz({
+	steps = false
+}: {
+	steps?: boolean
+} = {}) {
 	const [isMounted, setIsMounted] = useState(false)
 	const form = useQuizForm()
 	const { currentStep, totalSteps, nextStep, prevStep, setCurrentStep } =
@@ -58,7 +62,12 @@ export default function Quiz() {
 
 	return (
 		<>
-			<div className='rounded md:p-16 pb-10'>
+			<div className='rounded md:p-16 pb-10 relative'>
+				{steps && (
+					<FadeIn className='absolute -top-16 left-0 md:top-auto md:bottom-14 bottom md:left-16 text-4xl font-extrabold text-gray-200 dark:text-base-300'>
+						{currentStep}/{totalSteps}
+					</FadeIn>
+				)}
 				<form
 					onSubmit={form.handleSubmit(data => handleSubmit(data, showModal))}
 					className='w-full flex flex-col justify-center gap-6 min-h-64'
@@ -82,6 +91,7 @@ export default function Quiz() {
 						nextStep={handleNextStep}
 						onSubmit={form.handleSubmit(data => handleSubmit(data, showModal))}
 						isSubmitting={isSubmitting}
+						showSteps={steps}
 					/>
 					<ErrorMessage message={submitError ?? undefined} className='mt-2' />
 				</form>
