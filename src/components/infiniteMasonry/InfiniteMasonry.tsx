@@ -3,13 +3,14 @@
 import type { MasonryProps } from '@/types'
 import cn from 'clsx'
 import Image from 'next/image'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import FadeIn from '../fadeIn/FadeIn'
 import styles from './InfiniteMasonry.module.scss'
 
 const InfiniteMasonry: React.FC<MasonryProps> = ({ images }) => {
 	const [visibleImages, setVisibleImages] = useState<typeof images>([])
 	const [page, setPage] = useState(1)
+	const [isLoading, setIsLoading] = useState(false)
 	const [imagesLoaded, setImagesLoaded] = useState<{ [key: string]: boolean }>(
 		{}
 	)
@@ -21,15 +22,43 @@ const InfiniteMasonry: React.FC<MasonryProps> = ({ images }) => {
 		setVisibleImages(images.slice(0, imagesPerPage))
 	}, [images])
 
+	const loadMoreImages = useCallback(() => {
+		if (isLoading) return
+
+		const nextPage = page + 1
+		const startIndex = page * imagesPerPage
+		const endIndex = nextPage * imagesPerPage
+		const newImages = images.slice(startIndex, endIndex)
+
+		if (newImages.length > 0) {
+			setIsLoading(true)
+			// Предзагрузка изображений
+			Promise.all(
+				newImages.map(
+					img =>
+						new Promise<void>(resolve => {
+							const image = new window.Image()
+							image.src = img.src
+							image.onload = () => resolve()
+						})
+				)
+			).then(() => {
+				setVisibleImages(prev => [...prev, ...newImages])
+				setPage(nextPage)
+				setIsLoading(false)
+			})
+		}
+	}, [images, page, isLoading])
+
 	useEffect(() => {
 		const observer = new IntersectionObserver(
 			entries => {
 				const target = entries[0]
-				if (target.isIntersecting) {
+				if (target.isIntersecting && !isLoading) {
 					loadMoreImages()
 				}
 			},
-			{ rootMargin: '100px', threshold: 0 }
+			{ rootMargin: '200px', threshold: 0 }
 		)
 
 		if (loaderRef.current) {
@@ -41,36 +70,30 @@ const InfiniteMasonry: React.FC<MasonryProps> = ({ images }) => {
 				observer.unobserve(loaderRef.current)
 			}
 		}
-	}, [visibleImages])
+	}, [loadMoreImages, isLoading])
 
-	const loadMoreImages = () => {
-		const nextPage = page + 1
-		const startIndex = page * imagesPerPage
-		const endIndex = nextPage * imagesPerPage
-		const newImages = images.slice(startIndex, endIndex)
+	const shouldBeVertical = useCallback(
+		(columnIndex: number, imageIndex: number) => {
+			if (columnIndex === 1) {
+				return imageIndex % 2 === 0
+			}
+			return imageIndex % 2 !== 0
+		},
+		[]
+	)
 
-		if (newImages.length > 0) {
-			setVisibleImages(prev => [...prev, ...newImages])
-			setPage(nextPage)
-		}
-	}
-
-	const shouldBeVertical = (columnIndex: number, imageIndex: number) => {
-		if (columnIndex === 1) {
-			return imageIndex % 2 === 0
-		}
-		return imageIndex % 2 !== 0
-	}
-
-	const handleImageLoad = (imageId: string) => {
+	const handleImageLoad = useCallback((imageId: string) => {
 		setImagesLoaded(prev => ({ ...prev, [imageId]: true }))
-	}
+	}, [])
 
-	const columns = [
-		visibleImages.filter((_, index) => index % 3 === 0),
-		visibleImages.filter((_, index) => index % 3 === 1),
-		visibleImages.filter((_, index) => index % 3 === 2)
-	]
+	const columns = useMemo(
+		() => [
+			visibleImages.filter((_, index) => index % 3 === 0),
+			visibleImages.filter((_, index) => index % 3 === 1),
+			visibleImages.filter((_, index) => index % 3 === 2)
+		],
+		[visibleImages]
+	)
 
 	return (
 		<FadeIn
