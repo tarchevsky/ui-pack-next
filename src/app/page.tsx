@@ -30,10 +30,6 @@ export default function HomePage() {
 				tab3='Какой-то заголовок'
 				content3='Какой-то текст'
 			/>
-			<FadeIn tag='section' className='cont flex gap-20 ind'>
-				<h1 className='text-3xl font-extrabold'>Какой-то заголовок</h1>
-				<p>Какой-то текст</p>
-			</FadeIn>
 			<CarouselBeyond />
 			<Carousel />
 			<MaterialSlider />
