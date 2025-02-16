@@ -1,4 +1,4 @@
-import FadeIn from '@/components/fadeIn/FadeIn'
+import PageHeading from '@/components/pageHeading/PageHeading'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -7,11 +7,5 @@ export const metadata: Metadata = {
 }
 
 export default function Documentation() {
-	return (
-		<FadeIn className='cont'>
-			<main>
-				<h1 className={`text-4xl font-bold`}>Документация</h1>
-			</main>
-		</FadeIn>
-	)
+	return <PageHeading ind={true} title='Документация' />
 }
