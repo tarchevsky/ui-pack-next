@@ -10,6 +10,7 @@
 		"create:page": "bun create-page.js"
 	},
 	"dependencies": {
+		"@fontsource-variable/raleway": "^5.1.1",
 		"@types/node": "20.12.2",
 		"@types/react": "18.2.73",
 		"@types/react-dom": "18.2.23",

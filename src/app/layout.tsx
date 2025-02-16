@@ -8,6 +8,8 @@ import PageTransition from '@/components/pageTransition/PageTransition'
 import ScrollToTop from '@/components/scrollToTop/ScrollToTop'
 import { AnimatePresence } from 'framer-motion'
 import type { ReactNode } from 'react'
+// Supports weights 100-900
+import '@fontsource-variable/raleway'
 
 const yId = process.env.NEXT_PUBLIC_YID
 

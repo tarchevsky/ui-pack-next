@@ -4,6 +4,7 @@
     "": {
       "name": "ui-pack-next",
       "dependencies": {
+        "@fontsource-variable/raleway": "^5.1.1",
         "@types/node": "20.12.2",
         "@types/react": "18.2.73",
         "@types/react-dom": "18.2.23",
@@ -79,6 +80,8 @@
     "@edge-runtime/vm": ["@edge-runtime/vm@3.2.0", "", { "dependencies": { "@edge-runtime/primitives": "4.1.0" } }, "sha512-0dEVyRLM/lG4gp1R/Ik5bfPl/1wX00xFwd5KcNH602tzBa09oF7pbTKETEhR1GjZ75K6OJnYFu8II2dyMhONMw=="],
 
     "@fastify/busboy": ["@fastify/busboy@2.1.1", "", {}, "sha512-vBZP4NlzfOlerQTnba4aqZoMhE/a9HY7HRqoOPaETQcSQuWEIyZMHGfVu6w9wGtGK5fED5qRs2DteVCjOH60sA=="],
+
+    "@fontsource-variable/raleway": ["@fontsource-variable/raleway@5.1.1", "", {}, "sha512-PWApLoy2/nmrU+1KjtbEAB3kZFbb/kevzkAS57Pt9TAf3OybfCPpdevlT2hQI9lQEclYHMWXEHBL6vP7MNmjMg=="],
 
     "@isaacs/cliui": ["@isaacs/cliui@8.0.2", "", { "dependencies": { "string-width": "^5.1.2", "string-width-cjs": "npm:string-width@^4.2.0", "strip-ansi": "^7.0.1", "strip-ansi-cjs": "npm:strip-ansi@^6.0.1", "wrap-ansi": "^8.1.0", "wrap-ansi-cjs": "npm:wrap-ansi@^7.0.0" } }, "sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA=="],
 
