@@ -24,6 +24,12 @@ export const useQuizSubmit = (
 			const formDataObj = await Object.entries(data).reduce(
 				async (accPromise, [key, value]) => {
 					const acc = await accPromise
+
+					// Пропускаем поле captcha при отправке
+					if (key === 'captcha') {
+						return acc
+					}
+
 					if (fileFields.includes(key) && value?.[0]) {
 						const file = value[0] as File
 						const base64Data = await new Promise(resolve => {

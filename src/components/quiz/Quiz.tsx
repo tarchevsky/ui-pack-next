@@ -81,6 +81,8 @@ export default function Quiz({
 									register={form.register}
 									errors={form.formState.errors}
 									control={form.control}
+									setError={form.setError}
+									clearErrors={form.clearErrors}
 								/>
 							</FadeIn>
 						))}

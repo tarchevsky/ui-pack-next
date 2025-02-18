@@ -1,4 +1,5 @@
 import type { FC } from 'react'
+import Captcha from './fields/Captcha'
 import CheckboxField from './fields/CheckboxField'
 import FileField from './fields/FileField'
 import RadioField from './fields/RadioField'
@@ -12,7 +13,9 @@ const FieldRender: FC<FieldRenderProps> = ({
 	field,
 	register,
 	errors,
-	control
+	control,
+	setError,
+	clearErrors
 }) => {
 	switch (field.type) {
 		case 'tel':
@@ -30,6 +33,15 @@ const FieldRender: FC<FieldRenderProps> = ({
 			return <SelectField field={field} register={register} errors={errors} />
 		case 'file':
 			return <FileField field={field} register={register} errors={errors} />
+		case 'captcha':
+			return (
+				<Captcha
+					register={register}
+					error={errors[field.name]?.message as string}
+					setError={setError}
+					clearErrors={clearErrors}
+				/>
+			)
 		default:
 			return null
 	}

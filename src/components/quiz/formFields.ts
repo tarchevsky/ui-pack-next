@@ -114,5 +114,12 @@ export const formFields: FormField[] = [
 		accept: '.png,.jpg,.jpeg',
 		maxSize: 5 * 1024 * 1024, // 5MB
 		error: 'Пожалуйста, загрузите файл размером до 5MB'
+	},
+	{
+		step: 6,
+		name: 'captcha',
+		type: 'captcha',
+		required: true,
+		error: 'Пожалуйста, решите пример'
 	}
 ]
