@@ -84,9 +84,8 @@ const RadioField: React.FC<RadioFieldProps> = ({ field, register, errors }) => {
 				{field.options.map(option => (
 					<label
 						key={option.value}
-						className='label cursor-pointer hover:bg-base-200 rounded-lg transition-colors px-4'
+						className='label flex flex-row justify-start gap-4 cursor-pointer hover:bg-base-200 rounded-lg transition-colors px-4'
 					>
-						<span className='label-text'>{option.label}</span>
 						<input
 							type='radio'
 							value={option.value}
@@ -96,11 +95,11 @@ const RadioField: React.FC<RadioFieldProps> = ({ field, register, errors }) => {
 							className='radio'
 							aria-label={option.label}
 						/>
+						<span className='label-text'>{option.label}</span>
 					</label>
 				))}
 				{field.other && (
-					<label className='label cursor-pointer hover:bg-base-200 rounded-lg transition-colors px-4'>
-						<span className='label-text'>Другое</span>
+					<label className='label flex flex-row justify-start gap-4 cursor-pointer hover:bg-base-200 rounded-lg transition-colors px-4'>
 						<input
 							type='radio'
 							value='other'
@@ -109,6 +108,7 @@ const RadioField: React.FC<RadioFieldProps> = ({ field, register, errors }) => {
 							name={field.name}
 							className='radio'
 						/>
+						<span className='label-text'>Другое</span>
 					</label>
 				)}
 				{showCustomInput && field.other && (

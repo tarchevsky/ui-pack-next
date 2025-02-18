@@ -83,9 +83,8 @@ const CheckboxField: React.FC<CheckboxFieldProps> = ({
 				{field.options.map(option => (
 					<label
 						key={option.value}
-						className='label cursor-pointer hover:bg-base-200 rounded-lg transition-colors px-4'
+						className='label flex flex-row justify-start gap-4 cursor-pointer hover:bg-base-200 rounded-lg transition-colors px-4'
 					>
-						<span className='label-text'>{option.label}</span>
 						<input
 							type='checkbox'
 							value={option.value}
@@ -95,11 +94,11 @@ const CheckboxField: React.FC<CheckboxFieldProps> = ({
 							className='checkbox'
 							aria-label={option.label}
 						/>
+						<span className='label-text'>{option.label}</span>
 					</label>
 				))}
 				{field.other && (
-					<label className='label cursor-pointer hover:bg-base-200 rounded-lg transition-colors px-4'>
-						<span className='label-text'>Другое</span>
+					<label className='label flex flex-row justify-start gap-4 cursor-pointer hover:bg-base-200 rounded-lg transition-colors px-4'>
 						<input
 							type='checkbox'
 							checked={showCustomInput}
@@ -114,6 +113,7 @@ const CheckboxField: React.FC<CheckboxFieldProps> = ({
 							}}
 							className='checkbox'
 						/>
+						<span className='label-text'>Другое</span>
 					</label>
 				)}
 				{showCustomInput && field.other && (
