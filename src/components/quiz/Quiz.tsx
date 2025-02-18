@@ -62,11 +62,11 @@ export default function Quiz({
 
 	return (
 		<>
-			<div className='rounded md:p-16 pb-10 relative'>
+			<FadeIn className='cont rounded md:p-16 pb-10 relative'>
 				{steps && (
-					<FadeIn className='absolute -top-16 left-0 md:top-auto md:bottom-14 bottom md:left-16 text-4xl font-extrabold text-gray-200 dark:text-base-300'>
+					<div className='absolute -top-16 left-0 md:top-auto md:bottom-14 bottom md:left-16 text-4xl font-extrabold text-gray-200 dark:text-base-300'>
 						{currentStep}/{totalSteps}
-					</FadeIn>
+					</div>
 				)}
 				<form
 					onSubmit={form.handleSubmit(data => handleSubmit(data, showModal))}
@@ -95,7 +95,7 @@ export default function Quiz({
 					/>
 					<ErrorMessage message={submitError ?? undefined} className='mt-2' />
 				</form>
-			</div>
+			</FadeIn>
 			<Suspense fallback={null}>
 				<Modal
 					ref={modalRef}
