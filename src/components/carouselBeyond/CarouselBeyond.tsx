@@ -32,12 +32,12 @@ const CarouselBeyond = () => {
 	return (
 		<FadeIn
 			tag='section'
-			className='ind cont carousel carousel-center gap-4 pb-6'
+			className='ind cont carousel carousel-center gap-4 pb-6 w-full'
 		>
 			{CarouselItems.map((item, id) => (
 				<div
 					key={id}
-					className='carousel-item w-3/5 md:w-2/5 shadow-lg rounded-box bg-base-200 p-4 flex-col'
+					className='carousel-item w-4/5 md:w-2/5 shadow-lg rounded-box bg-base-200 p-4 flex-col'
 				>
 					<h3 className='text-2xl font-bold'>{item.title}</h3>
 					<p>{item.description}</p>
