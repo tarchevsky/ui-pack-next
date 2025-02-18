@@ -1,15 +1,13 @@
 import '@/assets/styles/globals.css'
 import '@/assets/styles/swiper.css'
-import FadeIn from '@/components/fadeIn/FadeIn'
 import Footer from '@/components/footer/Footer'
 import Header from '@/components/header/Header'
 import Metrika from '@/components/metrika/Metrika'
 import PageTransition from '@/components/pageTransition/PageTransition'
 import ScrollToTop from '@/components/scrollToTop/ScrollToTop'
+import '@fontsource-variable/raleway'
 import { AnimatePresence } from 'framer-motion'
 import type { ReactNode } from 'react'
-// Supports weights 100-900
-import '@fontsource-variable/raleway'
 
 const yId = process.env.NEXT_PUBLIC_YID
 
@@ -25,14 +23,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 			<body>
 				<AnimatePresence>
 					<PageTransition>
-						<FadeIn className='cont'>
-							<Header />
-						</FadeIn>
 						<Header highlighting />
 						{children}
-						<FadeIn>
-							<Footer />
-						</FadeIn>
+						<Footer />
 					</PageTransition>
 				</AnimatePresence>
 				<ScrollToTop />
