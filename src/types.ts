@@ -37,6 +37,17 @@ export interface LayoutProps {
 	style?: string
 }
 
+// HeaderProps
+
+export interface MenuItem {
+	path: string
+	label: string
+}
+
+export interface HeaderProps {
+	highlighting?: boolean
+}
+
 // FigureProps
 
 export interface FigureProps {

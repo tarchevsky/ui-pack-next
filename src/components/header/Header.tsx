@@ -2,16 +2,18 @@
 
 import Burger from '@/components/burger/Burger'
 import ThemeToggle from '@/components/themeToggle/ThemeToggle'
+import type { HeaderProps, MenuItem } from '@/types'
 import cn from 'clsx'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import FadeIn from '../fadeIn/FadeIn'
 import styles from './Header.module.scss'
 
-const Header = () => {
+const Header = ({ highlighting = false }: HeaderProps) => {
 	const [isMenuActive, setIsMenuActive] = useState(false)
 
-	const menuItems = [
+	const menuItems: MenuItem[] = [
 		{ path: '/', label: 'Главная' },
 		{ path: '/about', label: 'О проекте' },
 		{ path: '/documentation', label: 'Документация' },
@@ -43,42 +45,49 @@ const Header = () => {
 	}, [isMenuActive])
 
 	return (
-		<header className='relative flex justify-between md:justify-between items-center py-4'>
-			<Link href='/'>ui-pack-next</Link>
-			<nav
-				className={cn(
-					{ [styles.active]: isMenuActive },
-					'fixed md:static z-10 w-full h-full md:w-auto md:h-auto end-0 bottom-0 -translate-y-full md:translate-y-0 opacity-0 md:opacity-100 transition-all duration-300 ease-out'
-				)}
-			>
-				<ul
-					tabIndex={0}
-					className='absolute md:static menu flex-nowrap gap-5 md:menu-horizontal start-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:translate-y-0 md:translate-x-0'
+		<FadeIn className='cont'>
+			<header className='relative flex justify-between md:justify-between items-center py-4'>
+				<Link href='/'>ui-pack-next</Link>
+				<nav
+					className={cn(
+						{ [styles.active]: isMenuActive },
+						'fixed md:static z-10 w-full h-full md:w-auto md:h-auto end-0 bottom-0 -translate-y-full md:translate-y-0 opacity-0 md:opacity-100 transition-all duration-300 ease-out'
+					)}
 				>
-					{menuItems.map((item, index) => (
-						<li
-							key={index}
-							className={cn(
-								styles.item,
-								'block text-center opacity-0 md:opacity-100'
-							)}
-						>
-							<Link
-								className='px-[10px] btn btn-ghost font-normal'
-								href={item.path}
-								onClick={() => handleMenuItemClick(item.path)}
+					<ul
+						tabIndex={0}
+						className='absolute md:static menu flex-nowrap gap-5 md:menu-horizontal start-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:translate-y-0 md:translate-x-0'
+					>
+						{menuItems.map((item, index) => (
+							<li
+								key={index}
+								className={cn(
+									styles.item,
+									'block text-center opacity-0 md:opacity-100'
+								)}
 							>
-								{item.label}
-							</Link>
+								<Link
+									className={cn('px-[10px] btn font-normal', {
+										'btn-primary text-base-100':
+											highlighting && item.path === pathname,
+										'btn-ghost':
+											!highlighting || (highlighting && item.path !== pathname)
+									})}
+									href={item.path}
+									onClick={() => handleMenuItemClick(item.path)}
+								>
+									{item.label}
+								</Link>
+							</li>
+						))}
+						<li className='justify-center'>
+							<ThemeToggle />
 						</li>
-					))}
-					<li className='justify-center'>
-						<ThemeToggle />
-					</li>
-				</ul>
-			</nav>
-			<Burger toggleMenu={toggleMenu} isActive={isMenuActive} />
-		</header>
+					</ul>
+				</nav>
+				<Burger toggleMenu={toggleMenu} isActive={isMenuActive} />
+			</header>
+		</FadeIn>
 	)
 }
 

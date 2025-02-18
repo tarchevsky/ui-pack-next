@@ -94,6 +94,22 @@ export const cont_xxl = '200px'
 
 #### Компоненты
 
+##### Header
+
+Включает в себя компонент Burger и ThemeToggle для переключения темы.
+
+Есть дополнительное свойство highlighting. Если указать при выводе компонента `<Header highlighting />, текущая страница в меню, если она есть, будет подсвечиваться. Оформление править в теге
+
+```tsx
+<Link
+	className={cn('px-[10px] btn font-normal', {
+		'btn-primary text-base-100':
+				highlighting && item.path === pathname,
+			'btn-ghost':
+				!highlighting || (highlighting && item.path !== pathname)
+	})}
+```
+
 ##### FadeIn - эффект всплытия блоков при скролле и первой загрузке блоков
 
 Сделан на основе библиотеки framer-motion.

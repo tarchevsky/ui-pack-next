@@ -28,6 +28,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 						<FadeIn className='cont'>
 							<Header />
 						</FadeIn>
+						<Header highlighting />
 						{children}
 						<FadeIn>
 							<Footer />
