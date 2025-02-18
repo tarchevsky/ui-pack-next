@@ -24,6 +24,12 @@ const Header = () => {
 		setIsMenuActive(!isMenuActive)
 	}
 
+	const handleMenuItemClick = (path: string) => {
+		if (path === pathname) {
+			setIsMenuActive(false)
+		}
+	}
+
 	useEffect(() => {
 		setIsMenuActive(false)
 	}, [pathname])
@@ -60,6 +66,7 @@ const Header = () => {
 							<Link
 								className='px-[10px] btn btn-ghost font-normal'
 								href={item.path}
+								onClick={() => handleMenuItemClick(item.path)}
 							>
 								{item.label}
 							</Link>
