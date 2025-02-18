@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function ContactsPage() {
 	return (
 		<>
-			<PageHeading title='Контакты' />
+			<PageHeading ind title='Контакты' />
 			<FadeIn className='ind cont flex flex-col-reverse md:grid md:grid-cols-2 gap-4 md:gap-16'>
 				<ContactForm title='Страница Контакты' />
 				<div className='flex flex-col gap-4'>

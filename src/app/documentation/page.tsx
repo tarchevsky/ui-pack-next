@@ -7,5 +7,5 @@ export const metadata: Metadata = {
 }
 
 export default function Documentation() {
-	return <PageHeading ind={true} title='Документация' />
+	return <PageHeading ind title='Документация' />
 }
