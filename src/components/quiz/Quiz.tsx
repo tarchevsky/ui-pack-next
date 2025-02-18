@@ -64,7 +64,7 @@ export default function Quiz({
 		<>
 			<FadeIn className='cont rounded md:p-16 pb-10 relative'>
 				{steps && (
-					<div className='absolute -top-16 left-0 md:top-auto md:bottom-14 bottom md:left-16 text-4xl font-extrabold text-gray-200 dark:text-base-300'>
+					<div className='absolute -top-10 right-4 md:top-auto md:bottom-14 bottom md:left-16 text-4xl font-extrabold text-gray-200 dark:text-base-300'>
 						{currentStep}/{totalSteps}
 					</div>
 				)}

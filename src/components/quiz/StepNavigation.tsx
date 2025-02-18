@@ -11,7 +11,7 @@ const StepNavigation: FC<StepNavigationProps> = ({
 	isSubmitting
 }) => (
 	<div
-		className={`${currentStep === totalSteps ? 'grid grid-cols-[auto_48px_48px] md:flex md:justify-end md:items-center' : 'flex justify-end items-center'} gap-2`}
+		className={`${currentStep === totalSteps ? 'grid grid-cols-[auto_48px_48px] md:flex md:justify-end md:items-center' : 'flex justify-end items-center'} gap-2 z-10`}
 	>
 		{currentStep === totalSteps ? (
 			<button
