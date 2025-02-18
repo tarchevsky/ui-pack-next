@@ -29,11 +29,16 @@ export async function POST(req: NextRequest) {
 					if (fieldDef?.type === 'file' && value?.name) {
 						return `${label}: Файл прикреплён (${value.name})`
 					}
-					if (!value || (typeof value === 'string' && !value.trim())) {
+					if (
+						!value ||
+						value === undefined ||
+						(typeof value === 'string' && !value.trim())
+					) {
 						return null
 					}
 
 					if (Array.isArray(value)) {
+						if (value.length === 0) return null
 						const formattedValues = value.map(v => {
 							if (typeof v === 'string' && v.startsWith('other:')) {
 								const otherLabel = fieldDef?.otherOptionPlaceholder || 'Другое'

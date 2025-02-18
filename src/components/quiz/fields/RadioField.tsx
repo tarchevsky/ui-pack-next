@@ -22,6 +22,19 @@ const RadioField: React.FC<RadioFieldProps> = ({ field, register, errors }) => {
 		}
 	}, [customInputStorageKey])
 
+	useEffect(() => {
+		const handleStorageChange = () => {
+			const savedValue = getStorageItem(customInputStorageKey)
+			if (!savedValue) {
+				setCustomValue('')
+				setShowCustomInput(false)
+			}
+		}
+
+		window.addEventListener('storage', handleStorageChange)
+		return () => window.removeEventListener('storage', handleStorageChange)
+	}, [customInputStorageKey])
+
 	const handleCustomInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const value = e.target.value
 		setCustomValue(value)
@@ -71,7 +84,7 @@ const RadioField: React.FC<RadioFieldProps> = ({ field, register, errors }) => {
 				{field.options.map(option => (
 					<label
 						key={option.value}
-						className='label cursor-pointer hover:bg-base-200 rounded-lg transition-colors'
+						className='label cursor-pointer hover:bg-base-200 rounded-lg transition-colors px-4'
 					>
 						<span className='label-text'>{option.label}</span>
 						<input
@@ -86,7 +99,7 @@ const RadioField: React.FC<RadioFieldProps> = ({ field, register, errors }) => {
 					</label>
 				))}
 				{field.other && (
-					<label className='label cursor-pointer hover:bg-base-200 rounded-lg transition-colors mt-2'>
+					<label className='label cursor-pointer hover:bg-base-200 rounded-lg transition-colors px-4'>
 						<span className='label-text'>Другое</span>
 						<input
 							type='radio'

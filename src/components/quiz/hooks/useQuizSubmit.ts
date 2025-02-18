@@ -68,7 +68,7 @@ export const useQuizSubmit = (
 				removeStorageItem(STORAGE_KEYS.CURRENT_STEP)
 
 				formFields.forEach(field => {
-					if (field.type === 'checkbox') {
+					if (field.type === 'checkbox' || field.type === 'radio') {
 						removeStorageItem(`${field.name}_custom_input`)
 					}
 				})

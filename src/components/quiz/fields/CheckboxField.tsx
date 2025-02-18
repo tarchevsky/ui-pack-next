@@ -54,14 +54,18 @@ const CheckboxField: React.FC<CheckboxFieldProps> = ({
 			.map(checkbox => (checkbox as HTMLInputElement).value)
 			.filter(value => value !== 'on')
 
-		if (showCustomInput && customValue.trim()) {
+		if (selectedValues.length === 0 && !showCustomInput) {
+			setStorageItem(customInputStorageKey, '')
+		}
+
+		if (showCustomInput && customValue.trim() && e.target.checked) {
 			selectedValues.push(customValue)
 		}
 
 		onChange({
 			target: {
 				name: field.name,
-				value: selectedValues
+				value: selectedValues.length > 0 ? selectedValues : undefined
 			}
 		})
 	}
@@ -79,7 +83,7 @@ const CheckboxField: React.FC<CheckboxFieldProps> = ({
 				{field.options.map(option => (
 					<label
 						key={option.value}
-						className='label cursor-pointer hover:bg-base-200 rounded-lg transition-colors'
+						className='label cursor-pointer hover:bg-base-200 rounded-lg transition-colors px-4'
 					>
 						<span className='label-text'>{option.label}</span>
 						<input
@@ -94,17 +98,18 @@ const CheckboxField: React.FC<CheckboxFieldProps> = ({
 					</label>
 				))}
 				{field.other && (
-					<label className='label cursor-pointer hover:bg-base-200 rounded-lg transition-colors mt-2'>
+					<label className='label cursor-pointer hover:bg-base-200 rounded-lg transition-colors px-4'>
 						<span className='label-text'>Другое</span>
 						<input
 							type='checkbox'
 							checked={showCustomInput}
 							onChange={e => {
-								setShowCustomInput(e.target.checked)
-								if (!e.target.checked) {
+								const isChecked = e.target.checked
+								if (!isChecked) {
 									setCustomValue('')
 									setStorageItem(customInputStorageKey, '')
 								}
+								setShowCustomInput(isChecked)
 								handleCheckboxChange(e)
 							}}
 							className='checkbox'
@@ -118,17 +123,21 @@ const CheckboxField: React.FC<CheckboxFieldProps> = ({
 						onChange={e => {
 							const newValue = e.target.value
 							handleCustomInputChange(e)
+
+							const selectedValues = Array.from(
+								document.querySelectorAll(`input[name="${field.name}"]:checked`)
+							)
+								.map(checkbox => (checkbox as HTMLInputElement).value)
+								.filter(value => value !== 'on')
+
+							if (newValue.trim()) {
+								selectedValues.push(newValue)
+							}
+
 							onChange({
 								target: {
 									name: field.name,
-									value: Array.from(
-										document.querySelectorAll(
-											`input[name="${field.name}"]:checked`
-										)
-									)
-										.map(checkbox => (checkbox as HTMLInputElement).value)
-										.filter(value => value !== 'on')
-										.concat(newValue)
+									value: selectedValues.length > 0 ? selectedValues : undefined
 								}
 							})
 						}}
