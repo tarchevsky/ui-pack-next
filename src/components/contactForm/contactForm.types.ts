@@ -26,7 +26,8 @@ export interface FormField {
 	maxSize?: number
 	other?: boolean
 	otherPlaceholder?: string
-	pattern?: RegExp
+	pattern?: string
+	patternFlags?: string
 }
 
 export interface IFormInput {
