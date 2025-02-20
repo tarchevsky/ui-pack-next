@@ -2,7 +2,6 @@ import { STORAGE_KEYS, getStorageItem, setStorageItem } from '@/utils/storage'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import type { IFormInput } from './contactForm.types'
-import { formFields } from './formFields'
 
 const FORM_DATA_EXPIRY_TIME = 24 * 60 * 60 * 1000 // 24 часа
 const MAX_FILE_SIZE = 5 * 1024 * 1024 // 5MB
@@ -25,35 +24,8 @@ export const useFormValidation = () => {
 	const isClient = typeof window !== 'undefined'
 
 	const form = useForm<IFormInput>({
-		defaultValues: {
-			name: '',
-			email: '',
-			phone: '',
-			message: '',
-			captcha: '',
-			agreement: false,
-			pizzaOpinion: ''
-		},
 		mode: 'onChange'
 	})
-
-	useEffect(() => {
-		formFields.forEach(field => {
-			form.register(field.name, {
-				required:
-					field.required && field.type !== 'captcha'
-						? 'Это поле обязательно для заполнения'
-						: false,
-				pattern:
-					field.pattern && field.error
-						? {
-								value: field.pattern,
-								message: field.error
-							}
-						: undefined
-			})
-		})
-	}, [form])
 
 	useEffect(() => {
 		if (isClient) {
@@ -76,29 +48,35 @@ export const useFormValidation = () => {
 		if (!isClient) return
 
 		const subscription = form.watch(data => {
-			const hasValues = Object.values(data).some(value => {
-				if (value instanceof FileList) {
-					return value.length > 0
-				}
-				return Boolean(value)
-			})
+			// Фильтруем объект, оставляя только непустые значения
+			const filteredData = Object.entries(data).reduce(
+				(acc, [key, value]) => {
+					if (value instanceof FileList) {
+						if (value.length > 0) {
+							acc[key] = value
+						}
+					} else if (value) {
+						acc[key] = value
+					}
+					return acc
+				},
+				{} as Record<string, any>
+			)
+
+			// Проверяем, есть ли непустые значения
+			const hasValues = Object.keys(filteredData).length > 0
 
 			if (hasValues) {
-				const dataToSave = { ...data }
-				// Не сохраняем FileList в localStorage
-				Object.keys(dataToSave).forEach(key => {
-					if (dataToSave[key] instanceof FileList) {
-						delete dataToSave[key]
-					}
-				})
-
 				setStorageItem(
 					STORAGE_KEYS.CONTACT_FORM_DATA,
 					JSON.stringify({
-						data: dataToSave,
+						data: filteredData,
 						timestamp: Date.now()
 					})
 				)
+			} else {
+				// Если все значения пустые, удаляем данные из localStorage
+				localStorage.removeItem(STORAGE_KEYS.CONTACT_FORM_DATA)
 			}
 		})
 

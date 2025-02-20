@@ -72,7 +72,7 @@ export interface HeroProps {
 	alt: string
 	subtitle?: string
 	unoptimized?: boolean
-	modal?: boolean
+	modalContent?: ReactNode
 }
 
 // Accordion.tsx

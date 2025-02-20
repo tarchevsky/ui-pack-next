@@ -1,6 +1,8 @@
+import type { ReactNode } from 'react'
+
 export interface ModalProps {
-	message?: string
-	children?: React.ReactNode
+	message?: string | ReactNode
+	children?: ReactNode
 	onClose?: () => void
 }
 

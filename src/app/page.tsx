@@ -1,11 +1,13 @@
 import Accordion from '@/components/accordion/Accordion'
 import Carousel from '@/components/carousel/Carousel'
 import CarouselBeyond from '@/components/carouselBeyond/CarouselBeyond'
+import ModalContactForm from '@/components/contactForm/ModalContactForm'
 import Hero from '@/components/hero/Hero'
 import { images } from '@/components/infiniteMasonry/images'
 import InfiniteMasonry from '@/components/infiniteMasonry/InfiniteMasonry'
 import { MaterialSlider } from '@/components/materialSlider/MaterialSlider'
 import type { Metadata } from 'next'
+import { contactFormFields } from './contactFormFields'
 
 export const metadata: Metadata = {
 	title: 'Главная',
@@ -20,7 +22,7 @@ export default function HomePage() {
 				alt='Альт картинки'
 				title='Заголовок'
 				buttonText='Обратная связь'
-				modal
+				modalContent={<ModalContactForm fields={contactFormFields} />}
 			/>
 			<Accordion
 				tab1='Какой-то заголовок'

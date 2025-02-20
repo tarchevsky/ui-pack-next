@@ -2,7 +2,7 @@
 
 import type { HeroProps } from '@/types'
 import Image from 'next/image'
-import { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import FadeIn from '../fadeIn/FadeIn'
 import Modal from '../modal/Modal'
 import type { ModalHandle } from '../modal/modal.types'
@@ -14,14 +14,36 @@ const Hero = ({
 	subtitle,
 	src,
 	unoptimized,
-	modal
+	modalContent
 }: HeroProps) => {
 	const modalRef = useRef<ModalHandle>(null)
+	const [modalMessage, setModalMessage] = useState<string | null>(null)
 
 	const handleButtonClick = () => {
-		if (modal && modalRef.current) {
+		if (modalRef.current && modalContent) {
+			setModalMessage(null)
 			modalRef.current.showModal()
 		}
+	}
+
+	const handleSuccess = (message: string) => {
+		setModalMessage(message)
+	}
+
+	const handleModalClose = () => {
+		setModalMessage(null)
+	}
+
+	const renderModalContent = () => {
+		if (modalMessage) {
+			return <p className='py-4'>{modalMessage}</p>
+		}
+
+		if (React.isValidElement(modalContent)) {
+			return React.cloneElement(modalContent, { onSuccess: handleSuccess })
+		}
+
+		return modalContent
 	}
 
 	return (
@@ -42,18 +64,17 @@ const Hero = ({
 					{buttonText ? (
 						<button
 							className='btn btn-primary btn-lg mt-3'
-							onClick={modal ? handleButtonClick : undefined}
+							onClick={handleButtonClick}
 						>
 							{buttonText}
 						</button>
 					) : null}
 				</div>
 			</div>
-			{modal && (
-				<Modal
-					ref={modalRef}
-					message='Спасибо за интерес! Мы свяжемся с вами в ближайшее время.'
-				/>
+			{modalContent && (
+				<Modal ref={modalRef} onClose={handleModalClose}>
+					{renderModalContent()}
+				</Modal>
 			)}
 		</FadeIn>
 	)

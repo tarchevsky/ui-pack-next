@@ -1,3 +1,4 @@
+import { useLocalStorage } from '@/hooks/useLocalStorage'
 import { formatPhoneNumber } from '@/utils/formatPhoneNumber'
 import { Controller } from 'react-hook-form'
 import type { FormField } from '../contactForm.types'
@@ -10,6 +11,8 @@ interface TelFieldProps {
 }
 
 const TelField: React.FC<TelFieldProps> = ({ field, control, errors }) => {
+	const { removeItem } = useLocalStorage()
+
 	return (
 		<div className='form-control w-full'>
 			<Controller
@@ -33,6 +36,9 @@ const TelField: React.FC<TelFieldProps> = ({ field, control, errors }) => {
 						onChange={e => {
 							const formattedValue = formatPhoneNumber(e.target.value)
 							onChange(formattedValue)
+							if (!formattedValue) {
+								removeItem(field.name)
+							}
 						}}
 						placeholder={field.placeholder}
 						className='input input-bordered w-full'

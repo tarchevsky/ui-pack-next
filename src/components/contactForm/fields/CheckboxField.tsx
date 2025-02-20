@@ -55,6 +55,8 @@ export const CheckboxField = ({
 	useEffect(() => {
 		if (value.length > 0) {
 			setItem(name, JSON.stringify(value))
+		} else {
+			removeItem(name)
 		}
 	}, [value])
 

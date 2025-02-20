@@ -1,12 +1,11 @@
 import type { FieldErrors, UseFormReturn } from 'react-hook-form'
 import ErrorMessage from './ErrorMessage'
-import type { IFormInput } from './contactForm.types'
+import type { FormField, IFormInput } from './contactForm.types'
 import Captcha from './fields/Captcha'
 import { CheckboxField } from './fields/CheckboxField'
 import FileField from './fields/FileField'
 import { RadioField } from './fields/RadioField'
 import TelField from './fields/TelField'
-import type { FormField } from './formFields'
 
 export interface FieldRenderProps {
 	field: FormField

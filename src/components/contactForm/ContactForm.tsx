@@ -1,20 +1,26 @@
 'use client'
 import type { ModalHandle } from '@/components/modal/modal.types'
 import { useLocalStorage } from '@/hooks/useLocalStorage'
+import type { FormField } from '@/types/form.types'
 import { removeStorageItem, STORAGE_KEYS } from '@/utils/storage'
 import { lazy, useEffect, useRef, useState } from 'react'
 import type { IFormInput } from './contactForm.types'
 import FieldRender from './FieldRender'
-import { formFields } from './formFields'
 import { useFormValidation } from './useFormValidation'
 
 const Modal = lazy(() => import('@/components/modal/Modal'))
 
 interface IContactFormProps {
-	title?: string
+	fields: FormField[]
+	useParentModal?: boolean
+	onSuccess?: (message: string) => void
 }
 
-const ContactForm = () => {
+const ContactForm = ({
+	fields,
+	useParentModal,
+	onSuccess
+}: IContactFormProps) => {
 	const [submitError, setSubmitError] = useState<string | null>(null)
 	const [isSubmitting, setIsSubmitting] = useState(false)
 	const [isLoading, setIsLoading] = useState(true)
@@ -27,13 +33,31 @@ const ContactForm = () => {
 		handleSubmit,
 		formState: { errors },
 		reset,
-		watch,
+		register,
 		clearErrors
 	} = form
 
 	useEffect(() => {
 		setIsLoading(false)
 	}, [])
+
+	useEffect(() => {
+		fields.forEach(field => {
+			register(field.name, {
+				required:
+					field.required && field.type !== 'captcha'
+						? 'Это поле обязательно для заполнения'
+						: false,
+				pattern:
+					field.pattern && field.error
+						? {
+								value: new RegExp(field.pattern, field.patternFlags),
+								message: field.error
+							}
+						: undefined
+			})
+		})
+	}, [fields, register])
 
 	const handleModalClose = () => {
 		// Просто закрываем модальное окно без сброса формы
@@ -49,43 +73,50 @@ const ContactForm = () => {
 				headers: {
 					'Content-Type': 'application/json'
 				},
-				body: JSON.stringify(data)
+				body: JSON.stringify({
+					fields,
+					values: data
+				})
 			})
 
 			const result = await res.json()
 
 			if (result.success) {
-				reset(
-					{
-						name: '',
-						email: '',
-						phone: '',
-						message: '',
-						topic: '',
-						captcha: ''
+				const resetValues = fields.reduce(
+					(acc, field) => {
+						acc[field.name] = ''
+						return acc
 					},
-					{
-						keepErrors: false,
-						keepDirty: false,
-						keepTouched: false,
-						keepIsSubmitted: false,
-						keepIsValid: false,
-						keepDefaultValues: false
-					}
+					{} as Record<string, string>
 				)
+
+				reset(resetValues, {
+					keepErrors: false,
+					keepDirty: false,
+					keepTouched: false,
+					keepIsSubmitted: false,
+					keepIsValid: false,
+					keepDefaultValues: false
+				})
 				clearErrors()
 				setResetCaptcha(prev => !prev)
 				setResetTrigger(prev => !prev)
 				removeStorageItem(STORAGE_KEYS.CONTACT_FORM_DATA)
 
-				// Очищаем все поля формы из localStorage
-				formFields.forEach(field => {
+				fields.forEach(field => {
 					if (field.type === 'radio' || field.type === 'checkbox') {
 						removeItem(field.name)
 					}
 				})
 
-				modalRef.current?.showModal()
+				const successMessage =
+					'Ваше обращение отправлено! Спасибо за проявленный интерес!'
+
+				if (useParentModal && onSuccess) {
+					onSuccess(successMessage)
+				} else {
+					modalRef.current?.showModal()
+				}
 			} else {
 				setSubmitError(result.message || 'Не удалось отправить сообщение')
 			}
@@ -106,9 +137,10 @@ const ContactForm = () => {
 			) : (
 				<form
 					onSubmit={handleSubmit(onSubmit)}
-					className='flex flex-col gap-4 w-full max-w-lg mx-auto'
+					className='ind flex flex-col gap-4'
+					noValidate
 				>
-					{formFields.map(field => (
+					{fields.map(field => (
 						<FieldRender
 							key={field.name}
 							field={field}
@@ -133,11 +165,13 @@ const ContactForm = () => {
 						{isSubmitting ? 'Отправка...' : 'Отправить'}
 					</button>
 
-					<Modal
-						ref={modalRef}
-						message='Ваше обращение отправлено! Спасибо за проявленный интерес!'
-						onClose={handleModalClose}
-					/>
+					{!useParentModal && (
+						<Modal
+							ref={modalRef}
+							message='Ваше обращение отправлено! Спасибо за проявленный интерес!'
+							onClose={handleModalClose}
+						/>
+					)}
 				</form>
 			)}
 		</>

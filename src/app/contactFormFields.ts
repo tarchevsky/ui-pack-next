@@ -1,10 +1,6 @@
-import type { FormField as QuizFormField } from '../quiz/quiz.types'
+import type { FormField } from '@/types/form.types'
 
-export type FormField = Omit<QuizFormField, 'step'> & {
-	pattern?: RegExp
-}
-
-export const formFields: FormField[] = [
+export const contactFormFields: FormField[] = [
 	{
 		name: 'name',
 		type: 'text',
@@ -20,7 +16,8 @@ export const formFields: FormField[] = [
 		placeholder: 'Почта',
 		required: false,
 		error: 'Введите корректный email адрес',
-		pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
+		pattern: '^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}$',
+		patternFlags: 'i'
 	},
 	{
 		name: 'phone',
@@ -30,34 +27,49 @@ export const formFields: FormField[] = [
 		required: false,
 		error: 'Введите корректный номер телефона',
 		pattern:
-			/^(\+7|7|8)?[\s-]?\(?[489][0-9]{2}\)?[\s-]?[0-9]{3}[\s-]?[0-9]{2}[\s-]?[0-9]{2}$/
+			'^(\\+7|7|8)?[\\s-]?\\(?[489][0-9]{2}\\)?[\\s-]?[0-9]{3}[\\s-]?[0-9]{2}[\\s-]?[0-9]{2}$'
 	},
 	{
 		name: 'message',
 		type: 'textarea',
 		title: 'Сообщение',
 		placeholder: 'Сообщение',
-		required: false
+		required: false,
+		error: 'Пожалуйста, введите сообщение'
 	},
 	{
-		name: 'topic',
+		name: 'game',
 		type: 'radio',
-		title: 'Тема обращения',
-		required: false,
-		error: 'Выберите тему обращения',
+		title: 'Любимая приставка',
+		required: true,
+		error: 'Выберите свою любимую приставку',
 		options: [
-			{ label: 'Техническая поддержка', value: 'support' },
-			{ label: 'Общие вопросы', value: 'general' },
-			{ label: 'Сотрудничество', value: 'partnership' }
+			{ label: 'Дэнди', value: 'dandy' },
+			{ label: 'Плейстейшан', value: 'ps' },
+			{ label: 'Nintendo', value: 'nintendo' }
 		],
 		other: true,
-		otherPlaceholder: 'Укажите свою тему'
+		otherPlaceholder: 'Укажите свою любимую приставку'
+	},
+	{
+		name: 'gamecheck',
+		type: 'checkbox',
+		title: 'Любимая приставка опции',
+		required: true,
+		error: 'Выберите несколько любимых приставок',
+		options: [
+			{ label: 'Дэнди', value: 'dandy' },
+			{ label: 'Плейстейшан', value: 'ps' },
+			{ label: 'Nintendo', value: 'nintendo' }
+		],
+		other: true,
+		otherPlaceholder: 'Укажите свою любимую приставку'
 	},
 	{
 		name: 'interests',
 		type: 'checkbox',
 		title: 'Интересующие направления',
-		required: false,
+		required: true,
 		error: 'Выберите хотя бы одно направление',
 		options: [
 			{ label: 'Разработка сайтов', value: 'web' },
