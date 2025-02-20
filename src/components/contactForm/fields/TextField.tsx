@@ -1,5 +1,5 @@
 import type { FieldRenderProps as QuizFieldRenderProps } from '../../quiz/quiz.types'
-import type { FormField } from '../formFields'
+import type { FormField } from '../contactForm.types'
 
 type FieldRenderProps = Omit<QuizFieldRenderProps, 'field'> & {
 	field: FormField
