@@ -1,6 +1,6 @@
 'use client'
 
-import type { HeroProps } from '@/types'
+import type { HeroProps, ModalContentProps } from '@/types'
 import Image from 'next/image'
 import React, { useRef, useState } from 'react'
 import FadeIn from '../fadeIn/FadeIn'
@@ -40,7 +40,8 @@ const Hero = ({
 		}
 
 		if (React.isValidElement(modalContent)) {
-			return React.cloneElement(modalContent, { onSuccess: handleSuccess })
+			const element = modalContent as React.ReactElement<ModalContentProps>
+			return React.cloneElement(element, { onSuccess: handleSuccess })
 		}
 
 		return modalContent

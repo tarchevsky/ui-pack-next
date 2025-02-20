@@ -65,6 +65,10 @@ export interface FigureProps {
 
 // Hero.tsx
 
+export interface ModalContentProps {
+	onSuccess?: (message: string) => void
+}
+
 export interface HeroProps {
 	title: string
 	src: string
@@ -72,7 +76,7 @@ export interface HeroProps {
 	alt: string
 	subtitle?: string
 	unoptimized?: boolean
-	modalContent?: ReactNode
+	modalContent?: ReactNode | React.ReactElement<ModalContentProps>
 }
 
 // Accordion.tsx
