@@ -81,10 +81,10 @@ const FieldRender = ({
 
 			default:
 				const validationRules = {
-					required: field.required,
+					required: field.required && 'Это поле обязательно',
 					...(field.pattern && {
 						pattern: {
-							value: field.pattern,
+							value: new RegExp(field.pattern, field.patternFlags),
 							message: field.error || 'Неверный формат'
 						}
 					})
