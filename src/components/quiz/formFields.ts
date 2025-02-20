@@ -34,33 +34,22 @@ export const formFields: FormField[] = [
 		error: 'Пожалуйста, напишите, как вы себя чувствуете'
 	},
 	{
-		step: 3,
-		name: 'pizzaOpinion',
-		title: 'Полезна пицца или нет?',
+		step: 2,
+		name: 'experience_level',
 		type: 'radio',
+		title: 'Ваш уровень опыта',
 		options: [
-			{ label: 'Полезно', value: 'полезно' },
-			{ label: 'Не полезно', value: 'не полезно' },
-			{ label: 'Зависит от ингредиентов', value: 'зависит от ингридиентов' }
+			{ label: 'Начинающий', value: 'beginner' },
+			{ label: 'Средний', value: 'intermediate' },
+			{ label: 'Продвинутый', value: 'advanced' }
 		],
+		required: false,
+		error: 'Пожалуйста, выберите ваш уровень опыта',
 		other: true,
-		otherPlaceholder: 'Опишите, если всё сложнее'
+		otherPlaceholder: 'Укажите свой уровень'
 	},
 	{
-		step: 4,
-		name: 'backendRequired',
-		type: 'radio',
-		title: 'Нужно ли учить бэкенд?',
-		options: [
-			{ label: 'Да', value: 'Да' },
-			{ label: 'Нет', value: 'Нет' },
-			{ label: 'Не знаю', value: 'Не знаю' }
-		],
-		other: false,
-		otherPlaceholder: 'Ваш вариант'
-	},
-	{
-		step: 5,
+		step: 3,
 		name: 'interests',
 		type: 'checkbox',
 		title: 'Какие технологии вас интересуют?',
@@ -70,13 +59,13 @@ export const formFields: FormField[] = [
 			{ label: 'Angular', value: 'angular' },
 			{ label: 'Node.js', value: 'nodejs' }
 		],
-		required: false,
+		required: true,
 		error: 'Выберите хотя бы один вариант',
 		other: true,
 		otherPlaceholder: 'Укажите другую технологию'
 	},
 	{
-		step: 5,
+		step: 3,
 		name: 'experience',
 		type: 'select',
 		title: 'Ваш опыт в разработке',
@@ -89,7 +78,7 @@ export const formFields: FormField[] = [
 		error: 'Пожалуйста, выберите ваш опыт'
 	},
 	{
-		step: 6,
+		step: 4,
 		name: 'companies',
 		type: 'checkbox',
 		title: 'Какие технические компании вам интересны?',
@@ -100,13 +89,13 @@ export const formFields: FormField[] = [
 			{ label: 'SpaceX', value: 'spacex' },
 			{ label: 'OpenAI', value: 'openai' }
 		],
-		required: false,
+		required: true,
 		error: 'Выберите хотя бы один вариант',
 		other: true,
 		otherPlaceholder: 'Укажите другую компанию'
 	},
 	{
-		step: 6,
+		step: 4,
 		name: 'game',
 		type: 'file',
 		required: false,
@@ -116,10 +105,10 @@ export const formFields: FormField[] = [
 		error: 'Пожалуйста, загрузите файл размером до 5MB'
 	},
 	{
-		step: 6,
+		step: 4,
 		name: 'captcha',
 		type: 'captcha',
-		required: true,
+		required: false,
 		error: 'Пожалуйста, решите пример'
 	}
 ]

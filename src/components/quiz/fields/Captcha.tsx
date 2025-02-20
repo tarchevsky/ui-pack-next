@@ -5,6 +5,7 @@ import type {
 	UseFormRegister,
 	UseFormSetError
 } from 'react-hook-form'
+import ErrorMessage from '../ErrorMessage'
 import { formFields } from '../formFields'
 
 interface CaptchaProps {
@@ -129,7 +130,7 @@ export default function Captcha({
 					<RotateCcw className='transition-transform group-hover:rotate-180 duration-500' />
 				</button>
 			</div>
-			{error && <span className='text-error text-sm font-medium'>{error}</span>}
+			<ErrorMessage message={error} />
 		</div>
 	)
 }

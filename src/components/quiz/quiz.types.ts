@@ -1,11 +1,3 @@
-import type {
-	Control,
-	FieldErrors,
-	UseFormClearErrors,
-	UseFormRegister,
-	UseFormSetError
-} from 'react-hook-form'
-
 export type OptionType = {
 	label?: string
 	value: string
@@ -19,8 +11,8 @@ export interface FormField {
 		| 'email'
 		| 'tel'
 		| 'radio'
-		| 'textarea'
 		| 'checkbox'
+		| 'textarea'
 		| 'select'
 		| 'file'
 		| 'captcha'
@@ -45,11 +37,12 @@ export interface IQuizInput {
 
 export interface FieldRenderProps {
 	field: FormField
-	register: UseFormRegister<IQuizInput>
-	errors: FieldErrors<IQuizInput>
-	control: Control<IQuizInput>
-	setError: UseFormSetError<IQuizInput>
-	clearErrors: UseFormClearErrors<IQuizInput>
+	register: any
+	errors: any
+	control?: any
+	setError?: any
+	clearErrors?: any
+	trigger?: (name: string) => Promise<boolean>
 }
 
 export interface StepNavigationProps {

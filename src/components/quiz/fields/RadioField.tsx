@@ -1,4 +1,5 @@
-import { getStorageItem, setStorageItem } from '@/utils/storage'
+import { useLocalStorage } from '@/hooks/useLocalStorage'
+import { STORAGE_KEYS } from '@/utils/storage'
 import { useEffect, useState } from 'react'
 import ErrorMessage from '../ErrorMessage'
 import type { FormField } from '../quiz.types'
@@ -9,136 +10,158 @@ interface RadioFieldProps {
 	errors: any
 }
 
-const RadioField: React.FC<RadioFieldProps> = ({ field, register, errors }) => {
-	const [showCustomInput, setShowCustomInput] = useState(false)
-	const [customValue, setCustomValue] = useState('')
-	const customInputStorageKey = `${field.name}_custom_input`
+const RadioField = ({ field, register, errors }: RadioFieldProps) => {
+	const [showOther, setShowOther] = useState(false)
+	const [otherValue, setOtherValue] = useState('')
+	const [otherTouched, setOtherTouched] = useState(false)
+	const { setItem, getItem, removeItem } = useLocalStorage()
+	const [value, setValue] = useState('')
 
 	useEffect(() => {
-		const savedValue = getStorageItem(customInputStorageKey)
+		const savedValue = getItem(`${STORAGE_KEYS.QUIZ_FORM_DATA}_${field.name}`)
+		const savedIsOther = getItem(
+			`${STORAGE_KEYS.QUIZ_FORM_DATA}_${field.name}_isOther`
+		)
+
 		if (savedValue) {
-			setCustomValue(savedValue)
-			setShowCustomInput(true)
-		}
-	}, [customInputStorageKey])
-
-	useEffect(() => {
-		const handleStorageChange = () => {
-			const savedValue = getStorageItem(customInputStorageKey)
-			if (!savedValue) {
-				setCustomValue('')
-				setShowCustomInput(false)
+			if (savedIsOther === 'true') {
+				setShowOther(true)
+				setOtherValue(savedValue)
+				setValue('other')
+				setTimeout(() => {
+					register(field.name).onChange({
+						target: { name: field.name, value: savedValue }
+					})
+				}, 0)
+			} else if (field.options?.some(opt => opt.value === savedValue)) {
+				setValue(savedValue)
+				register(field.name).onChange({
+					target: { name: field.name, value: savedValue }
+				})
 			}
 		}
+	}, [])
 
-		window.addEventListener('storage', handleStorageChange)
-		return () => window.removeEventListener('storage', handleStorageChange)
-	}, [customInputStorageKey])
+	useEffect(() => {
+		if (value) {
+			setItem(
+				`${STORAGE_KEYS.QUIZ_FORM_DATA}_${field.name}`,
+				showOther ? otherValue : value
+			)
+			setItem(
+				`${STORAGE_KEYS.QUIZ_FORM_DATA}_${field.name}_isOther`,
+				showOther.toString()
+			)
+		}
+	}, [value, otherValue, showOther])
 
-	const handleCustomInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const value = e.target.value
-		setCustomValue(value)
-		setStorageItem(customInputStorageKey, value)
+	const handleOptionChange = (optionValue: string) => {
+		if (optionValue === 'other') {
+			setShowOther(true)
+			setValue(optionValue)
+			setOtherTouched(false)
+			register(field.name).onChange({
+				target: { name: field.name, value: otherValue }
+			})
+		} else {
+			setShowOther(false)
+			setOtherValue('')
+			setOtherTouched(false)
+			setValue(optionValue)
+			register(field.name).onChange({
+				target: { name: field.name, value: optionValue }
+			})
+		}
 	}
 
-	if (!field.options) return null
+	const handleOtherChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const newValue = e.target.value
+		setOtherValue(newValue)
+		setOtherTouched(true)
+		register(field.name).onChange({
+			target: { name: field.name, value: newValue }
+		})
+	}
 
 	const { onChange, ...rest } = register(field.name, {
-		required: field.required,
-		validate: (value: string | undefined) => {
-			if (!value && field.required) {
+		required: field.required ? field.error || 'Это поле обязательно' : false,
+		validate: (value: string) => {
+			if (!field.required) return true
+
+			if (showOther) {
+				if (!otherValue || otherValue.trim() === '') {
+					return 'Пожалуйста, укажите значение'
+				}
+			}
+
+			if (!value || value.trim() === '') {
 				return field.error || 'Это поле обязательно'
 			}
+
 			return true
 		}
 	})
 
-	const handleRadioChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const value = e.target.value
-		if (value === 'other') {
-			setShowCustomInput(true)
-			onChange({
-				target: {
-					name: field.name,
-					value: customValue
-				}
-			})
-		} else {
-			setShowCustomInput(false)
-			setCustomValue('')
-			setStorageItem(customInputStorageKey, '')
-			onChange(e)
-		}
-	}
-
 	return (
-		<>
-			<div
-				className='form-control'
-				role='radiogroup'
-				aria-labelledby={`${field.name}-title`}
-			>
+		<div
+			className='form-control'
+			role='radiogroup'
+			aria-labelledby={`${field.name}-title`}
+		>
+			{field.title && (
 				<div id={`${field.name}-title`} className='font-medium mb-2'>
 					{field.title}
 				</div>
-				{field.options.map(option => (
+			)}
+			<div className='flex flex-col gap-2'>
+				{field.options?.map(option => (
 					<label
 						key={option.value}
 						className='label flex flex-row justify-start gap-4 cursor-pointer hover:bg-base-200 rounded-lg transition-colors px-4'
 					>
 						<input
 							type='radio'
-							value={option.value}
-							onChange={handleRadioChange}
 							name={field.name}
-							{...rest}
+							value={option.value}
+							checked={!showOther && value === option.value}
+							onChange={() => handleOptionChange(option.value)}
 							className='radio'
 							aria-label={option.label}
+							{...rest}
 						/>
-						<span className='label-text'>{option.label}</span>
+						<span className='label-text'>{option.label || option.value}</span>
 					</label>
 				))}
 				{field.other && (
-					<label className='label flex flex-row justify-start gap-4 cursor-pointer hover:bg-base-200 rounded-lg transition-colors px-4'>
-						<input
-							type='radio'
-							value='other'
-							checked={showCustomInput}
-							onChange={handleRadioChange}
-							name={field.name}
-							className='radio'
-						/>
-						<span className='label-text'>Другое</span>
-					</label>
-				)}
-				{showCustomInput && field.other && (
-					<input
-						type='text'
-						value={customValue}
-						onChange={e => {
-							handleCustomInputChange(e)
-							onChange({
-								target: {
-									name: field.name,
-									value: e.target.value
-								}
-							})
-						}}
-						placeholder={field.otherPlaceholder}
-						className='input input-bordered mt-2'
-					/>
+					<div className='flex flex-col gap-2'>
+						<label className='label flex flex-row justify-start gap-4 cursor-pointer hover:bg-base-200 rounded-lg transition-colors px-4'>
+							<input
+								type='radio'
+								name={field.name}
+								value='other'
+								checked={showOther}
+								onChange={() => handleOptionChange('other')}
+								className='radio'
+								{...rest}
+							/>
+							<span className='label-text'>Другое</span>
+						</label>
+						{showOther && (
+							<input
+								type='text'
+								value={otherValue}
+								onChange={handleOtherChange}
+								placeholder={field.otherPlaceholder}
+								className='input input-bordered mt-2'
+							/>
+						)}
+					</div>
 				)}
 			</div>
-			<ErrorMessage
-				message={
-					errors[field.name]
-						? typeof errors[field.name].message === 'string'
-							? errors[field.name].message
-							: field.error || 'Это поле обязательно'
-						: undefined
-				}
-			/>
-		</>
+			{errors[field.name] && (
+				<ErrorMessage message={errors[field.name].message as string} />
+			)}
+		</div>
 	)
 }
 

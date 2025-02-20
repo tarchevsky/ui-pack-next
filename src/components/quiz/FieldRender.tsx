@@ -15,7 +15,8 @@ const FieldRender: FC<FieldRenderProps> = ({
 	errors,
 	control,
 	setError,
-	clearErrors
+	clearErrors,
+	trigger
 }) => {
 	switch (field.type) {
 		case 'tel':
@@ -23,10 +24,10 @@ const FieldRender: FC<FieldRenderProps> = ({
 		case 'text':
 		case 'email':
 			return <TextField field={field} register={register} errors={errors} />
-		case 'radio':
-			return <RadioField field={field} register={register} errors={errors} />
 		case 'textarea':
 			return <TextareaField field={field} register={register} errors={errors} />
+		case 'radio':
+			return <RadioField field={field} register={register} errors={errors} />
 		case 'checkbox':
 			return <CheckboxField field={field} register={register} errors={errors} />
 		case 'select':

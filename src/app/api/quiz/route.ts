@@ -26,9 +26,35 @@ export async function POST(req: NextRequest) {
 					const fieldDef = fieldDefinitions[key]
 					const label = fieldDef?.title || fieldDef?.placeholder || key
 
+					// Для чекбоксов
+					if (fieldDef?.type === 'checkbox') {
+						if (!fieldDef.required && (!value || value.length === 0)) {
+							return null
+						}
+						// Фильтруем значение "other" из массива
+						const filteredValues = Array.isArray(value)
+							? value.filter(v => v !== 'other')
+							: value
+						if (filteredValues.length === 0) return null
+						return `${label}: ${Array.isArray(filteredValues) ? filteredValues.join(', ') : filteredValues}`
+					}
+
+					// Для радио-кнопок
+					if (fieldDef?.type === 'radio') {
+						if (!fieldDef.required && (!value || value.trim() === '')) {
+							return null
+						}
+						// Если выбрано "other", но значение пустое, не отправляем
+						if (value === 'other') {
+							return null
+						}
+						return `${label}: ${value}`
+					}
+
 					if (fieldDef?.type === 'file' && value?.name) {
 						return `${label}: Файл прикреплён (${value.name})`
 					}
+
 					if (
 						!value ||
 						value === undefined ||
@@ -39,14 +65,7 @@ export async function POST(req: NextRequest) {
 
 					if (Array.isArray(value)) {
 						if (value.length === 0) return null
-						const formattedValues = value.map(v => {
-							if (typeof v === 'string' && v.startsWith('other:')) {
-								const otherLabel = fieldDef?.otherOptionPlaceholder || 'Другое'
-								return `${otherLabel}: ${v.substring(6)}`
-							}
-							return v
-						})
-						return `${label}: ${formattedValues.join(', ')}`
+						return `${label}: ${value.join(', ')}`
 					}
 
 					return `${label}: ${value}`

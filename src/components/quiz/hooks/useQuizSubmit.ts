@@ -69,13 +69,20 @@ export const useQuizSubmit = (
 
 				formFields.forEach(field => {
 					if (field.type === 'checkbox' || field.type === 'radio') {
-						removeStorageItem(`${field.name}_custom_input`)
+						removeStorageItem(`${STORAGE_KEYS.QUIZ_FORM_DATA}_${field.name}`)
+						removeStorageItem(
+							`${STORAGE_KEYS.QUIZ_FORM_DATA}_${field.name}_isOther`
+						)
+						removeStorageItem(
+							`${STORAGE_KEYS.QUIZ_FORM_DATA}_${field.name}_otherValue`
+						)
 					}
 				})
 
 				const emptyValues = formFields.reduce(
 					(acc, field) => {
-						acc[field.name] = field.type === 'file' ? [] : ''
+						acc[field.name] =
+							field.type === 'file' ? [] : field.type === 'checkbox' ? [] : ''
 						return acc
 					},
 					{} as Record<string, any>

@@ -7,6 +7,8 @@ import FieldRender from './FieldRender'
 import StepNavigation from './StepNavigation'
 import { formFields } from './formFields'
 
+import { useLocalStorage } from '@/hooks/useLocalStorage'
+import { STORAGE_KEYS } from '@/utils/storage'
 import { useQuizForm } from './hooks/useQuizForm'
 import { useQuizSteps } from './hooks/useQuizSteps'
 import { useQuizSubmit } from './hooks/useQuizSubmit'
@@ -25,13 +27,29 @@ export default function Quiz({
 		useQuizSteps()
 	const { validateField } = useFormValidation()
 	const modalRef = useRef<ModalHandle>(null)
+	const { removeItem } = useLocalStorage()
 
 	useEffect(() => {
 		setIsMounted(true)
 	}, [])
 
+	const clearFormData = () => {
+		// Очищаем данные формы
+		formFields.forEach(field => {
+			if (field.type === 'radio') {
+				removeItem(`${STORAGE_KEYS.QUIZ_FORM_DATA}_${field.name}`)
+			}
+		})
+		removeItem(STORAGE_KEYS.FORM_DATA)
+		removeItem(STORAGE_KEYS.CURRENT_STEP)
+	}
+
 	const { handleSubmit, submitError, isSubmitting } = useQuizSubmit(
-		form.reset,
+		() => {
+			clearFormData()
+			form.reset()
+			setCurrentStep(1)
+		},
 		setCurrentStep,
 		form
 	)
@@ -50,11 +68,14 @@ export default function Quiz({
 		)
 	}
 
-	const handleNextStep = () => {
-		if (validateCurrentStep()) {
+	const handleNextStep = async () => {
+		const currentFields = formFields
+			.filter(field => field.step === currentStep)
+			.map(field => field.name)
+
+		const isValid = await form.trigger(currentFields)
+		if (isValid) {
 			nextStep()
-		} else {
-			form.handleSubmit(() => {})()
 		}
 	}
 
@@ -83,6 +104,7 @@ export default function Quiz({
 									control={form.control}
 									setError={form.setError}
 									clearErrors={form.clearErrors}
+									trigger={form.trigger}
 								/>
 							</FadeIn>
 						))}

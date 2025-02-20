@@ -26,9 +26,13 @@ export const useFormValidation = () => {
 				if (field.maxSize && value[0].size > field.maxSize) return false
 				return true
 
+			case 'radio':
+				if (typeof value !== 'string') return false
+				if (!field.required) return true
+				return Boolean(value && value.trim() !== '')
+
 			case 'text':
 			case 'textarea':
-			case 'radio':
 			case 'select':
 				if (typeof value !== 'string') return false
 				return Boolean(value && value.trim() !== '')
