@@ -1,6 +1,11 @@
+'use client'
+
 import type { HeroProps } from '@/types'
 import Image from 'next/image'
+import { useRef } from 'react'
 import FadeIn from '../fadeIn/FadeIn'
+import Modal from '../modal/Modal'
+import type { ModalHandle } from '../modal/modal.types'
 
 const Hero = ({
 	title,
@@ -8,8 +13,17 @@ const Hero = ({
 	alt,
 	subtitle,
 	src,
-	unoptimized
+	unoptimized,
+	modal
 }: HeroProps) => {
+	const modalRef = useRef<ModalHandle>(null)
+
+	const handleButtonClick = () => {
+		if (modal && modalRef.current) {
+			modalRef.current.showModal()
+		}
+	}
+
 	return (
 		<FadeIn tag='main' className='hero cont md:min-h-[80vh] ind'>
 			<div className='relative hero-content flex-col-reverse items-start lg:items-center lg:flex-row'>
@@ -26,12 +40,21 @@ const Hero = ({
 					<h1 className='text-5xl font-extrabold'>{title}</h1>
 					{subtitle ? <p>{subtitle}</p> : null}
 					{buttonText ? (
-						<button className='btn btn-primary btn-lg mt-3'>
+						<button
+							className='btn btn-primary btn-lg mt-3'
+							onClick={modal ? handleButtonClick : undefined}
+						>
 							{buttonText}
 						</button>
 					) : null}
 				</div>
 			</div>
+			{modal && (
+				<Modal
+					ref={modalRef}
+					message='Спасибо за интерес! Мы свяжемся с вами в ближайшее время.'
+				/>
+			)}
 		</FadeIn>
 	)
 }

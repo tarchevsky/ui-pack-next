@@ -20,6 +20,7 @@ export default function HomePage() {
 				alt='Альт картинки'
 				title='Заголовок'
 				buttonText='Обратная связь'
+				modal
 			/>
 			<Accordion
 				tab1='Какой-то заголовок'
