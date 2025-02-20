@@ -1,140 +1,147 @@
 'use client'
-import Modal from '@/components/modal/Modal'
+import type { ModalHandle } from '@/components/modal/modal.types'
+import { useLocalStorage } from '@/hooks/useLocalStorage'
+import { removeStorageItem, STORAGE_KEYS } from '@/utils/storage'
+import { lazy, useEffect, useRef, useState } from 'react'
+import type { IFormInput } from './contactForm.types'
+import FieldRender from './FieldRender'
+import { formFields } from './formFields'
+import { useFormValidation } from './useFormValidation'
 
-import { useEffect, useRef } from 'react'
-import { useForm, type SubmitHandler } from 'react-hook-form'
-import type { ModalHandle } from '../modal/modal.types'
+const Modal = lazy(() => import('@/components/modal/Modal'))
 
 interface IContactFormProps {
 	title?: string
 }
 
-interface IFormInput {
-	name: string
-	email: string
-	phone: string
-	message: string
-}
-
-export default function ContactForm({ title }: IContactFormProps) {
+const ContactForm = () => {
+	const [submitError, setSubmitError] = useState<string | null>(null)
+	const [isSubmitting, setIsSubmitting] = useState(false)
+	const [isLoading, setIsLoading] = useState(true)
+	const [resetCaptcha, setResetCaptcha] = useState(false)
+	const [resetTrigger, setResetTrigger] = useState(false)
+	const modalRef = useRef<ModalHandle>(null)
+	const { removeItem } = useLocalStorage()
+	const form = useFormValidation()
 	const {
-		register,
 		handleSubmit,
-		watch,
-		setValue,
+		formState: { errors },
 		reset,
-		formState: { errors }
-	} = useForm<IFormInput>({
-		defaultValues: {
-			name: '',
-			email: '',
-			phone: '',
-			message: ''
-		}
-	})
+		watch,
+		clearErrors
+	} = form
 
 	useEffect(() => {
-		const savedFormData = localStorage.getItem('contactFormData')
-		if (savedFormData) {
-			const parsedData = JSON.parse(savedFormData)
-			setValue('name', parsedData.name)
-			setValue('email', parsedData.email)
-			setValue('phone', parsedData.phone)
-			setValue('message', parsedData.message)
-		}
-	}, [setValue])
+		setIsLoading(false)
+	}, [])
 
-	const watchedFields = watch()
-	useEffect(() => {
-		const timeoutId = setTimeout(() => {
-			localStorage.setItem('contactFormData', JSON.stringify(watchedFields))
-		}, 1000)
-
-		return () => clearTimeout(timeoutId)
-	}, [watchedFields])
-
-	const onSubmit: SubmitHandler<IFormInput> = async data => {
-		const res = await fetch('/api/form', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({ ...data, title })
-		})
-
-		const result = await res.json()
-		if (result.success) {
-			showModal()
-			localStorage.removeItem('contactFormData')
-			reset() // Очистить форму после успешной отправки
-		} else {
-			alert('Failed to send message.')
-		}
+	const handleModalClose = () => {
+		// Просто закрываем модальное окно без сброса формы
 	}
 
-	const modalRef = useRef<ModalHandle>(null)
+	const onSubmit = async (data: IFormInput) => {
+		try {
+			setIsSubmitting(true)
+			setSubmitError(null)
 
-	const showModal = () => {
-		if (modalRef.current) {
-			modalRef.current.showModal()
+			const res = await fetch('/api/form', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(data)
+			})
+
+			const result = await res.json()
+
+			if (result.success) {
+				reset(
+					{
+						name: '',
+						email: '',
+						phone: '',
+						message: '',
+						topic: '',
+						captcha: ''
+					},
+					{
+						keepErrors: false,
+						keepDirty: false,
+						keepTouched: false,
+						keepIsSubmitted: false,
+						keepIsValid: false,
+						keepDefaultValues: false
+					}
+				)
+				clearErrors()
+				setResetCaptcha(prev => !prev)
+				setResetTrigger(prev => !prev)
+				removeStorageItem(STORAGE_KEYS.CONTACT_FORM_DATA)
+
+				// Очищаем все поля формы из localStorage
+				formFields.forEach(field => {
+					if (field.type === 'radio' || field.type === 'checkbox') {
+						removeItem(field.name)
+					}
+				})
+
+				modalRef.current?.showModal()
+			} else {
+				setSubmitError(result.message || 'Не удалось отправить сообщение')
+			}
+		} catch (error) {
+			setSubmitError('Произошла ошибка при отправке формы')
+			console.error('Submit error:', error)
+		} finally {
+			setIsSubmitting(false)
 		}
 	}
 
 	return (
 		<>
-			<form
-				onSubmit={handleSubmit(onSubmit)}
-				className='w-full flex flex-col gap-6'
-			>
-				<div className='flex gap-4'>
-					<div className='w-full'>
-						<input
-							type='text'
-							id='name'
-							{...register('name', { required: true })}
-							placeholder='Имя'
-							className='input input-bordered w-full'
-						/>
-						{errors.name && <span>Введите своё имя</span>}
-					</div>
-
-					<div className='w-full'>
-						<input
-							type='email'
-							id='email'
-							{...register('email', { required: true })}
-							placeholder='Почта'
-							className='input input-bordered w-full'
-						/>
-						{errors.email && <span>Упс, вы забыли ввести почту</span>}
-					</div>
+			{isLoading ? (
+				<div className='flex justify-center items-center min-h-[200px]'>
+					<div className='loading loading-spinner loading-lg'></div>
 				</div>
+			) : (
+				<form
+					onSubmit={handleSubmit(onSubmit)}
+					className='flex flex-col gap-4 w-full max-w-lg mx-auto'
+				>
+					{formFields.map(field => (
+						<FieldRender
+							key={field.name}
+							field={field}
+							form={form}
+							errors={errors}
+							resetCaptcha={resetCaptcha}
+							resetTrigger={resetTrigger}
+						/>
+					))}
 
-				<div className='w-full'>
-					<input
-						type='tel'
-						id='phone'
-						{...register('phone', { required: true })}
-						placeholder='Телефон'
-						className='input input-bordered w-full'
+					{submitError && (
+						<div className='alert alert-error'>
+							<span>{submitError}</span>
+						</div>
+					)}
+
+					<button
+						type='submit'
+						className='btn btn-primary w-full'
+						disabled={isSubmitting}
+					>
+						{isSubmitting ? 'Отправка...' : 'Отправить'}
+					</button>
+
+					<Modal
+						ref={modalRef}
+						message='Ваше обращение отправлено! Спасибо за проявленный интерес!'
+						onClose={handleModalClose}
 					/>
-					{errors.phone && <span>Введите номер телефона</span>}
-				</div>
-				<textarea
-					id='message'
-					{...register('message')}
-					placeholder='Сообщение'
-					className='input input-bordered w-full p-3.5 h-24'
-				></textarea>
-				<button type='submit' className='btn btn-wide btn-primary'>
-					Отправить
-				</button>
-			</form>
-
-			<Modal
-				ref={modalRef}
-				message='Ваше обращение отправлено! Спасибо за проявленный интерес!'
-			/>
+				</form>
+			)}
 		</>
 	)
 }
+
+export default ContactForm

@@ -1,6 +1,8 @@
 export const STORAGE_KEYS = {
 	FORM_DATA: 'quizFormData',
-	CURRENT_STEP: 'quizCurrentStep'
+	CURRENT_STEP: 'quizCurrentStep',
+	CONTACT_FORM_DATA: 'contactFormData',
+	QUIZ_FORM_DATA: 'quizRadioData'
 } as const
 
 // Максимальный размер данных в localStorage (5MB)

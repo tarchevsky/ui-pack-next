@@ -1,18 +1,14 @@
+import { formFields } from '@/components/contactForm/formFields'
 import { NextRequest, NextResponse } from 'next/server'
 import nodemailer from 'nodemailer'
 
 interface FormData {
-	name: string
-	email: string
-	phone: string
-	message?: string
-	title?: string
+	[key: string]: any
 }
 
 export async function POST(req: NextRequest) {
 	try {
 		const data: FormData = await req.json()
-		const { name, email, phone, message, title } = data
 
 		const transporter = nodemailer.createTransport({
 			host: process.env.FORM_HOST,
@@ -24,11 +20,54 @@ export async function POST(req: NextRequest) {
 			}
 		})
 
+		// Формируем текст письма из всех полей формы
+		const messageText = Object.entries(data)
+			.filter(([key, value]) => {
+				// Исключаем поле captcha и пустые значения
+				if (key === 'captcha' || key === 'agreement') return false
+				if (value === undefined || value === null || value === '') return false
+				if (Array.isArray(value) && value.length === 0) return false
+				return true
+			})
+			.map(([key, value]) => {
+				const field = formFields.find(f => f.name === key)
+				if (!field) return `${key}: ${value}`
+
+				const fieldTitle = field.title || field.label || key
+
+				// Для radio с кастомным значением
+				if (field.type === 'radio' && field.options) {
+					const option = field.options.find(opt => opt.value === value)
+					if (option) {
+						return `${fieldTitle}: ${option.label}`
+					}
+					// Если значение не найдено в options, значит это кастомное значение
+					return `${fieldTitle}: ${value}`
+				}
+
+				// Для файлов возвращаем имена файлов
+				if (field.type === 'file' && Array.isArray(value)) {
+					return `${fieldTitle}: ${value.join(', ')}`
+				}
+
+				// Для чекбоксов объединяем выбранные значения
+				if (field.type === 'checkbox' && Array.isArray(value)) {
+					const selectedOptions = value.map(val => {
+						const option = field.options?.find(opt => opt.value === val)
+						return option ? option.label : val
+					})
+					return `${fieldTitle}: ${selectedOptions.join(', ')}`
+				}
+
+				return `${fieldTitle}: ${value}`
+			})
+			.join('\n')
+
 		await transporter.sendMail({
 			from: process.env.FORM_USER,
 			to: process.env.FORM_TO,
 			subject: `Заявка с сайта ${process.env.SITE_NAME}`,
-			text: `${title ? `Страница: ${title}\n` : ''}Имя: ${name}\nПочта: ${email}\nТелефон: ${phone}\nСообщение: ${message}`
+			text: messageText
 		})
 
 		return NextResponse.json({ success: true }, { status: 200 })
