@@ -1,5 +1,6 @@
 import '@/assets/styles/globals.css'
 import '@/assets/styles/swiper.css'
+import CookieConsent from '@/components/CookieConsent'
 import Footer from '@/components/footer/Footer'
 import Header from '@/components/header/Header'
 import Metrika from '@/components/metrika/Metrika'
@@ -28,6 +29,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 						<Footer />
 					</PageTransition>
 				</AnimatePresence>
+				<CookieConsent
+					timeoutInSeconds={5}
+					boxClasses='grid grid-cols-[1fr_auto] items-center h-[120px] sm:h-[100px] md:h-[95px]'
+				/>
 				<ScrollToTop />
 				{yId ? <Metrika yId={yId} /> : null}
 			</body>
