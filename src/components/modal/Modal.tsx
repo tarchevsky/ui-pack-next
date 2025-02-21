@@ -20,8 +20,18 @@ const Modal = forwardRef<ModalHandle, ModalProps>(
 			}
 		}
 
+		const handleDialogClick = (event: React.MouseEvent<HTMLDialogElement>) => {
+			// Проверяем, был ли клик снаружи модального окна
+			if (event.target === modalRef.current) {
+				handleClose()
+			}
+		}
+
 		return (
-			<dialog ref={modalRef} className='modal'>
+			<dialog
+				ref={modalRef}
+				onClick={handleDialogClick}
+			>
 				<div className='modal-box'>
 					{message ? <p className='py-4'>{message}</p> : null}
 					{children}
