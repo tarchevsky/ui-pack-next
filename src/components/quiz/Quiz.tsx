@@ -17,9 +17,13 @@ import { useFormValidation } from './useFormValidation'
 const Modal = lazy(() => import('@/components/modal/Modal'))
 
 export default function Quiz({
-	steps = false
+	steps = false,
+	message,
+	closeIcon
 }: {
 	steps?: boolean
+	message?: string
+	closeIcon?: boolean
 } = {}) {
 	const [isMounted, setIsMounted] = useState(false)
 	const form = useQuizForm()
@@ -123,7 +127,11 @@ export default function Quiz({
 			<Suspense fallback={null}>
 				<Modal
 					ref={modalRef}
-					message='Ваше обращение отправлено! Спасибо за проявленный интерес!'
+					message={
+						message ||
+						'Ваше обращение отправлено! Спасибо за проявленный интерес!'
+					}
+					closeIcon={closeIcon}
 				/>
 			</Suspense>
 		</>

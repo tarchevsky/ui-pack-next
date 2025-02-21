@@ -15,13 +15,15 @@ interface IContactFormProps {
 	useParentModal?: boolean
 	onSuccess?: (message: string) => void
 	message?: string
+	closeIcon?: boolean
 }
 
 const ContactForm = ({
 	fields,
 	useParentModal,
 	onSuccess,
-	message
+	message,
+	closeIcon
 }: IContactFormProps) => {
 	const [submitError, setSubmitError] = useState<string | null>(null)
 	const [isSubmitting, setIsSubmitting] = useState(false)
@@ -175,6 +177,7 @@ const ContactForm = ({
 								message ||
 								'Ваше обращение отправлено! Спасибо за проявленный интерес!'
 							}
+							closeIcon={closeIcon}
 						/>
 					)}
 				</form>

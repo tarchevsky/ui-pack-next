@@ -14,7 +14,8 @@ const Hero = ({
 	subtitle,
 	src,
 	unoptimized,
-	modalContent
+	modalContent,
+	closeIcon
 }: HeroProps) => {
 	const modalRef = useRef<ModalHandle>(null)
 	const [modalMessage, setModalMessage] = useState<string | null>(null)
@@ -41,7 +42,10 @@ const Hero = ({
 
 		if (React.isValidElement(modalContent)) {
 			const element = modalContent as React.ReactElement<ModalContentProps>
-			return React.cloneElement(element, { onSuccess: handleSuccess })
+			return React.cloneElement(element, {
+				onSuccess: handleSuccess,
+				closeIcon: closeIcon
+			})
 		}
 
 		return modalContent
@@ -73,7 +77,7 @@ const Hero = ({
 				</div>
 			</div>
 			{modalContent && (
-				<Modal ref={modalRef} onClose={handleModalClose}>
+				<Modal ref={modalRef} onClose={handleModalClose} closeIcon={closeIcon}>
 					{renderModalContent()}
 				</Modal>
 			)}

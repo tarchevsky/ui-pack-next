@@ -67,6 +67,7 @@ export interface FigureProps {
 
 export interface ModalContentProps {
 	onSuccess?: (message: string) => void
+	closeIcon?: boolean
 }
 
 export interface HeroProps {
@@ -77,6 +78,7 @@ export interface HeroProps {
 	subtitle?: string
 	unoptimized?: boolean
 	modalContent?: ReactNode | React.ReactElement<ModalContentProps>
+	closeIcon?: boolean
 }
 
 // Accordion.tsx

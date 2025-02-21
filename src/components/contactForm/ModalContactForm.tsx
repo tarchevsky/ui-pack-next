@@ -7,12 +7,14 @@ interface ModalContactFormProps {
 	fields: FormField[]
 	onSuccess?: (message: string) => void
 	message?: string
+	closeIcon?: boolean
 }
 
 const ModalContactForm = ({
 	fields,
 	onSuccess,
-	message
+	message,
+	closeIcon
 }: ModalContactFormProps) => {
 	return (
 		<ContactForm
@@ -20,6 +22,7 @@ const ModalContactForm = ({
 			useParentModal
 			onSuccess={onSuccess}
 			message={message}
+			closeIcon={closeIcon}
 		/>
 	)
 }

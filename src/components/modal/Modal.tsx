@@ -2,7 +2,7 @@ import { forwardRef, useImperativeHandle, useRef } from 'react'
 import type { ModalHandle, ModalProps } from './modal.types'
 
 const Modal = forwardRef<ModalHandle, ModalProps>(
-	({ message, children, onClose }, ref) => {
+	({ message, children, onClose, bottom, closeIcon, boxClasses }, ref) => {
 		const modalRef = useRef<HTMLDialogElement>(null)
 
 		useImperativeHandle(ref, () => ({
@@ -30,15 +30,26 @@ const Modal = forwardRef<ModalHandle, ModalProps>(
 		return (
 			<dialog
 				ref={modalRef}
+				className={`modal ${bottom ? 'modal-bottom' : ''}`}
 				onClick={handleDialogClick}
 			>
-				<div className='modal-box'>
+				<div className={`modal-box ${boxClasses}`}>
 					{message ? <p className='py-4'>{message}</p> : null}
 					{children}
+
 					<div className='modal-action'>
-						<button type='button' className='btn' onClick={handleClose}>
-							Закрыть
-						</button>
+						{closeIcon ? (
+							<button
+								className='btn btn-sm btn-circle btn-ghost absolute right-2 top-2'
+								onClick={handleClose}
+							>
+								✕
+							</button>
+						) : (
+							<button type='button' className='btn' onClick={handleClose}>
+								Закрыть
+							</button>
+						)}
 					</div>
 				</div>
 			</dialog>

@@ -11,7 +11,11 @@ export default function AboutPage() {
 	return (
 		<>
 			<PageHeading title='О нас' />
-			<Quiz steps />
+			<Quiz
+				steps
+				message='Спасибо, что прошли наш опросник! Мы обязательно свяжемся с вами!'
+				closeIcon
+			/>
 		</>
 	)
 }
