@@ -14,12 +14,14 @@ interface IContactFormProps {
 	fields: FormField[]
 	useParentModal?: boolean
 	onSuccess?: (message: string) => void
+	message?: string
 }
 
 const ContactForm = ({
 	fields,
 	useParentModal,
-	onSuccess
+	onSuccess,
+	message
 }: IContactFormProps) => {
 	const [submitError, setSubmitError] = useState<string | null>(null)
 	const [isSubmitting, setIsSubmitting] = useState(false)
@@ -110,6 +112,7 @@ const ContactForm = ({
 				})
 
 				const successMessage =
+					message ||
 					'Ваше обращение отправлено! Спасибо за проявленный интерес!'
 
 				if (useParentModal && onSuccess) {
@@ -168,8 +171,10 @@ const ContactForm = ({
 					{!useParentModal && (
 						<Modal
 							ref={modalRef}
-							message='Ваше обращение отправлено! Спасибо за проявленный интерес!'
-							onClose={handleModalClose}
+							message={
+								message ||
+								'Ваше обращение отправлено! Спасибо за проявленный интерес!'
+							}
 						/>
 					)}
 				</form>

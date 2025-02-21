@@ -171,3 +171,94 @@ tag?: 'div' | 'section' | 'main' | 'header' | 'footer' | 'article'
 - добавлен полю принудительный размер 16px в виде tailwind класса `text-base`
 
 2. для улучшения опыта взаимодействия и облегчения ввода текста с телефонов добавлен атрибут `enterKeyHint='done'`
+
+##### Modal
+
+Модальное окно с возможностью вставки как простого текста, так и компонентов. Есть несколько способов использования:
+
+1. Базовое использование:
+
+```tsx
+const modalRef = useRef<ModalHandle>(null)
+
+const handleButtonClick = () => {
+	if (modalRef.current) {
+		modalRef.current.showModal()
+	}
+}
+```
+
+Подключение в компоненте внутри return
+
+```tsx
+<Modal ref={modalRef} message='Это сообщение в модальном окне!' />
+```
+
+2. Расширенное использование с кастомным контентом:
+
+```tsx
+<Modal ref={modalRef}>
+	<div>Любой контент</div>
+</Modal>
+```
+
+3. Через компонент Button (самый простой способ):
+
+```tsx
+<Button
+	tag='button'
+	text='Открыть модальное окно'
+	ariaLabel='Открыть модальное окно'
+	modalContent='Текст в модальном окне'
+/>
+```
+
+4. Через компонент Button с расширенным контентом:
+
+```tsx
+<Button
+	tag='button'
+	text='Открыть модальное окно'
+	ariaLabel='Открыть модальное окно'
+	modalContent={
+		<>
+			<h3>Заголовок</h3>
+			<ContactForm />
+		</>
+	}
+/>
+```
+
+5. В Hero компоненте с формой обратной связи:
+
+```tsx
+<Hero
+	src='/image.jpg'
+	alt='Alt текст'
+	title='Заголовок'
+	buttonText='Обратная связь'
+	modalContent={<ModalContactForm fields={contactFormFields} />}
+/>
+```
+
+Модальное окно автоматически закрывается по кнопке "Закрыть". Также поддерживает callback `onClose` для выполнения действий при закрытии.
+
+Если модальное окно используется в ContactForm или Hero, вы можете указывать сообщение, которое будет отображаться в модальном окне:
+
+```tsx
+<ContactForm fields={fields} message='Ваше сообщение' />
+```
+
+или
+
+```tsx
+<Hero
+	src='/fog-sea.jpg'
+	alt='Альт картинки'
+	title='Заголовок'
+	buttonText='Обратная связь'
+	modalContent={
+		<ModalContactForm fields={contactFormFields} message='Моё сообщение' />
+	}
+/>
+```

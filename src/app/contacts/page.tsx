@@ -22,7 +22,7 @@ export default async function ContactsPage() {
 		<>
 			<PageHeading ind title='Контакты' />
 			<FadeIn className='ind cont flex flex-col-reverse md:grid md:grid-cols-2 gap-4 md:gap-16'>
-				<ContactForm fields={fields} />
+				<ContactForm fields={fields} message='Ваше сообщение' />
 				<div className='flex flex-col gap-4'>
 					<h2 className={'text-3xl font-bold'}>
 						Оставьте заявку, либо свяжитесь с нами

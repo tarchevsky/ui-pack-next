@@ -22,7 +22,12 @@ export default function HomePage() {
 				alt='Альт картинки'
 				title='Заголовок'
 				buttonText='Обратная связь'
-				modalContent={<ModalContactForm fields={contactFormFields} />}
+				modalContent={
+					<ModalContactForm
+						fields={contactFormFields}
+						message='Моё сообщение'
+					/>
+				}
 			/>
 			<Accordion
 				tab1='Какой-то заголовок'
