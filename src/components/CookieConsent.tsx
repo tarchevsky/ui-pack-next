@@ -25,7 +25,13 @@ const CookieConsent: React.FC<CookieConsentProps> = ({
 			const storedConsent = localStorage.getItem('cookieConsent')
 			setIsInitialized(true)
 
-			if (!storedConsent) {
+			if (storedConsent === 'true') {
+				console.log('CookieConsent: Согласие уже получено')
+				setIsConsentGiven(true)
+			} else if (storedConsent === 'false') {
+				console.log('CookieConsent: Согласие отклонено ранее')
+				setIsConsentGiven(false)
+			} else {
 				console.log('CookieConsent: Согласие не найдено, устанавливаем таймер')
 				// Показываем модальное окно после таймаута
 				const timer = setTimeout(() => {
@@ -34,9 +40,6 @@ const CookieConsent: React.FC<CookieConsentProps> = ({
 				}, timeoutInSeconds * 1000)
 
 				return () => clearTimeout(timer)
-			} else {
-				console.log('CookieConsent: Согласие уже получено')
-				setIsConsentGiven(true)
 			}
 		}
 	}, [timeoutInSeconds])
@@ -59,9 +62,7 @@ const CookieConsent: React.FC<CookieConsentProps> = ({
 		setShouldShowModal(false)
 	}
 
-	const handleDeclineCookies = () => {
-		localStorage.setItem('cookieConsent', 'false')
-		setIsConsentGiven(false)
+	const handleCloseModal = () => {
 		setShouldShowModal(false)
 	}
 
@@ -75,7 +76,13 @@ const CookieConsent: React.FC<CookieConsentProps> = ({
 	}
 
 	return (
-		<Modal ref={modalRef} bottom closeIcon boxClasses={boxClasses}>
+		<Modal
+			ref={modalRef}
+			bottom
+			closeIcon
+			boxClasses={boxClasses}
+			onClose={handleCloseModal}
+		>
 			<span>
 				Этот сайт использует файлы cookie для улучшения работы и персонализации.
 			</span>

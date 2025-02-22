@@ -30,10 +30,10 @@ const Modal = forwardRef<ModalHandle, ModalProps>(
 		return (
 			<dialog
 				ref={modalRef}
-				className={`modal ${bottom ? 'modal-bottom' : ''}`}
+				className={`modal outline-none ${bottom ? 'modal-bottom' : ''}`}
 				onClick={handleDialogClick}
 			>
-				<div className={`modal-box ${boxClasses}`}>
+				<div className={`modal-box outline-none ${boxClasses}`}>
 					{message ? <p className='py-4'>{message}</p> : null}
 					{children}
 
