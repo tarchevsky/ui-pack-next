@@ -14,7 +14,38 @@ import styles from './Carousel.module.scss'
 import type { CarouselProps } from '@/types'
 import Image from 'next/image'
 
-const Carousel = ({ slides, navigationPosition = 'bottom' }: CarouselProps) => {
+const Carousel = ({
+	slides,
+	navigationPosition = 'bottom',
+	height = {
+		mobile: '300px',
+		desktop: '600px'
+	},
+	sideNavWidth = {
+		mobile: '100%',
+		desktop: '85%'
+	},
+	bottomNav = {
+		marginBottom: {
+			mobile: '60px',
+			desktop: '60px'
+		},
+		arrowsOffset: {
+			mobile: '45px',
+			desktop: '60px'
+		}
+	},
+	arrows = {
+		size: {
+			mobile: '28px',
+			desktop: '50px'
+		},
+		iconSize: {
+			mobile: '12px',
+			desktop: '14px'
+		}
+	}
+}: CarouselProps) => {
 	return (
 		<FadeIn tag='section' className='ind cont'>
 			<div
@@ -22,6 +53,22 @@ const Carousel = ({ slides, navigationPosition = 'bottom' }: CarouselProps) => {
 					[styles.withSideNav]: navigationPosition === 'side',
 					[styles.withBottomNav]: navigationPosition === 'bottom'
 				})}
+				style={
+					{
+						'--mobile-height': height.mobile,
+						'--desktop-height': height.desktop,
+						'--mobile-width': sideNavWidth.mobile,
+						'--desktop-width': sideNavWidth.desktop,
+						'--bottom-margin-mobile': bottomNav.marginBottom?.mobile,
+						'--bottom-margin-desktop': bottomNav.marginBottom?.desktop,
+						'--arrows-offset-mobile': bottomNav.arrowsOffset?.mobile,
+						'--arrows-offset-desktop': bottomNav.arrowsOffset?.desktop,
+						'--arrows-size-mobile': arrows.size?.mobile,
+						'--arrows-size-desktop': arrows.size?.desktop,
+						'--arrows-icon-size-mobile': arrows.iconSize?.mobile,
+						'--arrows-icon-size-desktop': arrows.iconSize?.desktop
+					} as React.CSSProperties
+				}
 			>
 				<Swiper
 					slidesPerView={1}
@@ -33,11 +80,13 @@ const Carousel = ({ slides, navigationPosition = 'bottom' }: CarouselProps) => {
 					navigation={true}
 					effect={'fade'}
 					modules={[EffectFade, Pagination, Navigation]}
-					className='h-[300px] md:h-full'
+					className={cn(
+						'h-[var(--mobile-height)] md:h-[var(--desktop-height)]'
+					)}
 				>
 					{slides.map(item => (
 						<SwiperSlide key={item.id}>
-							<div className='relative flex flex-col items-center justify-center rounded-box h-[300px] md:h-full'>
+							<div className='relative flex flex-col items-center justify-center rounded-box h-[var(--mobile-height)] md:h-[var(--desktop-height)]'>
 								<Image
 									className='absolute top-0 left-0 h-full w-full rounded-box -z-10 brightness-50'
 									src={item.src}

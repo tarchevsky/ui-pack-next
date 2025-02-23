@@ -324,3 +324,87 @@ export const carousel: SlidesProps[] = [
 ```tsx
 <Carousel slides={carousel} navigationPosition='side' />
 ```
+
+или
+
+```tsx
+<Carousel slides={carousel} navigationPosition='bottom' />
+```
+
+Также для быстрой настроки добавлены две конфигурации для адаптации
+
+Стрелки сбоку
+
+```tsx
+<Carousel
+	slides={carousel}
+	navigationPosition='side'
+	height={{
+		mobile: '300px',
+		desktop: '600px'
+	}}
+	sideNavWidth={{
+		mobile: '90%', // Уменьшаем ширину на мобильных для дополнительного отступа
+		desktop: '85%'
+	}}
+/>
+```
+
+Стрелки снизу
+
+```tsx
+<Carousel
+	slides={carousel}
+	navigationPosition='bottom'
+	bottomNav={{
+		marginBottom: {
+			mobile: '45px',
+			desktop: '60px'
+		},
+		arrowsOffset: {
+			mobile: '35px',
+			desktop: '60px'
+		}
+	}}
+/>
+```
+
+И можно задать размер стрелок
+
+```tsx
+<Carousel
+	slides={carousel}
+	navigationPosition='side'
+	sideNavWidth={{
+		mobile: '95%', // Уменьшаем ширину на мобильных для дополнительного отступа
+		desktop: '85%'
+	}}
+/>
+```
+
+Вот полная версия на всякий случай
+
+```tsx
+<Carousel
+	slides={carousel}
+	navigationPosition='side'
+	height={{
+		mobile: '300px',
+		desktop: '600px'
+	}}
+	bottomNav={{
+		marginBottom: {
+			mobile: '45px',
+			desktop: '60px'
+		},
+		arrowsOffset: {
+			mobile: '35px',
+			desktop: '60px'
+		}
+	}}
+	sideNavWidth={{
+		mobile: '95%', // Уменьшаем ширину на мобильных для дополнительного отступа
+		desktop: '85%'
+	}}
+/>
+```

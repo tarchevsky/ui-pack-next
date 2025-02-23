@@ -40,7 +40,28 @@ export default function HomePage() {
 				content3='Какой-то текст'
 			/>
 			<CarouselBeyond />
-			<Carousel slides={carousel} navigationPosition='side' />
+			<Carousel
+				slides={carousel}
+				navigationPosition='side'
+				height={{
+					mobile: '300px',
+					desktop: '600px'
+				}}
+				bottomNav={{
+					marginBottom: {
+						mobile: '45px',
+						desktop: '60px'
+					},
+					arrowsOffset: {
+						mobile: '35px',
+						desktop: '60px'
+					}
+				}}
+				sideNavWidth={{
+					mobile: '95%', // Уменьшаем ширину на мобильных для дополнительного отступа
+					desktop: '85%'
+				}}
+			/>
 			<MaterialSlider />
 			<InfiniteMasonry images={images} />
 		</>

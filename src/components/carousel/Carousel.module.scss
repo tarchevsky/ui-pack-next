@@ -5,14 +5,21 @@
 	:global {
 		.swiper,
 		.swiper-wrapper {
-			height: 600px;
+			height: var(--mobile-height);
+			@media (min-width: 768px) {
+				height: var(--desktop-height);
+			}
 		}
 
 		.swiper-button-next,
 		.swiper-button-prev {
-			@apply fixed z-[999]; // Изменено с z-50 на fixed и z-[999]
-			width: 50px;
-			height: 50px;
+			@apply fixed z-[999];
+			width: var(--arrows-size-mobile);
+			height: var(--arrows-size-mobile);
+			@media (min-width: 768px) {
+				width: var(--arrows-size-desktop);
+				height: var(--arrows-size-desktop);
+			}
 			@apply border;
 			@apply rounded-3xl;
 			@apply hover:bg-primary-content;
@@ -21,7 +28,10 @@
 
 		.swiper-button-next:after,
 		.swiper-button-prev:after {
-			font-size: 14px;
+			font-size: var(--arrows-icon-size-mobile);
+			@media (min-width: 768px) {
+				font-size: var(--arrows-icon-size-desktop);
+			}
 			@apply text-base-content;
 		}
 
@@ -45,13 +55,20 @@
 
 	&.withSideNav {
 		margin: 0 auto;
-		width: 85%; // Сужаем саму карусель
-		position: relative; // Добавлено
-		overflow: visible; // Добавлено
+		width: var(--mobile-width);
+		@media (min-width: 768px) {
+			width: var(--desktop-width);
+		}
+		position: relative;
+		overflow: visible;
 
 		:global {
 			.swiper {
-				overflow: visible; // Добавлено
+				overflow: visible;
+				@media (max-width: 767px) {
+					padding: 0 40px;
+					margin-bottom: 60px;
+				}
 			}
 
 			.swiper-button-next,
@@ -59,33 +76,73 @@
 				position: absolute;
 				top: 50%;
 				transform: translateY(-50%);
+
+				// Базовые стили для мобильной версии
+				@media (max-width: 767px) {
+					width: 28px;
+					height: 28px;
+
+					&:after {
+						font-size: 10px;
+					}
+				}
+
+				@media (min-width: 768px) {
+					top: 50%;
+					transform: translateY(-50%);
+				}
 			}
 
 			.swiper-button-prev {
-				left: -70px; // Выносим стрелку за пределы контента
+				@media (max-width: 767px) {
+					left: 0;
+				}
+				@media (min-width: 768px) {
+					left: -70px;
+				}
 			}
 
 			.swiper-button-next {
-				right: -70px; // Выносим стрелку за пределы контента
+				@media (max-width: 767px) {
+					right: 0;
+				}
+				@media (min-width: 768px) {
+					right: -70px;
+				}
 			}
 		}
 	}
 
 	&.withBottomNav {
-		position: relative; // Добавлено
-		overflow: visible; // Добавлено
+		position: relative;
+		overflow: visible;
 
 		:global {
 			.swiper {
-				margin-bottom: 60px; // Увеличиваем отступ снизу
-				overflow: visible; // Добавлено
+				margin-bottom: var(--bottom-margin-mobile);
+				@media (min-width: 768px) {
+					margin-bottom: var(--bottom-margin-desktop);
+				}
+				overflow: visible;
 			}
 
 			.swiper-button-next,
 			.swiper-button-prev {
 				position: absolute;
-				bottom: -60px; // Размещаем стрелки под контентом
+				bottom: calc(var(--arrows-offset-mobile) * -1);
+				@media (min-width: 768px) {
+					bottom: calc(var(--arrows-offset-desktop) * -1);
+				}
 				top: auto;
+
+				@media (max-width: 767px) {
+					width: 28px;
+					height: 28px;
+
+					&:after {
+						font-size: 10px;
+					}
+				}
 			}
 
 			.swiper-button-prev {

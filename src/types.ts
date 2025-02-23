@@ -180,4 +180,32 @@ export interface SlidesProps {
 export interface CarouselProps {
 	slides: SlidesProps[]
 	navigationPosition?: 'side' | 'bottom'
+	height?: {
+		mobile?: string
+		desktop?: string
+	}
+	sideNavWidth?: {
+		mobile?: string
+		desktop?: string
+	}
+	bottomNav?: {
+		marginBottom?: {
+			mobile?: string
+			desktop?: string
+		}
+		arrowsOffset?: {
+			mobile?: string
+			desktop?: string
+		}
+	}
+	arrows?: {
+		size?: {
+			mobile?: string
+			desktop?: string
+		}
+		iconSize?: {
+			mobile?: string
+			desktop?: string
+		}
+	}
 }
