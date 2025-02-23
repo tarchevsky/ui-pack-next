@@ -280,3 +280,47 @@ const handleButtonClick = () => {
 - Hero
 
 Достаточно при выводе компонентов на страницу указать свойство closeIcon и вместо закрыть будет иконка крестик.
+
+##### Carousel
+
+Карусель или слайдер. В странице со слайдером создаём документ с перечислением слайдов и свойств, как в примере
+
+```ts
+import type { SlidesProps } from '@/types'
+
+export const carousel: SlidesProps[] = [
+	{
+		id: 1,
+		src: '/fog-sea.jpg',
+		alt: 'описание картинки',
+		title: 'Текст 1',
+		description: 'Описание'
+	},
+	{
+		id: 2,
+		src: '/forest-river.jpg',
+		alt: 'описание картинки',
+		title: 'Текст 2',
+		description: 'Описание'
+	},
+	{
+		id: 3,
+		src: '/more-dark.jpg',
+		alt: 'описание картинки',
+		title: 'Текст 3',
+		description: 'Описание'
+	}
+]
+```
+
+И к странице подключаем компонент
+
+```tsx
+<Carousel slides={carousel} />
+```
+
+У слайдера возможность выбирать вариант расположения навигационных стрелок. Ниже слайдера и по бокам. Для выбора варианта со стрелками по сторонам добавляем свойство
+
+```tsx
+<Carousel slides={carousel} navigationPosition='side' />
+```

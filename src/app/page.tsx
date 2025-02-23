@@ -1,3 +1,4 @@
+import { carousel } from '@/app/carousel'
 import Accordion from '@/components/accordion/Accordion'
 import Carousel from '@/components/carousel/Carousel'
 import CarouselBeyond from '@/components/carouselBeyond/CarouselBeyond'
@@ -39,7 +40,7 @@ export default function HomePage() {
 				content3='Какой-то текст'
 			/>
 			<CarouselBeyond />
-			<Carousel />
+			<Carousel slides={carousel} navigationPosition='side' />
 			<MaterialSlider />
 			<InfiniteMasonry images={images} />
 		</>

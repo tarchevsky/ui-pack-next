@@ -166,3 +166,18 @@ export interface ImageItem {
 export interface MasonryProps {
 	images: ImageItem[]
 }
+
+// Carousel
+
+export interface SlidesProps {
+	id: number
+	src: string
+	alt: string
+	title: string
+	description: string
+}
+
+export interface CarouselProps {
+	slides: SlidesProps[]
+	navigationPosition?: 'side' | 'bottom'
+}

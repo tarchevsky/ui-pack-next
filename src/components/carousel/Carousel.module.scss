@@ -1,0 +1,100 @@
+.carousel {
+	position: relative;
+	width: 100%;
+
+	:global {
+		.swiper,
+		.swiper-wrapper {
+			height: 600px;
+		}
+
+		.swiper-button-next,
+		.swiper-button-prev {
+			@apply fixed z-[999]; // Изменено с z-50 на fixed и z-[999]
+			width: 50px;
+			height: 50px;
+			@apply border;
+			@apply rounded-3xl;
+			@apply hover:bg-primary-content;
+			@apply transition-colors;
+		}
+
+		.swiper-button-next:after,
+		.swiper-button-prev:after {
+			font-size: 14px;
+			@apply text-base-content;
+		}
+
+		.swiper-button-next:hover:after,
+		.swiper-button-prev:hover:after {
+			@apply text-neutral-content;
+		}
+
+		.swiper-pagination-bullets.swiper-pagination-horizontal {
+			bottom: 13px;
+		}
+
+		.swiper-pagination-bullet {
+			@apply bg-primary-content/80;
+		}
+
+		.swiper-pagination-bullet-active {
+			@apply bg-primary;
+		}
+	}
+
+	&.withSideNav {
+		margin: 0 auto;
+		width: 85%; // Сужаем саму карусель
+		position: relative; // Добавлено
+		overflow: visible; // Добавлено
+
+		:global {
+			.swiper {
+				overflow: visible; // Добавлено
+			}
+
+			.swiper-button-next,
+			.swiper-button-prev {
+				position: absolute;
+				top: 50%;
+				transform: translateY(-50%);
+			}
+
+			.swiper-button-prev {
+				left: -70px; // Выносим стрелку за пределы контента
+			}
+
+			.swiper-button-next {
+				right: -70px; // Выносим стрелку за пределы контента
+			}
+		}
+	}
+
+	&.withBottomNav {
+		position: relative; // Добавлено
+		overflow: visible; // Добавлено
+
+		:global {
+			.swiper {
+				margin-bottom: 60px; // Увеличиваем отступ снизу
+				overflow: visible; // Добавлено
+			}
+
+			.swiper-button-next,
+			.swiper-button-prev {
+				position: absolute;
+				bottom: -60px; // Размещаем стрелки под контентом
+				top: auto;
+			}
+
+			.swiper-button-prev {
+				left: 0;
+			}
+
+			.swiper-button-next {
+				right: 0;
+			}
+		}
+	}
+}
