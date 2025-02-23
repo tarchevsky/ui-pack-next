@@ -43,6 +43,7 @@ export default function HomePage() {
 			<Carousel
 				slides={carousel}
 				navigationPosition='side'
+				paginationPosition='outside'
 				height={{
 					mobile: '300px',
 					desktop: '600px'
@@ -60,6 +61,12 @@ export default function HomePage() {
 				sideNavWidth={{
 					mobile: '95%', // Уменьшаем ширину на мобильных для дополнительного отступа
 					desktop: '85%'
+				}}
+				pagination={{
+					offset: {
+						mobile: '30px',
+						desktop: '30px'
+					}
 				}}
 			/>
 			<MaterialSlider />

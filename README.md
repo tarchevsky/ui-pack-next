@@ -382,12 +382,26 @@ export const carousel: SlidesProps[] = [
 />
 ```
 
+Также можно настроить пагинацию - внутри и снаружи с отступами
+
+<Carousel
+slides={carousel}
+paginationPosition='outside'
+pagination={{
+					offset: {
+						mobile: '30px',
+						desktop: '30px'
+					}
+				}}
+/>
+
 Вот полная версия на всякий случай
 
 ```tsx
 <Carousel
 	slides={carousel}
 	navigationPosition='side'
+	paginationPosition='outside'
 	height={{
 		mobile: '300px',
 		desktop: '600px'
@@ -405,6 +419,12 @@ export const carousel: SlidesProps[] = [
 	sideNavWidth={{
 		mobile: '95%', // Уменьшаем ширину на мобильных для дополнительного отступа
 		desktop: '85%'
+	}}
+	pagination={{
+		offset: {
+			mobile: '30px',
+			desktop: '30px'
+		}
 	}}
 />
 ```

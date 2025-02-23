@@ -180,6 +180,7 @@ export interface SlidesProps {
 export interface CarouselProps {
 	slides: SlidesProps[]
 	navigationPosition?: 'side' | 'bottom'
+	paginationPosition?: 'inside' | 'outside'
 	height?: {
 		mobile?: string
 		desktop?: string
@@ -194,6 +195,12 @@ export interface CarouselProps {
 			desktop?: string
 		}
 		arrowsOffset?: {
+			mobile?: string
+			desktop?: string
+		}
+	}
+	pagination?: {
+		offset?: {
 			mobile?: string
 			desktop?: string
 		}

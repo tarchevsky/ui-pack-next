@@ -17,6 +17,7 @@ import Image from 'next/image'
 const Carousel = ({
 	slides,
 	navigationPosition = 'bottom',
+	paginationPosition = 'inside',
 	height = {
 		mobile: '300px',
 		desktop: '600px'
@@ -35,6 +36,12 @@ const Carousel = ({
 			desktop: '60px'
 		}
 	},
+	pagination = {
+		offset: {
+			mobile: '20px',
+			desktop: '30px'
+		}
+	},
 	arrows = {
 		size: {
 			mobile: '28px',
@@ -51,7 +58,9 @@ const Carousel = ({
 			<div
 				className={cn(styles.carousel, {
 					[styles.withSideNav]: navigationPosition === 'side',
-					[styles.withBottomNav]: navigationPosition === 'bottom'
+					[styles.withBottomNav]: navigationPosition === 'bottom',
+					[styles.paginationInside]: paginationPosition === 'inside',
+					[styles.paginationOutside]: paginationPosition === 'outside'
 				})}
 				style={
 					{
@@ -66,7 +75,9 @@ const Carousel = ({
 						'--arrows-size-mobile': arrows.size?.mobile,
 						'--arrows-size-desktop': arrows.size?.desktop,
 						'--arrows-icon-size-mobile': arrows.iconSize?.mobile,
-						'--arrows-icon-size-desktop': arrows.iconSize?.desktop
+						'--arrows-icon-size-desktop': arrows.iconSize?.desktop,
+						'--pagination-offset-mobile': pagination.offset?.mobile,
+						'--pagination-offset-desktop': pagination.offset?.desktop
 					} as React.CSSProperties
 				}
 			>

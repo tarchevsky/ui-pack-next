@@ -154,4 +154,38 @@
 			}
 		}
 	}
+
+	&.paginationInside {
+		:global {
+			.swiper-pagination-bullets.swiper-pagination-horizontal {
+				bottom: var(--pagination-offset-mobile);
+				@media (min-width: 768px) {
+					bottom: var(--pagination-offset-desktop);
+				}
+			}
+		}
+	}
+
+	&.paginationOutside {
+		:global {
+			.swiper {
+				padding-bottom: var(--pagination-offset-mobile);
+				@media (min-width: 768px) {
+					padding-bottom: var(--pagination-offset-desktop);
+					margin-bottom: calc(
+						var(--pagination-offset-desktop) + 20px
+					) !important;
+				}
+				margin-bottom: calc(var(--pagination-offset-mobile) + 20px) !important;
+			}
+
+			.swiper-pagination-bullets.swiper-pagination-horizontal {
+				bottom: 0;
+				bottom: calc(var(--pagination-offset-mobile) * -1) !important;
+				@media (min-width: 768px) {
+					bottom: calc(var(--pagination-offset-desktop) * -1) !important;
+				}
+			}
+		}
+	}
 }
