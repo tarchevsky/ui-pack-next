@@ -28,6 +28,8 @@ export interface FormField {
 	otherPlaceholder?: string
 	pattern?: string
 	patternFlags?: string
+	privacyLink?: string
+	privacyLinkText?: string
 }
 
 export interface IFormInput {
