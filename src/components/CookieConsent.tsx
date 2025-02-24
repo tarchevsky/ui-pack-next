@@ -21,21 +21,16 @@ const CookieConsent: React.FC<CookieConsentProps> = ({
 	useEffect(() => {
 		// Проверяем, что мы на клиенте
 		if (typeof window !== 'undefined') {
-			console.log('CookieConsent: Инициализация, таймаут:', timeoutInSeconds)
 			const storedConsent = localStorage.getItem('cookieConsent')
 			setIsInitialized(true)
 
 			if (storedConsent === 'true') {
-				console.log('CookieConsent: Согласие уже получено')
 				setIsConsentGiven(true)
 			} else if (storedConsent === 'false') {
-				console.log('CookieConsent: Согласие отклонено ранее')
 				setIsConsentGiven(false)
 			} else {
-				console.log('CookieConsent: Согласие не найдено, устанавливаем таймер')
 				// Показываем модальное окно после таймаута
 				const timer = setTimeout(() => {
-					console.log('CookieConsent: Таймер сработал')
 					setShouldShowModal(true)
 				}, timeoutInSeconds * 1000)
 
@@ -47,9 +42,6 @@ const CookieConsent: React.FC<CookieConsentProps> = ({
 	// Отдельный useEffect для открытия модального окна
 	useEffect(() => {
 		if (shouldShowModal) {
-			console.log('CookieConsent: Попытка открыть модальное окно', {
-				modalRef: !!modalRef.current
-			})
 			if (modalRef.current) {
 				modalRef.current.showModal()
 			}
