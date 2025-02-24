@@ -1,4 +1,4 @@
-import type { FormField } from '../contactForm/contactForm.types'
+import type { FormField } from './quiz.types'
 
 export const formFields: FormField[] = [
 	{
