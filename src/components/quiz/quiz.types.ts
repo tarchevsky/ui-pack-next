@@ -4,8 +4,8 @@ export type OptionType = {
 }
 
 export interface FormField {
-	step: number
 	name: string
+	step?: number
 	type:
 		| 'text'
 		| 'email'
