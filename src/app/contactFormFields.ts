@@ -30,55 +30,14 @@ export const contactFormFields: FormField[] = [
 			'^(\\+7|7|8)?[\\s-]?\\(?[489][0-9]{2}\\)?[\\s-]?[0-9]{3}[\\s-]?[0-9]{2}[\\s-]?[0-9]{2}$'
 	},
 	{
-		name: 'message',
-		type: 'textarea',
-		title: 'Сообщение',
-		placeholder: 'Сообщение',
-		required: false,
-		error: 'Пожалуйста, введите сообщение'
-	},
-	{
-		name: 'game',
+		name: 'policy',
 		type: 'radio',
-		title: 'Любимая приставка',
+		title: 'Политика конфиденциальности',
 		required: true,
-		error: 'Выберите свою любимую приставку',
-		options: [
-			{ label: 'Дэнди', value: 'dandy' },
-			{ label: 'Плейстейшан', value: 'ps' },
-			{ label: 'Nintendo', value: 'nintendo' }
-		],
-		other: true,
-		otherPlaceholder: 'Укажите свою любимую приставку'
-	},
-	{
-		name: 'gamecheck',
-		type: 'checkbox',
-		title: 'Любимая приставка опции',
-		required: true,
-		error: 'Выберите несколько любимых приставок',
-		options: [
-			{ label: 'Дэнди', value: 'dandy' },
-			{ label: 'Плейстейшан', value: 'ps' },
-			{ label: 'Nintendo', value: 'nintendo' }
-		],
-		other: true,
-		otherPlaceholder: 'Укажите свою любимую приставку'
-	},
-	{
-		name: 'interests',
-		type: 'checkbox',
-		title: 'Интересующие направления',
-		required: true,
-		error: 'Выберите хотя бы одно направление',
-		options: [
-			{ label: 'Разработка сайтов', value: 'web' },
-			{ label: 'Мобильные приложения', value: 'mobile' },
-			{ label: 'UI/UX дизайн', value: 'design' },
-			{ label: 'SEO продвижение', value: 'seo' }
-		],
-		other: true,
-		otherPlaceholder: 'Укажите свое направление'
+		error: 'Отметьте, что вы ознакомлены с нашей политикой',
+		options: [{ label: 'Я согласен с условиями', value: 'agree' }],
+		privacyLink: '/privacy-policy',
+		privacyLinkText: 'Подробнее о политике конфиденциальности'
 	},
 	{
 		name: 'captcha',

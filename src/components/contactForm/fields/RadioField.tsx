@@ -1,5 +1,6 @@
 import { useLocalStorage } from '@/hooks/useLocalStorage'
 import { STORAGE_KEYS } from '@/utils/storage'
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import type { FormField } from '../contactForm.types'
 
@@ -8,6 +9,8 @@ interface RadioFieldProps extends FormField {
 	onChange: (value: string) => void
 	error?: string
 	resetTrigger?: boolean
+	privacyLink?: string
+	privacyLinkText?: string
 }
 
 export const RadioField = ({
@@ -20,7 +23,9 @@ export const RadioField = ({
 	error,
 	other = false,
 	otherPlaceholder = 'Введите свой вариант',
-	resetTrigger = false
+	resetTrigger = false,
+	privacyLink,
+	privacyLinkText = '(Политика конфиденциальности)'
 }: RadioFieldProps) => {
 	const [showOther, setShowOther] = useState(false)
 	const [otherValue, setOtherValue] = useState('')
@@ -90,9 +95,9 @@ export const RadioField = ({
 			role='radiogroup'
 			aria-labelledby={`${name}-title`}
 		>
-			<div id={`${name}-title`} className='font-medium mb-2'>
+			<h4 id={`${name}-title`} className='text-2xl font-medium mb-2'>
 				{title}
-			</div>
+			</h4>
 			<div className='flex flex-col gap-2'>
 				{options.map(option => (
 					<label
@@ -108,7 +113,19 @@ export const RadioField = ({
 							className='radio'
 							aria-label={option.label}
 						/>
-						<span className='label-text'>{option.label || option.value}</span>
+						<span className='label-text'>
+							{option.label || option.value}
+							{privacyLink && option.value === 'agree' && (
+								<Link
+									href={privacyLink}
+									className='ml-1 text-blue-600 underline'
+									target='_blank'
+									rel='noopener noreferrer'
+								>
+									{privacyLinkText}
+								</Link>
+							)}
+						</span>
 					</label>
 				))}
 				{other && (
