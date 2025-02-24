@@ -1,7 +1,8 @@
 import ContactForm from '@/components/contactForm/ContactForm'
 import FadeIn from '@/components/fadeIn/FadeIn'
 import PageHeading from '@/components/pageHeading/PageHeading'
-import type { FormField } from '@/types/form.types'
+
+import type { FormField } from '@/components/contactForm/contactForm.types'
 import type { Metadata } from 'next'
 import { contactFormFields } from './contactFormFields'
 

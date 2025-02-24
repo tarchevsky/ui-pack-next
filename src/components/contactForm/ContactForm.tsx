@@ -1,10 +1,10 @@
 'use client'
 import type { ModalHandle } from '@/components/modal/modal.types'
 import { useLocalStorage } from '@/hooks/useLocalStorage'
-import type { FormField } from '@/types/form.types'
+
 import { removeStorageItem, STORAGE_KEYS } from '@/utils/storage'
 import { lazy, useEffect, useRef, useState } from 'react'
-import type { IFormInput } from './contactForm.types'
+import type { FormField, IFormInput } from './contactForm.types'
 import FieldRender from './FieldRender'
 import { useFormValidation } from './useFormValidation'
 

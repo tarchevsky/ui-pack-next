@@ -1,7 +1,7 @@
 'use client'
 
-import type { FormField } from '@/types/form.types'
 import ContactForm from './ContactForm'
+import type { FormField } from './contactForm.types'
 
 interface ModalContactFormProps {
 	fields: FormField[]

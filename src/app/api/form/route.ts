@@ -1,4 +1,4 @@
-import type { FormField } from '@/types/form.types'
+import type { FormField } from '@/components/contactForm/contactForm.types'
 import { NextRequest, NextResponse } from 'next/server'
 import nodemailer from 'nodemailer'
 
