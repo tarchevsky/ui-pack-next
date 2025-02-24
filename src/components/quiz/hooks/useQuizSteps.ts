@@ -8,7 +8,7 @@ export const useQuizSteps = () => {
 		return savedStep ? Number(savedStep) : 1
 	})
 
-	const totalSteps = Math.max(...formFields.map(field => field.step))
+	const totalSteps = Math.max(...formFields.map(field => field.step!))
 
 	const nextStep = useCallback(() => {
 		setCurrentStep(prev => {
