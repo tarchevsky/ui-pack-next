@@ -7,6 +7,8 @@ import Hero from '@/components/hero/Hero'
 import { images } from '@/components/infiniteMasonry/images'
 import InfiniteMasonry from '@/components/infiniteMasonry/InfiniteMasonry'
 import { MaterialSlider } from '@/components/materialSlider/MaterialSlider'
+import Stage from '@/components/stage/Stage'
+import TextWithButton from '@/components/textWithButton/TextWithButton'
 import type { Metadata } from 'next'
 import { contactFormFields } from './contactFormFields'
 
