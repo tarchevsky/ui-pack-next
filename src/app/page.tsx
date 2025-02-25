@@ -31,6 +31,8 @@ export default function HomePage() {
 					/>
 				}
 			/>
+			<Stage />
+			<TextWithButton />
 			<Accordion
 				tab1='Какой-то заголовок'
 				content1='Какой-то текст'
