@@ -53,6 +53,23 @@ const Carousel = ({
 		}
 	}
 }: CarouselProps) => {
+	const carouselStyles = {
+		'--mobile-height': height.mobile,
+		'--desktop-height': height.desktop,
+		'--mobile-width': sideNavWidth.mobile,
+		'--desktop-width': sideNavWidth.desktop,
+		'--bottom-margin-mobile': bottomNav.marginBottom?.mobile,
+		'--bottom-margin-desktop': bottomNav.marginBottom?.desktop,
+		'--arrows-offset-mobile': bottomNav.arrowsOffset?.mobile,
+		'--arrows-offset-desktop': bottomNav.arrowsOffset?.desktop,
+		'--arrows-size-mobile': arrows.size?.mobile,
+		'--arrows-size-desktop': arrows.size?.desktop,
+		'--arrows-icon-size-mobile': arrows.iconSize?.mobile,
+		'--arrows-icon-size-desktop': arrows.iconSize?.desktop,
+		'--pagination-offset-mobile': pagination.offset?.mobile,
+		'--pagination-offset-desktop': pagination.offset?.desktop
+	} as React.CSSProperties
+
 	return (
 		<FadeIn tag='section' className='ind cont'>
 			<div
@@ -62,32 +79,13 @@ const Carousel = ({
 					[styles.paginationInside]: paginationPosition === 'inside',
 					[styles.paginationOutside]: paginationPosition === 'outside'
 				})}
-				style={
-					{
-						'--mobile-height': height.mobile,
-						'--desktop-height': height.desktop,
-						'--mobile-width': sideNavWidth.mobile,
-						'--desktop-width': sideNavWidth.desktop,
-						'--bottom-margin-mobile': bottomNav.marginBottom?.mobile,
-						'--bottom-margin-desktop': bottomNav.marginBottom?.desktop,
-						'--arrows-offset-mobile': bottomNav.arrowsOffset?.mobile,
-						'--arrows-offset-desktop': bottomNav.arrowsOffset?.desktop,
-						'--arrows-size-mobile': arrows.size?.mobile,
-						'--arrows-size-desktop': arrows.size?.desktop,
-						'--arrows-icon-size-mobile': arrows.iconSize?.mobile,
-						'--arrows-icon-size-desktop': arrows.iconSize?.desktop,
-						'--pagination-offset-mobile': pagination.offset?.mobile,
-						'--pagination-offset-desktop': pagination.offset?.desktop
-					} as React.CSSProperties
-				}
+				style={carouselStyles}
 			>
 				<Swiper
 					slidesPerView={1}
 					spaceBetween={30}
 					loop={true}
-					pagination={{
-						clickable: true
-					}}
+					pagination={{ clickable: true }}
 					navigation={true}
 					effect={'fade'}
 					modules={[EffectFade, Pagination, Navigation]}
@@ -104,9 +102,7 @@ const Carousel = ({
 									alt={item.alt}
 									width={1000}
 									height={1000}
-									style={{
-										objectFit: 'cover'
-									}}
+									style={{ objectFit: 'cover' }}
 									quality={10}
 								/>
 								<div className='font-thin text-5xl text-white'>
