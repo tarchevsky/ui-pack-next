@@ -24,7 +24,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 			<body>
 				<AnimatePresence>
 					<PageTransition>
-						<Header highlighting />
+						<Header highlighting isBurgerVersion={true} />
 						{children}
 						<Footer />
 					</PageTransition>

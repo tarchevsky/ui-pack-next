@@ -10,7 +10,10 @@ import { useEffect, useState } from 'react'
 import FadeIn from '../fadeIn/FadeIn'
 import styles from './Header.module.scss'
 
-const Header = ({ highlighting = false }: HeaderProps) => {
+const Header = ({
+	highlighting = false,
+	isBurgerVersion = false
+}: HeaderProps) => {
 	const [isMenuActive, setIsMenuActive] = useState(false)
 
 	const menuItems: MenuItem[] = [
@@ -46,25 +49,34 @@ const Header = ({ highlighting = false }: HeaderProps) => {
 
 	return (
 		<FadeIn className='cont'>
-			<header className='relative flex justify-between md:justify-between items-center py-4'>
+			<header className='relative flex justify-between items-center py-4'>
 				<Link href='/'>ui-pack-next</Link>
 				<nav
 					className={cn(
 						{ [styles.active]: isMenuActive },
-						'fixed md:static z-10 w-full h-full md:w-auto md:h-auto end-0 bottom-0 -translate-y-full md:translate-y-0 opacity-0 md:opacity-100 transition-all duration-300 ease-out'
+						'fixed z-10 w-full h-full end-0 bottom-0 -translate-y-full opacity-0 transition-all duration-300 ease-out',
+						{
+							'md:static md:w-auto md:h-auto md:translate-y-0 md:opacity-100':
+								!isBurgerVersion
+						}
 					)}
 				>
 					<ul
 						tabIndex={0}
-						className='absolute md:static menu flex-nowrap gap-5 md:menu-horizontal start-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:translate-y-0 md:translate-x-0'
+						className={cn(
+							'absolute menu flex-nowrap gap-5 start-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2',
+							{
+								'md:static md:menu-horizontal md:translate-y-0 md:translate-x-0':
+									!isBurgerVersion
+							}
+						)}
 					>
 						{menuItems.map((item, index) => (
 							<li
 								key={index}
-								className={cn(
-									styles.item,
-									'block text-center opacity-0 md:opacity-100'
-								)}
+								className={cn(styles.item, 'block text-center opacity-0', {
+									'md:opacity-100': !isBurgerVersion
+								})}
 							>
 								<Link
 									className={cn('px-[10px] btn font-normal', {
@@ -85,7 +97,11 @@ const Header = ({ highlighting = false }: HeaderProps) => {
 						</li>
 					</ul>
 				</nav>
-				<Burger toggleMenu={toggleMenu} isActive={isMenuActive} />
+				<Burger
+					toggleMenu={toggleMenu}
+					isActive={isMenuActive}
+					className={`${isBurgerVersion ? 'block' : 'md:hidden'}`}
+				/>
 			</header>
 		</FadeIn>
 	)

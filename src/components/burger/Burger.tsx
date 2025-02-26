@@ -2,12 +2,13 @@ import type { BurgerProps } from '@/types'
 import cn from 'clsx'
 import styles from './Burger.module.scss'
 
-const Burger = ({ toggleMenu, isActive }: BurgerProps) => {
+const Burger = ({ toggleMenu, isActive, className }: BurgerProps) => {
 	return (
 		<button
 			className={cn(
 				styles.burger,
-				'block md:hidden absolute w-[30px] h-[20px] inset-y-1/2 right-0 -translate-y-1/2 cursor-pointer z-20'
+				'block absolute w-[30px] h-[20px] inset-y-1/2 right-0 -translate-y-1/2 cursor-pointer z-20',
+				className
 			)}
 			aria-label='Open the menu'
 			onClick={toggleMenu}

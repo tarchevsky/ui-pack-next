@@ -46,6 +46,7 @@ export interface MenuItem {
 
 export interface HeaderProps {
 	highlighting?: boolean
+	isBurgerVersion?: boolean
 }
 
 // FigureProps
@@ -146,6 +147,7 @@ export type PostProps = {
 export interface BurgerProps {
 	toggleMenu: () => void
 	isActive: boolean
+	className?: string
 }
 
 // ThemeToggle.tsx
