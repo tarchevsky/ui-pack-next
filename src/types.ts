@@ -148,6 +148,7 @@ export interface BurgerProps {
 	toggleMenu: () => void
 	isActive: boolean
 	className?: string
+	isBurgerVersion?: boolean
 }
 
 // ThemeToggle.tsx

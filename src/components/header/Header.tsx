@@ -100,7 +100,7 @@ const Header = ({
 				<Burger
 					toggleMenu={toggleMenu}
 					isActive={isMenuActive}
-					className={`${isBurgerVersion ? 'block' : 'md:hidden'}`}
+					isBurgerVersion={isBurgerVersion}
 				/>
 			</header>
 		</FadeIn>
