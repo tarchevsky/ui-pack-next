@@ -110,6 +110,30 @@ export const cont_xxl = '200px'
 	})}
 ```
 
+##### Burger
+
+Компонент вставляется внутри Header после nav
+
+```tsx
+<Burger toggleMenu={toggleMenu} isActive={isMenuActive} />
+```
+
+Если нужно, чтобы бургер присутствовал на всех версиях сайтов, добавим к Header `isBurgerVersion`
+
+```tsx
+<Header highlighting isBurgerVersion />
+```
+
+А в Burger внутри Header вставить `isBurgerVersion={isBurgerVersion}`
+
+```tsx
+<Burger
+	toggleMenu={toggleMenu}
+	isActive={isMenuActive}
+	isBurgerVersion={isBurgerVersion}
+/>
+```
+
 ##### PageHeading
 
 Позволяет настроить Heading типовых страниц

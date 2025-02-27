@@ -97,11 +97,7 @@ const Header = ({
 						</li>
 					</ul>
 				</nav>
-				<Burger
-					toggleMenu={toggleMenu}
-					isActive={isMenuActive}
-					isBurgerVersion={isBurgerVersion}
-				/>
+				<Burger toggleMenu={toggleMenu} isActive={isMenuActive} />
 			</header>
 		</FadeIn>
 	)
