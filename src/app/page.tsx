@@ -1,4 +1,3 @@
-import { carousel } from '@/app/carousel'
 import Accordion from '@/components/accordion/Accordion'
 import Carousel from '@/components/carousel/Carousel'
 import CarouselBeyond from '@/components/carouselBeyond/CarouselBeyond'
@@ -10,6 +9,7 @@ import { MaterialSlider } from '@/components/materialSlider/MaterialSlider'
 import Stage from '@/components/stage/Stage'
 import TextWithButton from '@/components/textWithButton/TextWithButton'
 import type { Metadata } from 'next'
+import { carousel } from './carousel'
 import { contactFormFields } from './contactFormFields'
 
 export const metadata: Metadata = {
@@ -54,12 +54,12 @@ export default function HomePage() {
 				}}
 				bottomNav={{
 					marginBottom: {
-						mobile: '45px',
-						desktop: '60px'
+						mobile: '50px',
+						desktop: '70px'
 					},
 					arrowsOffset: {
-						mobile: '35px',
-						desktop: '60px'
+						mobile: '40px',
+						desktop: '75px'
 					}
 				}}
 				sideNavWidth={{
@@ -68,8 +68,18 @@ export default function HomePage() {
 				}}
 				pagination={{
 					offset: {
-						mobile: '30px',
-						desktop: '30px'
+						mobile: '38px',
+						desktop: '60px'
+					}
+				}}
+				arrows={{
+					size: {
+						mobile: '28px',
+						desktop: '50px'
+					},
+					iconSize: {
+						mobile: '12px',
+						desktop: '14px'
 					}
 				}}
 			/>

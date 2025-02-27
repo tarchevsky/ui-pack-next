@@ -75,7 +75,6 @@
 			.swiper-button-prev {
 				position: absolute;
 				top: 50%;
-				transform: translateY(-50%);
 
 				// Базовые стили для мобильной версии
 				@media (max-width: 767px) {
@@ -89,7 +88,6 @@
 
 				@media (min-width: 768px) {
 					top: 50%;
-					transform: translateY(-50%);
 				}
 			}
 

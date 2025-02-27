@@ -343,6 +343,80 @@ export const carousel: SlidesProps[] = [
 <Carousel slides={carousel} />
 ```
 
+carousel.ts вставляем в папку страницы. Пример заполнения
+
+```ts
+import type { SlidesProps } from '@/types'
+
+export const carousel: SlidesProps[] = [
+	{
+		id: 1,
+		src: '/fog-sea.jpg',
+		alt: 'описание картинки',
+		title: 'Текст 1',
+		description: 'Описание'
+	},
+	{
+		id: 2,
+		src: '/forest-river.jpg',
+		alt: 'описание картинки',
+		title: 'Текст 2',
+		description: 'Описание'
+	},
+	{
+		id: 3,
+		src: '/more-dark.jpg',
+		alt: 'описание картинки',
+		title: 'Текст 3',
+		description: 'Описание'
+	}
+]
+```
+
+Можно задать высоту слайдера
+
+```tsx
+<Carousel
+	slides={carousel}
+	height={{
+		mobile: '300px',
+		desktop: '600px'
+	}}
+/>
+```
+
+Можно настроить пагинацию с отступами.
+
+Внутри:
+
+```tsx
+<Carousel
+	slides={carousel}
+	paginationPosition='inside'
+	pagination={{
+		offset: {
+			mobile: '20px',
+			desktop: '30px'
+		}
+	}}
+/>
+```
+
+Cнаружи:
+
+```tsx
+<Carousel
+	slides={carousel}
+	paginationPosition='outside'
+	pagination={{
+		offset: {
+			mobile: '38px',
+			desktop: '60px'
+		}
+	}}
+/>
+```
+
 У слайдера возможность выбирать вариант расположения навигационных стрелок. Ниже слайдера и по бокам. Для выбора варианта со стрелками по сторонам добавляем свойство
 
 ```tsx
@@ -355,45 +429,9 @@ export const carousel: SlidesProps[] = [
 <Carousel slides={carousel} navigationPosition='bottom' />
 ```
 
-Также для быстрой настроки добавлены две конфигурации для адаптации
+Также для быстрой настройки добавлены две конфигурации для адаптации
 
-Стрелки сбоку
-
-```tsx
-<Carousel
-	slides={carousel}
-	navigationPosition='side'
-	height={{
-		mobile: '300px',
-		desktop: '600px'
-	}}
-	sideNavWidth={{
-		mobile: '90%', // Уменьшаем ширину на мобильных для дополнительного отступа
-		desktop: '85%'
-	}}
-/>
-```
-
-Стрелки снизу
-
-```tsx
-<Carousel
-	slides={carousel}
-	navigationPosition='bottom'
-	bottomNav={{
-		marginBottom: {
-			mobile: '45px',
-			desktop: '60px'
-		},
-		arrowsOffset: {
-			mobile: '35px',
-			desktop: '60px'
-		}
-	}}
-/>
-```
-
-И можно задать размер стрелок
+Стрелки сбоку - настройка ширина слайдера, потому что под стрелки нужно место, иначе будут залезать на картинки
 
 ```tsx
 <Carousel
@@ -406,25 +444,62 @@ export const carousel: SlidesProps[] = [
 />
 ```
 
-Также можно настроить пагинацию - внутри и снаружи с отступами
+Стрелки снизу. marginBottom - это отступ снизу от слайдера, работает пока только если пагинация paginationPosition='inside'. arrowsOffset - отступ стрелок от слайдов, где 0 - стрелки в картинке по нижнему краю.
 
+```tsx
 <Carousel
-slides={carousel}
-paginationPosition='outside'
-pagination={{
-					offset: {
-						mobile: '30px',
-						desktop: '30px'
-					}
-				}}
+	slides={carousel}
+	navigationPosition='bottom'
+	bottomNav={{
+		marginBottom: {
+			mobile: '50px',
+			desktop: '70px'
+		},
+		arrowsOffset: {
+			mobile: '40px',
+			desktop: '75px'
+		}
+	}}
 />
+```
+
+И можно задать ширину слайдера
+
+```tsx
+<Carousel
+	slides={carousel}
+	navigationPosition='side'
+	sideNavWidth={{
+		mobile: '95%', // Уменьшаем ширину на мобильных для дополнительного отступа
+		desktop: '85%'
+	}}
+/>
+```
+
+И размер стрелок size - это размер обводки и стрелок в целом, но задав минимальный, иконку не уменьшишь - с этим работает iconSize.
+
+```tsx
+<Carousel
+	slides={carousel}
+	arrows={{
+		size: {
+			mobile: '28px',
+			desktop: '50px'
+		},
+		iconSize: {
+			mobile: '12px',
+			desktop: '14px'
+		}
+	}}
+/>
+```
 
 Вот полная версия на всякий случай
 
 ```tsx
 <Carousel
 	slides={carousel}
-	navigationPosition='side'
+	navigationPosition='bottom'
 	paginationPosition='outside'
 	height={{
 		mobile: '300px',
@@ -432,12 +507,12 @@ pagination={{
 	}}
 	bottomNav={{
 		marginBottom: {
-			mobile: '45px',
-			desktop: '60px'
+			mobile: '50px',
+			desktop: '70px'
 		},
 		arrowsOffset: {
-			mobile: '35px',
-			desktop: '60px'
+			mobile: '40px',
+			desktop: '75px'
 		}
 	}}
 	sideNavWidth={{
@@ -446,8 +521,18 @@ pagination={{
 	}}
 	pagination={{
 		offset: {
-			mobile: '30px',
-			desktop: '30px'
+			mobile: '38px',
+			desktop: '60px'
+		}
+	}}
+	arrows={{
+		size: {
+			mobile: '28px',
+			desktop: '50px'
+		},
+		iconSize: {
+			mobile: '12px',
+			desktop: '14px'
 		}
 	}}
 />
