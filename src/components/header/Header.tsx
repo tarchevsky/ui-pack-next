@@ -54,7 +54,7 @@ const Header = ({
 				<nav
 					className={cn(
 						{ [styles.active]: isMenuActive },
-						'fixed z-10 w-full h-full end-0 bottom-0 -translate-y-full opacity-0 transition-all duration-300 ease-out',
+						'fixed z-20 w-full h-full end-0 bottom-0 -translate-y-full opacity-0 transition-all duration-300 ease-out',
 						{
 							'md:static md:w-auto md:h-auto md:translate-y-0 md:opacity-100':
 								!isBurgerVersion
