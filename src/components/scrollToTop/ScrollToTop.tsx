@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion } from 'framer-motion'
 import { type FC, useEffect, useState } from 'react'
-import { IoTriangleOutline } from 'react-icons/io5'
+import { IoIosArrowRoundUp } from 'react-icons/io'
 
 const ScrollToTop: FC = () => {
 	const [isVisible, setIsVisible] = useState<boolean>(false)
@@ -53,7 +53,7 @@ const ScrollToTop: FC = () => {
 							boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)'
 						}}
 					>
-						<IoTriangleOutline size={24} color='#fff' />
+						<IoIosArrowRoundUp size={24} color='#fff' />
 					</motion.button>
 				</motion.div>
 			)}
