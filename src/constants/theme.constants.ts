@@ -1,5 +1,5 @@
-export const THEME = 'nord'
-export const DARK_THEME = 'business'
+export const THEME = 'winter'
+export const DARK_THEME = 'night'
 export const ind_xs = '0 0 25px 0'
 export const ind_sm = '0 0 50px 0'
 export const ind_md = '0 0 100px 0'
