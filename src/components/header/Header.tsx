@@ -8,6 +8,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import FadeIn from '../fadeIn/FadeIn'
+import Logo from '../logo/Logo'
 import styles from './Header.module.scss'
 
 const Header = ({
@@ -50,7 +51,10 @@ const Header = ({
 	return (
 		<FadeIn className='cont'>
 			<header className='relative flex justify-between items-center py-4'>
-				<Link href='/'>ui-pack-next</Link>
+				<Logo
+					className='my-4 flex flex-col justify-center z-20'
+					logo='ui-pack-next'
+				/>
 				<nav
 					className={cn(
 						{ [styles.active]: isMenuActive },
