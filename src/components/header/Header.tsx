@@ -84,7 +84,7 @@ const Header = ({
 							>
 								<Link
 									className={cn('px-[10px] btn font-normal', {
-										'btn-primary text-base-100 dark:text-base-content':
+										'btn-primary text-base-100 dark:text-primary-content':
 											highlighting && item.path === pathname,
 										'btn-ghost':
 											!highlighting || (highlighting && item.path !== pathname)
