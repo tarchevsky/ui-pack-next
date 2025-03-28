@@ -37,7 +37,10 @@ const YandexMap = ({ apiKey = 'ваш-api-ключ' }) => {
 ## Основное использование
 
 ```tsx
-import YandexMap from '@/components/yandexMap/YandexMap'
+// Динамический импорт клиентского компонента без SSR
+const YandexMap = dynamic(() => import('@/components/yandexMap/YandexMap'), {
+	ssr: false
+})
 
 // Простой пример - карта с маркером в центре
 ;<YandexMap
