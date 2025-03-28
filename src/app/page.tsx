@@ -1,3 +1,5 @@
+'use client'
+
 import Accordion from '@/components/accordion/Accordion'
 import Carousel from '@/components/carousel/Carousel'
 import CarouselBeyond from '@/components/carouselBeyond/CarouselBeyond'
