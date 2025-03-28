@@ -21,16 +21,17 @@ const YandexMap = memo(
 		const mapInstance = useRef<ymaps.Map | null>(null)
 
 		const createMap = useCallback(() => {
-			if (!mapRef.current) return null
+			if (!mapRef.current || typeof window === 'undefined' || !window.ymaps)
+				return null
 
 			mapInstance.current?.destroy()
 
 			return new window.ymaps.Map(mapRef.current, {
 				center,
 				zoom,
-				controls,
-				behaviors
-			})
+				controls: controls as string[],
+				behaviors: behaviors as string[]
+			} as ymaps.IMapOptions)
 		}, [center, zoom, controls, behaviors])
 
 		const addMarkers = useCallback(

@@ -1,4 +1,4 @@
-interface BalloonStyle {
+export interface BalloonStyle {
 	balloonContentLayout?: string
 	balloonPanelMaxMapArea?: number
 	balloonAutoPan?: boolean
@@ -7,14 +7,14 @@ interface BalloonStyle {
 	balloonOffset?: number[]
 }
 
-interface IconStyle {
+export interface IconStyle {
 	iconLayout?: string
 	iconImageHref?: string
 	iconImageSize?: number[]
 	iconImageOffset?: number[]
 }
 
-interface Marker {
+export interface Marker {
 	coordinates: number[]
 	title?: string
 	description?: string
@@ -24,7 +24,7 @@ interface Marker {
 	iconStyle?: IconStyle
 }
 
-interface ClustererOptions {
+export interface ClustererOptions {
 	/** Префикс для стиля кластеров */
 	preset?: string
 	/** Отключить зум при клике на кластер */
