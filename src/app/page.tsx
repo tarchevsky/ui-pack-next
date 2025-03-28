@@ -8,10 +8,15 @@ import InfiniteMasonry from '@/components/infiniteMasonry/InfiniteMasonry'
 import { MaterialSlider } from '@/components/materialSlider/MaterialSlider'
 import Stage from '@/components/stage/Stage'
 import TextWithButton from '@/components/textWithButton/TextWithButton'
-import ClientYandexMap from '@/components/yandexMap/ClientYandexMap'
 import type { Metadata } from 'next'
+import dynamic from 'next/dynamic'
 import { carousel } from './carousel'
 import { contactFormFields } from './contactFormFields'
+
+// Динамический импорт клиентского компонента без SSR
+const YandexMap = dynamic(() => import('@/components/yandexMap/YandexMap'), {
+	ssr: false
+})
 
 export const metadata: Metadata = {
 	title: 'Главная',
@@ -86,7 +91,7 @@ export default function HomePage() {
 			/>
 			<MaterialSlider />
 			<InfiniteMasonry images={images} />
-			<ClientYandexMap />
+			<YandexMap />
 		</>
 	)
 }
