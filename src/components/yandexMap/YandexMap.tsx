@@ -18,24 +18,26 @@ const YandexMap = memo(
 		className
 	}: YandexMapProps) => {
 		const mapRef = useRef<HTMLDivElement>(null)
-		const mapInstance = useRef<ymaps.Map | null>(null)
+		const mapInstance = useRef<any | null>(null)
 
-		const createMap = useCallback(() => {
+		const createMap = useCallback((): any => {
 			if (!mapRef.current || typeof window === 'undefined' || !window.ymaps)
 				return null
 
 			mapInstance.current?.destroy()
 
-			return new window.ymaps.Map(mapRef.current, {
+			const map = new window.ymaps.Map(mapRef.current, {
 				center,
 				zoom,
 				controls: controls as string[],
 				behaviors: behaviors as string[]
-			} as ymaps.IMapOptions)
+			})
+
+			return map
 		}, [center, zoom, controls, behaviors])
 
 		const addMarkers = useCallback(
-			(map: ymaps.Map) => {
+			(map: any) => {
 				const markersToAdd = markers || [{ coordinates: center }]
 				if (!markersToAdd.length) return
 
@@ -81,7 +83,7 @@ const YandexMap = memo(
 					)
 
 					clustererInstance.add(placemarks.map(p => p.placemark))
-					map.geoObjects.add(clustererInstance as unknown as ymaps.IGeoObject)
+					map.geoObjects.add(clustererInstance)
 				} else {
 					placemarks.forEach(({ placemark, openByDefault }) => {
 						map.geoObjects.add(placemark)
@@ -105,7 +107,10 @@ const YandexMap = memo(
 			const handleLoad = () => {
 				window.ymaps.ready(() => {
 					const map = createMap()
-					if (map) addMarkers(map)
+					if (map) {
+						mapInstance.current = map
+						addMarkers(map)
+					}
 				})
 			}
 
