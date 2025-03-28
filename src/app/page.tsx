@@ -1,5 +1,3 @@
-'use client'
-
 import Accordion from '@/components/accordion/Accordion'
 import Carousel from '@/components/carousel/Carousel'
 import CarouselBeyond from '@/components/carouselBeyond/CarouselBeyond'
@@ -10,6 +8,7 @@ import InfiniteMasonry from '@/components/infiniteMasonry/InfiniteMasonry'
 import { MaterialSlider } from '@/components/materialSlider/MaterialSlider'
 import Stage from '@/components/stage/Stage'
 import TextWithButton from '@/components/textWithButton/TextWithButton'
+import ClientYandexMap from '@/components/yandexMap/ClientYandexMap'
 import type { Metadata } from 'next'
 import { carousel } from './carousel'
 import { contactFormFields } from './contactFormFields'
@@ -87,7 +86,7 @@ export default function HomePage() {
 			/>
 			<MaterialSlider />
 			<InfiniteMasonry images={images} />
-			<YandexMap />
+			<ClientYandexMap />
 		</>
 	)
 }
