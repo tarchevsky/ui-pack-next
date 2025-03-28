@@ -85,6 +85,7 @@ export default function HomePage() {
 			/>
 			<MaterialSlider />
 			<InfiniteMasonry images={images} />
+			<YandexMap />
 		</>
 	)
 }
