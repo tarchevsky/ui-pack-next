@@ -80,6 +80,7 @@ export interface HeroProps {
 	unoptimized?: boolean
 	modalContent?: ReactNode | React.ReactElement<ModalContentProps>
 	closeIcon?: boolean
+	config?: 'center' | 'cover'
 }
 
 // Accordion.tsx

@@ -32,6 +32,7 @@ export default function HomePage() {
 				title='Заголовок'
 				buttonText='Обратная связь'
 				closeIcon
+				config='cover'
 				modalContent={
 					<ModalContactForm
 						fields={contactFormFields}

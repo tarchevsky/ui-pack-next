@@ -32,6 +32,7 @@
         "@tailwindcss/typography": "^0.5.15",
         "@trivago/prettier-plugin-sort-imports": "^4.3.0",
         "@types/nodemailer": "^6.4.17",
+        "@types/yandex-maps": "^2.1.36",
         "autoprefixer": "^10.4.19",
         "daisyui": "^4.9.0",
         "postcss": "^8.4.38",
@@ -218,6 +219,8 @@
     "@types/react": ["@types/react@18.2.73", "", { "dependencies": { "@types/prop-types": "*", "csstype": "^3.0.2" } }, "sha512-XcGdod0Jjv84HOC7N5ziY3x+qL0AfmubvKOZ9hJjJ2yd5EE+KYjWhdOjt387e9HPheHkdggF9atTifMRtyAaRA=="],
 
     "@types/react-dom": ["@types/react-dom@18.2.23", "", { "dependencies": { "@types/react": "*" } }, "sha512-ZQ71wgGOTmDYpnav2knkjr3qXdAFu0vsk8Ci5w3pGAIdj7/kKAyn+VsQDhXsmzzzepAiI9leWMmubXz690AI/A=="],
+
+    "@types/yandex-maps": ["@types/yandex-maps@2.1.36", "", {}, "sha512-SxKOLe627WMFkC3jo7VelT29Uvbvg+LHRtD3cA6W0qWNuf7WQBv+lTaN+os1Vdum+EpglKBJbzjV8PJqwPZUQA=="],
 
     "@vercel/build-utils": ["@vercel/build-utils@7.11.0", "", {}, "sha512-UFrx1hNIjNJJkd0NZrYfaOrmcWhQmrVsbKe9o3L9jX9J1iufG685wIZ9tFCKKC0Fa2HWbNDNzNxrE5SCAS2lyA=="],
 

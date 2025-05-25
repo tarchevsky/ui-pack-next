@@ -15,7 +15,8 @@ const Hero = ({
 	src,
 	unoptimized,
 	modalContent,
-	closeIcon
+	closeIcon,
+	config
 }: HeroProps) => {
 	const modalRef = useRef<ModalHandle>(null)
 	const [modalMessage, setModalMessage] = useState<string | null>(null)
@@ -52,19 +53,31 @@ const Hero = ({
 	}
 
 	return (
-		<FadeIn tag='main' className='hero cont md:min-h-[80vh] ind'>
-			<div className='relative hero-content flex-col-reverse items-start lg:items-center lg:flex-row'>
+		<FadeIn tag='main' className='hero ind'>
+			<div
+				className={`${config !== 'center' ? 'cont h-[80svh] max-w-full w-full p-0 block' : 'md:min-h-[80vh]'} relative hero-content flex-col-reverse items-start lg:items-center lg:flex-row`}
+			>
 				<Image
-					className='lg:w-1/2 h-[300px] md:h-[600px] md:min-w-[600px] object-cover rounded-box shadow-2xl'
+					className={`${
+						config === 'center'
+							? 'lg:w-1/2 h-[300px] md:h-[600px] md:min-w-[600px]'
+							: 'w-full h-full brightness-50'
+					} object-cover rounded-box shadow-2xl`}
 					src={src}
 					alt={alt}
-					width={400}
-					height={300}
+					width={1300}
+					height={900}
 					priority
 					unoptimized={unoptimized}
 				/>
-				<div className='md:relative lg:ml-[-100px] z-10'>
-					<h1 className='text-5xl font-extrabold'>{title}</h1>
+				<div
+					className={`${config === 'center' ? 'lg:ml-[-100px] md:relative' : 'absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'} z-10`}
+				>
+					<h1
+						className={`${config !== 'center' ? 'text-primary-content' : ''} text-5xl font-extrabold`}
+					>
+						{title}
+					</h1>
 					{subtitle ? <p>{subtitle}</p> : null}
 					{buttonText ? (
 						<button
