@@ -1,5 +1,6 @@
 import { forwardRef, useImperativeHandle, useRef } from 'react'
 import type { ModalHandle, ModalProps } from './modal.types'
+import { cn } from '@/utils/cn'
 
 const Modal = forwardRef<ModalHandle, ModalProps>(
 	({ message, children, onClose, bottom, closeIcon, boxClasses }, ref) => {
@@ -30,10 +31,10 @@ const Modal = forwardRef<ModalHandle, ModalProps>(
 		return (
 			<dialog
 				ref={modalRef}
-				className={`modal outline-none ${bottom ? 'modal-bottom' : ''}`}
+				className={cn('modal outline-none', bottom && 'modal-bottom')}
 				onClick={handleDialogClick}
 			>
-				<div className={`modal-box outline-none ${boxClasses}`}>
+				<div className={cn('modal-box outline-none', boxClasses)}>
 					{message ? <p className='py-4'>{message}</p> : null}
 					{children}
 
