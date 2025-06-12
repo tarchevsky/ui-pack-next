@@ -142,7 +142,7 @@ const ContactForm = ({
 			) : (
 				<form
 					onSubmit={handleSubmit(onSubmit)}
-					className='ind flex flex-col gap-4'
+					className='flex flex-col gap-4'
 					noValidate
 				>
 					{fields.map(field => (
