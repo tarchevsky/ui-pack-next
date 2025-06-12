@@ -95,9 +95,6 @@ export const RadioField = ({
 			role='radiogroup'
 			aria-labelledby={`${name}-title`}
 		>
-			<h4 id={`${name}-title`} className='text-2xl font-medium mb-2'>
-				{title}
-			</h4>
 			<div className='flex flex-col gap-2'>
 				{options.map(option => (
 					<label
