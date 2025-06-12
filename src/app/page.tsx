@@ -36,12 +36,19 @@ export default function HomePage() {
 				modalContent={
 					<ModalContactForm
 						fields={contactFormFields}
-						message='Моё сообщение'
+						message='Спасибо за заявку и проявленный интерес! Мы скоро свяжемся с вами.'
 					/>
 				}
 			/>
 			<Stage />
-			<TextWithButton />
+			<TextWithButton
+				modalContent={
+					<ModalContactForm
+						fields={contactFormFields}
+						message='Спасибо за заявку и проявленный интерес! Мы скоро свяжемся с вами.'
+					/>
+				}
+			/>
 			<Accordion
 				tab1='Какой-то заголовок'
 				content1='Какой-то текст'
