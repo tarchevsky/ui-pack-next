@@ -8,22 +8,30 @@ interface ModalContactFormProps {
 	onSuccess?: (message: string) => void
 	message?: string
 	closeIcon?: boolean
+	title?: string
 }
 
 const ModalContactForm = ({
+	title = 'Оставьте заявку',
 	fields,
 	onSuccess,
 	message,
 	closeIcon
 }: ModalContactFormProps) => {
 	return (
-		<ContactForm
-			fields={fields}
-			useParentModal
-			onSuccess={onSuccess}
-			message={message}
-			closeIcon={closeIcon}
-		/>
+		<>
+			{title && (
+				<h4 className='ind-sm text-center text-2xl font-bold'>{title}</h4>
+			)}
+
+			<ContactForm
+				fields={fields}
+				useParentModal
+				onSuccess={onSuccess}
+				message={message}
+				closeIcon={closeIcon}
+			/>
+		</>
 	)
 }
 
