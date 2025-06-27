@@ -2,8 +2,11 @@ import ContactForm from '@/components/contactForm/ContactForm'
 import FadeIn from '@/components/fadeIn/FadeIn'
 import PageHeading from '@/components/pageHeading/PageHeading'
 
+import Contact from '@/components/contact/Contact'
 import type { FormField } from '@/components/contactForm/contactForm.types'
+import Htag from '@/components/Htag/Htag'
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { contactFormFields } from './contactFormFields'
 
 export const metadata: Metadata = {
@@ -21,18 +24,27 @@ export default async function ContactsPage() {
 
 	return (
 		<>
-			<PageHeading ind title='Контакты' />
-			<FadeIn className='ind cont flex flex-col-reverse md:grid md:grid-cols-2 gap-4 md:gap-16'>
-				<ContactForm fields={fields} message='Ваше сообщение' closeIcon />
+			<PageHeading
+				className='cont'
+				ind
+				title='Контакты'
+				breadcrumbs={[{ label: 'Главная', href: '/' }, { label: 'Контакты' }]}
+			/>
+			<FadeIn className='ind cont flex md:grid md:grid-cols-2 gap-4 md:gap-16'>
 				<div className='flex flex-col gap-4'>
-					<h2 className={'text-3xl font-bold'}>
-						Оставьте заявку, либо свяжитесь с нами
-					</h2>
 					<div className={'flex flex-col gap-4'}>
-						<a href={'mailto:mail@mail.ru'}>mail@mail.ru</a>
-						<a href={'tel:+79000000000'}>+79000000000</a>
+						<Link href={'tel:+79000000000'}>+79000000000</Link>
 					</div>
 				</div>
+				<div>
+					<Htag tag='h2'>
+						если у вас остались вопросы или вы хотите оставить какие-то
+						пожелания или добрые слова, пишите
+					</Htag>
+					<Contact type='email' data='mail@mail.ru' className='text-5xl' />
+					<ContactForm fields={fields} message='Ваше сообщение' closeIcon />
+				</div>
+				<ContactForm fields={fields} message='Ваше сообщение' closeIcon />
 			</FadeIn>
 		</>
 	)

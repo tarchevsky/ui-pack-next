@@ -19,7 +19,6 @@ const Header = ({
 
 	const menuItems: MenuItem[] = [
 		{ path: '/', label: 'Главная' },
-		{ path: '/about', label: 'О проекте' },
 		{ path: '/documentation', label: 'Документация' },
 		{ path: '/contacts', label: 'Контакты' }
 	]
