@@ -27,6 +27,8 @@ export interface FormField {
 	maxSize?: number
 	other?: boolean
 	otherPlaceholder?: string
+	privacyLink?: string
+	privacyLinkText?: string
 }
 
 export type FormFieldName = string

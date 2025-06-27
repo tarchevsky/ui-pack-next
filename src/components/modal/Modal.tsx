@@ -1,6 +1,6 @@
+import { cn } from '@/utils/cn'
 import { forwardRef, useImperativeHandle, useRef } from 'react'
 import type { ModalHandle, ModalProps } from './modal.types'
-import { cn } from '@/utils/cn'
 
 const Modal = forwardRef<ModalHandle, ModalProps>(
 	({ message, children, onClose, bottom, closeIcon, boxClasses }, ref) => {

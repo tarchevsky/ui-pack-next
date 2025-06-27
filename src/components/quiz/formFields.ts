@@ -106,6 +106,17 @@ export const formFields: FormField[] = [
 	},
 	{
 		step: 4,
+		name: 'policy',
+		type: 'radio',
+		title: 'Политика конфиденциальности',
+		required: true,
+		error: 'Отметьте, что вы ознакомлены с нашей политикой',
+		options: [{ label: 'Я согласен с условиями', value: 'agree' }],
+		privacyLink: '/privacy-policy',
+		privacyLinkText: 'Подробнее о политике конфиденциальности'
+	},
+	{
+		step: 4,
 		name: 'captcha',
 		type: 'captcha',
 		required: false,

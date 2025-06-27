@@ -87,15 +87,15 @@ export default function Quiz({
 
 	return (
 		<>
-			<FadeIn className='cont rounded md:p-16 pb-10 relative'>
+			<FadeIn className='md:max-w-2xl m-auto rounded p-10 md:p-20 my-10 relative md:shadow-xl'>
 				{steps && (
-					<div className='absolute -top-10 right-4 md:top-auto md:bottom-14 bottom md:left-16 text-4xl font-extrabold text-gray-200 dark:text-base-300'>
+					<div className='absolute -top-10 right-4 md:top-auto md:bottom-14 bottom md:left-20 text-4xl font-extrabold text-gray-200 dark:text-base-300'>
 						{currentStep}/{totalSteps}
 					</div>
 				)}
 				<form
 					onSubmit={form.handleSubmit(data => handleSubmit(data, showModal))}
-					className='w-full flex flex-col justify-center gap-6 min-h-64'
+					className='relative w-full flex flex-col justify-center gap-6 min-h-64'
 				>
 					{formFields
 						.filter(field => field.step === currentStep)

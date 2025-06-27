@@ -129,7 +129,24 @@ const RadioField = ({ field, register, errors }: RadioFieldProps) => {
 							aria-label={option.label}
 							{...rest}
 						/>
-						<span className='label-text'>{option.label || option.value}</span>
+						<span className='label-text'>
+							{option.label || option.value}
+							{field.privacyLink &&
+								field.privacyLinkText &&
+								option.value === 'agree' && (
+									<>
+										{' '}
+										<a
+											href={field.privacyLink}
+											target='_blank'
+											rel='noreferrer'
+											className='text-primary hover:underline'
+										>
+											{field.privacyLinkText}
+										</a>
+									</>
+								)}
+						</span>
 					</label>
 				))}
 				{field.other && (
