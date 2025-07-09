@@ -27,7 +27,7 @@ const Tab = () => {
 	const isTabOpen = (tabName: string) => tabOpen === tabName
 
 	return (
-		<FadeIn>
+		<FadeIn className='cont'>
 			<div className='text-xl' onClick={() => handleTabClick('tab1')}>
 				Tab 1
 				<span

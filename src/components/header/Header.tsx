@@ -19,7 +19,6 @@ const Header = ({
 
 	const menuItems: MenuItem[] = [
 		{ path: '/', label: 'Главная' },
-		{ path: '/documentation', label: 'Документация' },
 		{ path: '/contacts', label: 'Контакты' }
 	]
 
@@ -49,10 +48,10 @@ const Header = ({
 
 	return (
 		<FadeIn className='cont'>
-			<header className='relative flex justify-between items-center py-4'>
+			<header className='relative flex gap-6 justify-between items-center py-4 m-auto'>
 				<Logo
-					className='my-4 flex flex-col justify-center z-20'
-					logo='ui-pack-next'
+					className='my-4 flex flex-col z-20 font-bold text-2xl leading-[1.9rem]'
+					logo='ui<br />pack<br />next<br />'
 				/>
 				<nav
 					className={cn(

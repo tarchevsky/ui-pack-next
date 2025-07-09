@@ -11,9 +11,6 @@ const Footer = () => {
 		<FadeIn>
 			<footer className='footer footer-center p-10 bg-base-200 text-base-content rounded'>
 				<nav className='grid grid-flow-col gap-4'>
-					<Link href='/about' className='link link-hover'>
-						О нас
-					</Link>
 					<Link href='/' className='link link-hover'>
 						Контакты
 					</Link>
